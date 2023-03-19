@@ -30,9 +30,11 @@ module.exports = {
           500: '#1B1B1F',
           700: '#050505'
         },
-
-        
       },
+      fontFamily: {
+        archivo: ['Archivo', 'sans-serif'],
+      },
+      
     },
   },
   plugins: [],
