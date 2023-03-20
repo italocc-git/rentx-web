@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-    @apply bg-base-background font-archivo text-zinc-900 ;
+    @apply bg-black-500 font-archivo ;
 }

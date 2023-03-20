@@ -33,9 +33,10 @@ module.exports = {
       },
       fontFamily: {
         archivo: ['Archivo', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       },
       
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
