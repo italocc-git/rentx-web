@@ -1,5 +1,3 @@
 export const CarSuccessfulRented = () => {
-    return (
-        <></>
-    )
+  return <></>
 }

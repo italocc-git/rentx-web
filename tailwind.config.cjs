@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.tsx"],
+  content: ['./src/**/*.tsx'],
   theme: {
     extend: {
       colors: {
@@ -16,7 +16,7 @@ module.exports = {
           title: '#47474D',
           text: '#7A7A80',
           secondary: '#EBEBF0',
-          main : '#F4F5F6',
+          main: '#F4F5F6',
           hover: '#F4F5F6',
           gray: '#DEDEE3',
           background: '#E5E5E5',
@@ -28,14 +28,13 @@ module.exports = {
         black: {
           300: '#29292E',
           500: '#1B1B1F',
-          700: '#050505'
+          700: '#050505',
         },
       },
       fontFamily: {
         archivo: ['Archivo', 'sans-serif'],
-        inter: ['Inter', 'sans-serif']
+        inter: ['Inter', 'sans-serif'],
       },
-      
     },
   },
   plugins: [require('@tailwindcss/forms')],

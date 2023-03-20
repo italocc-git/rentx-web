@@ -1,5 +1,3 @@
 export const CarsList = () => {
-    return (
-        <></>
-    )
+  return <></>
 }
