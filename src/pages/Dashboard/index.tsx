@@ -1,9 +1,10 @@
 import rentxImg from '../../assets/logo.png'
 import carImg from '../../assets/car-image-dashboard.png'
 import carBackground from '../../assets/car-background.png'
+import { Link } from 'react-router-dom'
 export const Dashboard = () => {
   return (
-    <div className="min-h-screen ">
+    <div className="h-full ">
       <div className="w-full max-w-[1300px] flex justify-between mt-20 mx-auto ">
         <div className="max-w-[400px]">
           <img src={rentxImg} alt="logo-rentx" className="mb-[120px]" />
@@ -15,9 +16,12 @@ export const Dashboard = () => {
               Vários modelos para você dirigir seguro, com conforoto e segurança
             </span>
 
-            <button className="bg-product-red w-[292px] hover:bg-product-red-dark transition-colors h-[80px] text-base-white font-medium text-lg">
+            <Link
+              to="/cars-list"
+              className="bg-product-red w-[292px] hover:bg-product-red-dark transition-colors h-[80px] text-base-white font-medium text-lg flex justify-center items-center"
+            >
               Começar agora
-            </button>
+            </Link>
           </div>
         </div>
         <div className="relative min-w-[610px] ">
