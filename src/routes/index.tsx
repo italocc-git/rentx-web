@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { Car } from '../pages/Car'
+import { CarDetails } from '../pages/Car'
 import { AvailableCarsList } from '../pages/AvailableCarsList'
 import { CarSuccessfulRented } from '../pages/CarSuccessfulRented'
 import { Dashboard } from '../pages/Dashboard'
@@ -9,7 +9,7 @@ export const Router = () => {
     <Routes>
       <Route path="/" element={<Dashboard />} />
       <Route path="/available-cars-list" element={<AvailableCarsList />} />
-      <Route path="/car" element={<Car />} />
+      <Route path="/car" element={<CarDetails />} />
       <Route path="/car-successful-rented" element={<CarSuccessfulRented />} />
     </Routes>
   )
