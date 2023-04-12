@@ -35,6 +35,9 @@ module.exports = {
         archivo: ['Archivo', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
       },
+      boxShadow: {
+        tabShadow: 'inset 0 -1px 0 0 red, 0 1px 0 0 red',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],
