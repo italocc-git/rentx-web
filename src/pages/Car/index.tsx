@@ -6,14 +6,19 @@ import {
   SteeringWheel,
   Users,
 } from '@phosphor-icons/react'
+import { useState } from 'react'
 import { CarouselComponent } from '../../components/CarouselComponent'
 import { CarSpecification } from '../../components/CarSpecification'
+
 import { Tabs } from '../../components/Tabs'
+import { DateSelectModal } from './DateSelectModal'
 import { HeaderCarDetails } from './HeaderCarDetails'
 
 export const CarDetails = () => {
+  const [openModal, setOpenModal] = useState(false)
   return (
     <div className=" bg-base-white h-full min-h-screen px-20 py-8 ">
+      <DateSelectModal openModal={openModal} setOpenModal={setOpenModal} />
       <HeaderCarDetails brand="AUDI" model="Q3 2023" price="120,00" />
       <div className="flex justify-between w-full ">
         <CarouselComponent />
@@ -30,7 +35,10 @@ export const CarDetails = () => {
           </div>
           <Tabs />
           <div className="mt-[113px]">
-            <button className="bg-product-red w-[384px] h-20 text-white transition-colors hover:bg-product-red-dark">
+            <button
+              onClick={() => setOpenModal(true)}
+              className="bg-product-red w-[384px] h-20 text-white transition-colors hover:bg-product-red-dark"
+            >
               <span className="font-inter font-medium text-lg">
                 Escolher período do aluguel
               </span>
