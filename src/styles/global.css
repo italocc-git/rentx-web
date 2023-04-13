@@ -5,3 +5,12 @@
 body {
     @apply bg-black-500 font-archivo ;
 }
+@layer components {
+    .carousel-style-customized {
+        .carousel .thumbs-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+    } 
+    
+}
