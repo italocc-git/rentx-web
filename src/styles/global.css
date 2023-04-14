@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
     @apply bg-black-500 font-archivo ;
 }
@@ -10,6 +11,70 @@ body {
         .carousel .thumbs-wrapper {
             display: flex;
             justify-content: center;
+        }
+    }
+    .calendar-style-customized {
+        &.react-calendar {
+            min-width: 400px;
+            border:0;
+
+            .react-calendar__navigation {
+                border-bottom:1px solid #EBEBF0;
+
+                & button {
+                    background-color: transparent !important;
+                }
+                & .react-calendar__navigation__label{
+                    font-weight: 600;
+                    font-size: 20px;
+                    color: #47474D;
+                    font-family: 'Archivo';
+                    font-style: normal;
+                }
+                & .react-calendar__navigation__arrow {
+                    color:#7A7A80;
+                    padding: 0px 20px;
+                }
+            }
+            .react-calendar__viewContainer{
+                & .react-calendar__month-view{
+                    & .react-calendar__month-view__weekdays{
+                        color: #AEAEB3;
+                        font-family: 'Archivo';
+
+                        & abbr {
+                            text-decoration:none;    
+                        }
+                    
+                    }
+                    & .react-calendar__month-view__days {
+                    
+                        & button {
+                            border-radius:2px;
+                            background-color: transparent;
+                            
+                        }
+                        & .react-calendar__tile--now {
+                                
+                                font-weight:700;
+                            }
+                        & .react-calendar__tile--active{
+                            background-color: #FDEDEF;
+                            color: #DC1637;
+                        }
+                        & .react-calendar__tile--rangeStart:enabled{
+                            background-color: #DC1637;
+                            color:#fff;
+                        }
+                        & .react-calendar__tile--rangeEnd:enabled{
+                            background-color: #DC1637;
+                            color:#fff;
+                        }
+                        
+                    }
+                }
+            }
+            
         }
     } 
     
