@@ -1,8 +1,13 @@
-/* import { useState } from 'react' */
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'
 import { Calendar } from 'react-calendar'
-/* import './calendarStyle.css' */
-export const CalendarComponent = () => {
+import { Value } from 'react-calendar/dist/cjs/shared/types'
+
+interface CalendarComponentProps {
+  onChangeCalendar: (value: Value) => void
+}
+export const CalendarComponent = ({
+  onChangeCalendar,
+}: CalendarComponentProps) => {
   /*  const [value, onChange] = useState(new Date()) */
 
   const calendarConfig = {
@@ -18,7 +23,7 @@ export const CalendarComponent = () => {
   return (
     <div>
       <Calendar
-        onChange={(dateSelected: any) => console.log(dateSelected)}
+        onChange={onChangeCalendar}
         className="calendar-style-customized"
         {...calendarConfig}
         /* value={value} */

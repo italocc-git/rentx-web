@@ -1,16 +1,33 @@
 import { X } from '@phosphor-icons/react'
+import { useState } from 'react'
+/* import { Value } from 'react-calendar/dist/cjs/shared/types' */
 import { CalendarComponent } from '../../../components/CalendarComponent'
 import Modal from '../../../components/Modal'
+import { convertDateToString } from '../../../utils/convertDate'
 
 interface DateSelectModalProps {
   openModal: boolean
   setOpenModal: (open: boolean) => void
+}
+type SelectedRangeDate = {
+  startDate?: string
+  endDate?: string
 }
 
 export const DateSelectModal = ({
   openModal,
   setOpenModal,
 }: DateSelectModalProps) => {
+  const [selectedRangeDate, setSelectedRangeDate] = useState<SelectedRangeDate>(
+    {} as SelectedRangeDate,
+  )
+  const handleOnChangeCalendar = (dateValue: any) => {
+    const [start, end] = dateValue
+    setSelectedRangeDate({
+      startDate: convertDateToString(start),
+      endDate: convertDateToString(end),
+    })
+  }
   return (
     <Modal openModal={openModal} setOpen={setOpenModal}>
       <div className="h-20 bg-black-700 px-12 py-7 flex justify-between items-center">
@@ -20,19 +37,24 @@ export const DateSelectModal = ({
         <X
           onClick={() => setOpenModal(false)}
           size={18}
-          className="text-base-text-details cursor-pointer hover:text-base-hover"
+          className="text-base-text-details cursor-pointer transition-colors hover:text-base-hover"
         />
       </div>
       <div className="flex justify-between h-[495px] p-12">
-        <CalendarComponent />
+        <CalendarComponent onChangeCalendar={handleOnChangeCalendar} />
         <div className="flex flex-col justify-between ">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <span className="text-base-text-details font-medium text-sm font-archivo">
                 DE
               </span>
-              <span className="text-base-title font-semibold text-3xl font-inter">
-                18 Jul 2021
+              <span
+                className={`text-base-title font-semibold text-3xl font-inter h-9 ${
+                  !selectedRangeDate.startDate &&
+                  'border-b-2 border-base-text-details'
+                }`}
+              >
+                {selectedRangeDate.startDate}
               </span>
             </div>
 
@@ -40,8 +62,13 @@ export const DateSelectModal = ({
               <span className="text-base-text-details font-medium text-sm font-archivo">
                 ATÉ
               </span>
-              <span className="text-base-title font-semibold text-3xl font-inter">
-                20 Jul 2021
+              <span
+                className={`text-base-title font-semibold text-3xl font-inter h-9 ${
+                  !selectedRangeDate.endDate &&
+                  'border-b-2 border-base-text-details'
+                }`}
+              >
+                {selectedRangeDate.endDate}
               </span>
             </div>
           </div>
