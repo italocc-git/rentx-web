@@ -1,32 +1,36 @@
 import { X } from '@phosphor-icons/react'
-import { useState } from 'react'
 /* import { Value } from 'react-calendar/dist/cjs/shared/types' */
 import { CalendarComponent } from '../../../components/CalendarComponent'
 import Modal from '../../../components/Modal'
-import { convertDateToString } from '../../../utils/convertDate'
+import {
+  convertDateToString,
+  differenceBetweenDates,
+} from '../../../utils/convertDate'
+import { SelectedRangeDateType } from '../types'
 
 interface DateSelectModalProps {
   openModal: boolean
   setOpenModal: (open: boolean) => void
-}
-type SelectedRangeDate = {
-  startDate?: string
-  endDate?: string
+  selectedRangeDate: SelectedRangeDateType
+  setSelectedRangeDate: (selectedRangeDate: SelectedRangeDateType) => void
+  setSelectTab: (tabSelected: string) => void
 }
 
 export const DateSelectModal = ({
   openModal,
   setOpenModal,
+  selectedRangeDate,
+  setSelectedRangeDate,
+  setSelectTab,
 }: DateSelectModalProps) => {
-  const [selectedRangeDate, setSelectedRangeDate] = useState<SelectedRangeDate>(
-    {} as SelectedRangeDate,
-  )
   const handleOnChangeCalendar = (dateValue: any) => {
     const [start, end] = dateValue
     setSelectedRangeDate({
       startDate: convertDateToString(start),
       endDate: convertDateToString(end),
+      quantityOfDays: Math.abs(differenceBetweenDates(start, end)),
     })
+    setSelectTab('tab2')
   }
   return (
     <Modal openModal={openModal} setOpen={setOpenModal}>
