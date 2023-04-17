@@ -5,6 +5,7 @@ import lamboImg from '../../assets/tests/Lambo.png'
 import lancerImg from '../../assets/tests/Lancer.png'
 import porsheImg from '../../assets/tests/Porche.png'
 import volvoImg from '../../assets/tests/Volvo.png'
+import { Link } from 'react-router-dom'
 export const AvailableCarsList = () => {
   return (
     <div className="bg-base-main h-full min-h-screen px-20 py-8">
@@ -18,13 +19,15 @@ export const AvailableCarsList = () => {
       </div>
       <hr className="bg-base-secondary border w-full my-10" />
       <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 ">
-        <Card
-          image={audiImg}
-          brand="AUDI"
-          model="RS 5 Coupé"
-          price="640"
-          fuelType="energy"
-        />
+        <Link to="/car/1">
+          <Card
+            image={audiImg}
+            brand="AUDI"
+            model="RS 5 Coupé"
+            price="120"
+            fuelType="energy"
+          />
+        </Link>
         <Card
           image={corvetteImg}
           brand="CHEVROLET"

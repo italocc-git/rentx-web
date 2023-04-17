@@ -13,12 +13,29 @@ import { CarSpecification } from '../../components/CarSpecification'
 import { Tabs } from '../../components/Tabs'
 import { DateSelectModal } from './DateSelectModal'
 import { HeaderCarDetails } from './HeaderCarDetails'
-
+import { SelectedRangeDateType } from './types'
+import { useNavigate } from 'react-router-dom'
 export const CarDetails = () => {
+  const navigate = useNavigate()
+
   const [openModal, setOpenModal] = useState(false)
+  const [selectedRangeDate, setSelectedRangeDate] =
+    useState<SelectedRangeDateType>({} as SelectedRangeDateType)
+
+  const handleSuccessRentalPage = () => {
+    navigate('/car-successful-rented')
+  }
+  const [selectedTab, setSelectedTab] = useState<string>('tab1')
+
   return (
     <div className=" bg-base-white h-full min-h-screen px-20 py-8 ">
-      <DateSelectModal openModal={openModal} setOpenModal={setOpenModal} />
+      <DateSelectModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        selectedRangeDate={selectedRangeDate}
+        setSelectedRangeDate={setSelectedRangeDate}
+        setSelectTab={setSelectedTab}
+      />
       <HeaderCarDetails brand="AUDI" model="Q3 2023" price="120,00" />
       <div className="flex justify-between w-full ">
         <CarouselComponent />
@@ -33,16 +50,32 @@ export const CarDetails = () => {
               <CarSpecification icon={SteeringWheel} name="280 HP" />
             </div>
           </div>
-          <Tabs />
+          <Tabs
+            selectedData={selectedRangeDate}
+            setOpenModal={setOpenModal}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+          />
           <div className="mt-[113px]">
-            <button
-              onClick={() => setOpenModal(true)}
-              className="bg-product-red w-[384px] h-20 text-white transition-colors hover:bg-product-red-dark"
-            >
-              <span className="font-inter font-medium text-lg">
-                Escolher período do aluguel
-              </span>
-            </button>
+            {selectedRangeDate.startDate ? (
+              <button
+                onClick={handleSuccessRentalPage}
+                className="bg-product-green w-[384px] h-20 text-white transition-colors hover:bg-product-green-dark"
+              >
+                <span className="font-inter font-medium text-lg">
+                  Alugar agora
+                </span>
+              </button>
+            ) : (
+              <button
+                onClick={() => setOpenModal(true)}
+                className="bg-product-red w-[384px] h-20 text-white transition-colors hover:bg-product-red-dark"
+              >
+                <span className="font-inter font-medium text-lg">
+                  Escolher período do aluguel
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </div>

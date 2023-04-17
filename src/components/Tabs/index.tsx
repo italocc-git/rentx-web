@@ -1,11 +1,34 @@
 import { ArrowRight, CalendarBlank } from '@phosphor-icons/react'
 import * as TabRadix from '@radix-ui/react-tabs'
+import { SelectedRangeDateType } from '../../pages/Car/types'
 
-export const Tabs = () => {
+interface TabsProps {
+  selectedData: SelectedRangeDateType
+  setOpenModal: (open: boolean) => void
+  selectedTab: string
+  setSelectedTab: (tabSelected: string) => void
+}
+
+export const Tabs = ({
+  selectedData,
+  setOpenModal,
+  selectedTab,
+  setSelectedTab,
+}: TabsProps) => {
   const { Root, List, Trigger, Content } = TabRadix
+  const { startDate, endDate, quantityOfDays } = selectedData
+
+  const handleChangeSelectedTab = (value: string) => {
+    setSelectedTab(value)
+  }
 
   return (
-    <Root defaultValue="tab1" className="flex flex-col w-full h-40 my-2">
+    <Root
+      defaultValue={selectedTab}
+      onValueChange={handleChangeSelectedTab}
+      value={selectedTab}
+      className="flex flex-col w-full h-40 my-2"
+    >
       <List
         aria-label="Car Information Manager"
         className="flex border-b-2 shrink-0 mb-6"
@@ -19,8 +42,9 @@ export const Tabs = () => {
           </span>
         </Trigger>
         <Trigger
-          className="bg-white text-base-gray px-5 h-11 flex-grow flex items-center justify-center data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow select-none"
+          className="bg-white text-base-gray px-5 h-11 flex-grow flex items-center justify-center  data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow select-none"
           value="tab2"
+          disabled={!startDate}
         >
           <span className=" font-semibold text-sm font-inter">PERÍODO</span>
         </Trigger>
@@ -41,7 +65,7 @@ export const Tabs = () => {
                   DE
                 </span>
                 <span className="text-base-title font-medium text-lg">
-                  18 Jul 2021
+                  {startDate}
                 </span>
               </div>
               <ArrowRight />
@@ -50,12 +74,15 @@ export const Tabs = () => {
                   ATÉ
                 </span>
                 <span className="text-base-title font-medium text-lg">
-                  20 Jul 2021
+                  {endDate}
                 </span>
               </div>
             </div>
 
-            <button className="w-12 bg-product-red rounded flex justify-center items-center transition-colors hover:bg-product-red-dark">
+            <button
+              onClick={() => setOpenModal(true)}
+              className="w-12 bg-product-red rounded flex justify-center items-center transition-colors hover:bg-product-red-dark"
+            >
               <CalendarBlank size={20} className="text-white" />
             </button>
           </div>
@@ -68,12 +95,12 @@ export const Tabs = () => {
               </span>
 
               <span className="text-base-title font-medium text-lg">
-                R$ 580 x3 diárias
+                R$ 120 x {quantityOfDays} diárias
               </span>
             </div>
 
             <span className="text-product-green text-4xl font-archivo font-medium">
-              R$ 2,900
+              R$ {120 * (quantityOfDays ?? 0)}
             </span>
           </div>
         </div>
