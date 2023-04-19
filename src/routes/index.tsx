@@ -3,7 +3,9 @@ import { CarDetails } from '../pages/Car'
 import { AvailableCarsList } from '../pages/AvailableCarsList'
 import { CarSuccessfulRented } from '../pages/CarSuccessfulRented'
 import { Dashboard } from '../pages/Dashboard'
-import { SignIn } from '../pages/signIn'
+import { SignIn } from '../pages/SignIn'
+import { SignUp } from '../pages/SignUp'
+import { PasswordRecovery } from '../pages/PasswordRecovery'
 
 export const Router = () => {
   return (
@@ -13,6 +15,8 @@ export const Router = () => {
       <Route path="/car/:id" element={<CarDetails />} />
       <Route path="/car-successful-rented" element={<CarSuccessfulRented />} />
       <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/recovery-password" element={<PasswordRecovery />} />
     </Routes>
   )
 }

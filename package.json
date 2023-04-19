@@ -9,14 +9,17 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.14",
+    "@hookform/resolvers": "^3.1.0",
     "@phosphor-icons/react": "^2.0.8",
     "@radix-ui/react-tabs": "^1.0.3",
     "dayjs": "^1.11.7",
     "react": "^18.2.0",
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-responsive-carousel": "^3.2.23",
-    "react-router-dom": "^6.9.0"
+    "react-router-dom": "^6.9.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^1.2.0",
