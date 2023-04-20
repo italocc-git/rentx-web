@@ -1,6 +1,6 @@
 import { ArrowRight, CalendarBlank } from '@phosphor-icons/react'
 import * as TabRadix from '@radix-ui/react-tabs'
-import { SelectedRangeDateType } from '../../pages/Car/types'
+import { SelectedRangeDateType } from '../types'
 
 interface TabsProps {
   selectedData: SelectedRangeDateType
@@ -9,7 +9,7 @@ interface TabsProps {
   setSelectedTab: (tabSelected: string) => void
 }
 
-export const Tabs = ({
+export const TabsCarInformation = ({
   selectedData,
   setOpenModal,
   selectedTab,

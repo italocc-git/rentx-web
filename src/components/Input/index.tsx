@@ -11,6 +11,7 @@ interface InputPropsComponent extends InputHTMLAttributes<HTMLInputElement> {
   placeholder: string
   type: 'text' | 'password'
   name: string
+  disabled?: boolean
 }
 
 export const Input = ({
@@ -18,12 +19,12 @@ export const Input = ({
   type,
   placeholder,
   name,
+  disabled,
 }: InputPropsComponent) => {
   const [isFocused, setIsFocused] = useState(false)
   const [passwordVisibility, setPasswordVisibility] = useState(false)
 
   const { register } = useFormContext()
-  /* const [isFilled, setIsFilled] = useState(false) */
 
   const handleInputFocused = useCallback(() => {
     setIsFocused(true)
@@ -31,9 +32,19 @@ export const Input = ({
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false)
-
-    /* setIsFilled(!!inputRef.current?.value) */
   }, [])
+
+  const inputProps = {
+    id: name,
+    autoComplete: 'on',
+    onFocus: handleInputFocused,
+    onBlur: handleInputBlur,
+    className:
+      'placeholder-base-text-details p-4 rounded-r-sm flex-grow border-base-secondary focus:border-0 focus:outline-none focus:ring-2 focus:ring-product-red disabled:bg-base-hover',
+    type: type === 'password' && !passwordVisibility ? 'password' : 'text',
+    placeholder,
+    disabled,
+  }
 
   return (
     <div className="flex gap-[2px] h-16 relative">
@@ -44,17 +55,9 @@ export const Input = ({
           className={` ${isFocused ? 'text-product-red' : 'text-base-text'}`}
         />
       </div>
-      <input
-        id={name}
-        autoComplete="on"
-        {...register(name)}
-        onFocus={handleInputFocused}
-        onBlur={handleInputBlur}
-        placeholder={placeholder}
-        className="placeholder-base-text-details p-4 rounded-r-sm flex-grow border-base-secondary focus:border-0
-                focus:outline-none focus:ring-2 focus:ring-product-red"
-        type={type === 'password' && !passwordVisibility ? 'password' : 'text'}
-      />
+
+      <input {...inputProps} {...register(name)} />
+
       {type === 'password' &&
         (!passwordVisibility ? (
           <Eye

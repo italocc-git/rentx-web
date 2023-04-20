@@ -10,11 +10,11 @@ import { useState } from 'react'
 import { CarouselComponent } from '../../components/CarouselComponent'
 import { CarSpecification } from '../../components/CarSpecification'
 
-import { Tabs } from '../../components/Tabs'
 import { DateSelectModal } from './DateSelectModal'
 import { HeaderCarDetails } from './HeaderCarDetails'
 import { SelectedRangeDateType } from './types'
 import { useNavigate } from 'react-router-dom'
+import { TabsCarInformation } from './TabsCarInformation'
 export const CarDetails = () => {
   const navigate = useNavigate()
 
@@ -50,7 +50,7 @@ export const CarDetails = () => {
               <CarSpecification icon={SteeringWheel} name="280 HP" />
             </div>
           </div>
-          <Tabs
+          <TabsCarInformation
             selectedData={selectedRangeDate}
             setOpenModal={setOpenModal}
             selectedTab={selectedTab}

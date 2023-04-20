@@ -26,6 +26,7 @@ export const AvailableCarsList = () => {
             model="RS 5 Coupé"
             price="120"
             fuelType="energy"
+            cardLayoutType="vertical"
           />
         </Link>
         <Card
@@ -34,6 +35,7 @@ export const AvailableCarsList = () => {
           model="Corvette Z06"
           price="1200"
           fuelType="gasoline"
+          cardLayoutType="vertical"
         />
         <Card
           image={porsheImg}
@@ -41,6 +43,7 @@ export const AvailableCarsList = () => {
           model="Panamera"
           price="340"
           fuelType="energy"
+          cardLayoutType="vertical"
         />
         <Card
           image={lamboImg}
@@ -48,6 +51,7 @@ export const AvailableCarsList = () => {
           model="Huracan"
           price="3600"
           fuelType="gasoline"
+          cardLayoutType="vertical"
         />
         <Card
           image={volvoImg}
@@ -55,6 +59,7 @@ export const AvailableCarsList = () => {
           model="XC40"
           price="1200"
           fuelType="hybrid"
+          cardLayoutType="vertical"
         />
         <Card
           image={lancerImg}
@@ -62,6 +67,7 @@ export const AvailableCarsList = () => {
           model="Lancer Evo X"
           price="820"
           fuelType="gasoline"
+          cardLayoutType="vertical"
         />
       </div>
     </div>
