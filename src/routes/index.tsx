@@ -3,7 +3,7 @@ import { CarDetails } from '../pages/Car'
 import { AvailableCarsList } from '../pages/AvailableCarsList'
 import { CarSuccessfulRented } from '../pages/CarSuccessfulRented'
 import { Dashboard } from '../pages/Dashboard'
-import { SignIn } from '../pages/SignIn'
+/* import { SignIn } from '../pages/SignIn' */
 import { SignUp } from '../pages/SignUp'
 import { PasswordRecovery } from '../pages/PasswordRecovery'
 import { Profile } from '../pages/Profile'
