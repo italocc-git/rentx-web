@@ -17,6 +17,7 @@ body {
         &.react-calendar {
             min-width: 400px;
             border:0;
+            background: transparent;
 
             .react-calendar__navigation {
                 border-bottom:1px solid #EBEBF0;

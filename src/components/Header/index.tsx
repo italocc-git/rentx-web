@@ -1,7 +1,7 @@
 import profileIcon from '../../assets/icons/profile.svg'
 export const Header = () => {
   return (
-    <div className="w-full h-[80px] relative bg-base-white px-20 ">
+    <div className="w-full h-[80px] relative bg-base-white px-20 border-b border-base-secondary ">
       <div className="  h-full flex justify-between items-center text-base-title ">
         <span className="font-semibold text-xl   ">Início</span>
         <div className="flex items-center gap-3 ">

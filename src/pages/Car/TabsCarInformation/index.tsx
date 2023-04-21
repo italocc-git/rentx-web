@@ -83,7 +83,7 @@ export const TabsCarInformation = ({
               onClick={() => setOpenModal(true)}
               className="w-12 bg-product-red rounded flex justify-center items-center transition-colors hover:bg-product-red-dark"
             >
-              <CalendarBlank size={20} className="text-white" />
+              <CalendarBlank size={20} weight="bold" className="text-white" />
             </button>
           </div>
           <hr className="h-[1px] bg-base-secondary" />

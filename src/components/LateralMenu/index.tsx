@@ -16,7 +16,7 @@ export const LateralMenu = () => {
         <Link to="/available-cars-list" className={linkStyleClass}>
           <img src={homeIcon} alt="home-icon" />
         </Link>
-        <Link to="/available-cars-list" className={linkStyleClass}>
+        <Link to="/filtered-cars-by-date" className={linkStyleClass}>
           <img src={carIcon} alt="car-icon" />
         </Link>
         <Link to="/sign-in" className={linkStyleClass}>
