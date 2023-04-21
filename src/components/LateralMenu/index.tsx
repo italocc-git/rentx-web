@@ -17,7 +17,7 @@ export const LateralMenu = () => {
         <Link to="/filtered-cars-by-date" className={linkStyleClass}>
           <Car weight="light" size={26} />
         </Link>
-        <Link to="/sign-in" className={linkStyleClass}>
+        <Link to="/profile" className={linkStyleClass}>
           <User weight="light" size={26} />
         </Link>
       </div>
