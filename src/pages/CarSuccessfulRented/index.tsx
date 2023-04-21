@@ -1,6 +1,8 @@
 import { CheckFat } from '@phosphor-icons/react'
 import union from '../../assets/union.png'
+import { useNavigate } from 'react-router-dom'
 export const CarSuccessfulRented = () => {
+  const navigate = useNavigate()
   return (
     <div className="bg-base-black h-full min-h-screen px-40 flex items-center justify-center relative">
       <img
@@ -20,7 +22,10 @@ export const CarSuccessfulRented = () => {
           Agora você só precisa ir até a concessionária da RentX pegar o seu
           automóvel.
         </span>
-        <button className="bg-black-300 h-16 w-[120px] rounded-md flex items-center justify-center transition-colors hover:bg-black-700">
+        <button
+          onClick={() => navigate('/profile')}
+          className="bg-black-300 h-16 w-[120px] rounded-md flex items-center justify-center transition-colors hover:bg-black-700"
+        >
           <span className="font-inter font-medium text-white">Ok</span>
         </button>
       </div>

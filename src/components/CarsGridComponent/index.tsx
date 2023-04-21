@@ -22,6 +22,7 @@ export const CarsGridComponent = ({ cars }: CarsGridComponentProps) => {
           price="120"
           fuelType="energy"
           cardLayoutType="vertical"
+          id={1}
         />
       </Link>
       <Card

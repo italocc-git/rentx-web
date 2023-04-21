@@ -8,9 +8,17 @@ body {
 }
 @layer components {
     .carousel-style-customized {
-        .carousel .thumbs-wrapper {
-            display: flex;
-            justify-content: center;
+        
+        &.carousel-root{
+            .carousel-slider {
+                max-height: 500px;
+
+                
+            }
+            .thumbs-wrapper{
+                display: flex;
+                justify-content: center; 
+            }
         }
     }
     .calendar-style-customized {

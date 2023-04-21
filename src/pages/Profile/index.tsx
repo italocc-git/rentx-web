@@ -3,7 +3,6 @@ import { Card } from '../../components/Card'
 import { TabsProfile } from './TabsProfile'
 
 import corvetteImg from '../../assets/tests/Corvete.png'
-import lamboImg from '../../assets/tests/Lambo.png'
 import porsheImg from '../../assets/tests/Porche.png'
 import { useState } from 'react'
 import { ChangesConfirmModal } from './ChangesConfirmModal'
@@ -50,14 +49,6 @@ export const Profile = () => {
               model="Panamera"
               price="340"
               fuelType="energy"
-              cardLayoutType="horizontal"
-            />
-            <Card
-              image={lamboImg}
-              brand="LAMBORGHINI"
-              model="Huracan"
-              price="3600"
-              fuelType="gasoline"
               cardLayoutType="horizontal"
             />
           </div>

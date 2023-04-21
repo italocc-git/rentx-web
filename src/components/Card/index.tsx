@@ -1,6 +1,7 @@
 import { ArrowRight, Drop, Leaf, Lightning } from '@phosphor-icons/react'
 
 interface CardProps {
+  id?: number
   image: any
   brand: string
   model: string

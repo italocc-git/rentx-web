@@ -23,12 +23,12 @@ export const CarDetails = () => {
     useState<SelectedRangeDateType>({} as SelectedRangeDateType)
 
   const handleSuccessRentalPage = () => {
-    navigate('/car-successful-rented')
+    navigate('/dashboard/car-successful-rented')
   }
   const [selectedTab, setSelectedTab] = useState<string>('tab1')
 
   return (
-    <div className=" bg-base-white h-full min-h-screen px-20 py-8 ">
+    <div className=" bg-base-white min-h-screen px-20 py-8 ">
       <DateSelectModal
         openModal={openModal}
         setOpenModal={setOpenModal}
