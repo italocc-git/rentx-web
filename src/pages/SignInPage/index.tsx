@@ -21,7 +21,7 @@ const loginUserFormSchema = z.object({
 
 type loginUserFormDataType = z.infer<typeof loginUserFormSchema>
 
-const SignIn = () => {
+export const SignIn = () => {
   const loginUserForm = useForm<loginUserFormDataType>({
     resolver: zodResolver(loginUserFormSchema),
   })
@@ -103,4 +103,3 @@ const SignIn = () => {
     </div>
   )
 }
-export default SignIn
