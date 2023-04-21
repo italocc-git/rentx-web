@@ -1,6 +1,6 @@
 import carImageSignPage from '../../assets/car-image-signin.png'
 import { Envelope, Lock } from '@phosphor-icons/react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Input } from '../../components/Input'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
@@ -25,11 +25,11 @@ export const SignIn = () => {
   const loginUserForm = useForm<loginUserFormDataType>({
     resolver: zodResolver(loginUserFormSchema),
   })
-  const navigate = useNavigate()
+  /* const navigate = useNavigate() */
 
   const submitData = (data: loginUserFormDataType) => {
     console.log(data)
-    navigate('/profile')
+    /* navigate('/profile') */
   }
 
   const {
