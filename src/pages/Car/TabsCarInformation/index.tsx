@@ -1,6 +1,6 @@
 import { ArrowRight, CalendarBlank } from '@phosphor-icons/react'
 import * as TabRadix from '@radix-ui/react-tabs'
-import { SelectedRangeDateType } from '../../pages/Car/types'
+import { SelectedRangeDateType } from '../types'
 
 interface TabsProps {
   selectedData: SelectedRangeDateType
@@ -9,7 +9,7 @@ interface TabsProps {
   setSelectedTab: (tabSelected: string) => void
 }
 
-export const Tabs = ({
+export const TabsCarInformation = ({
   selectedData,
   setOpenModal,
   selectedTab,
@@ -83,7 +83,7 @@ export const Tabs = ({
               onClick={() => setOpenModal(true)}
               className="w-12 bg-product-red rounded flex justify-center items-center transition-colors hover:bg-product-red-dark"
             >
-              <CalendarBlank size={20} className="text-white" />
+              <CalendarBlank size={20} weight="bold" className="text-white" />
             </button>
           </div>
           <hr className="h-[1px] bg-base-secondary" />

@@ -8,15 +8,24 @@ body {
 }
 @layer components {
     .carousel-style-customized {
-        .carousel .thumbs-wrapper {
-            display: flex;
-            justify-content: center;
+        
+        &.carousel-root{
+            .carousel-slider {
+                max-height: 500px;
+
+                
+            }
+            .thumbs-wrapper{
+                display: flex;
+                justify-content: center; 
+            }
         }
     }
     .calendar-style-customized {
         &.react-calendar {
             min-width: 400px;
             border:0;
+            background: transparent;
 
             .react-calendar__navigation {
                 border-bottom:1px solid #EBEBF0;

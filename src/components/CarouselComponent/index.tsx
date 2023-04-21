@@ -14,17 +14,34 @@ export const CarouselComponent = ({ imagesUrl }: CarouselComponentProps) => {
       showIndicators={false}
       thumbWidth={150}
       showArrows={false}
+
       /* autoPlay
       interval={3000}
       infiniteLoop */
     >
-      <img src={CarImageFront} alt="car-audi-image" />
+      <img
+        src={CarImageFront}
+        className="max-h-[500px] max-w-[650px]"
+        alt="car-audi-image"
+      />
 
-      <img src={CarImageBack} alt="car-audi-image" />
+      <img
+        src={CarImageBack}
+        className="max-h-[500px] max-w-[650px]"
+        alt="car-audi-image"
+      />
 
-      <img src={CarImageInside} alt="car-audi-image" />
+      <img
+        src={CarImageInside}
+        className="max-h-[500px] max-w-[650px]"
+        alt="car-audi-image"
+      />
 
-      <img src={CarImageInside2} alt="car-audi-image" />
+      <img
+        src={CarImageInside2}
+        className="max-h-[500px] max-w-[650px]"
+        alt="car-audi-image"
+      />
     </Carousel>
   )
 }

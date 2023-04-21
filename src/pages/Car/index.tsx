@@ -10,11 +10,11 @@ import { useState } from 'react'
 import { CarouselComponent } from '../../components/CarouselComponent'
 import { CarSpecification } from '../../components/CarSpecification'
 
-import { Tabs } from '../../components/Tabs'
 import { DateSelectModal } from './DateSelectModal'
 import { HeaderCarDetails } from './HeaderCarDetails'
 import { SelectedRangeDateType } from './types'
 import { useNavigate } from 'react-router-dom'
+import { TabsCarInformation } from './TabsCarInformation'
 export const CarDetails = () => {
   const navigate = useNavigate()
 
@@ -23,12 +23,12 @@ export const CarDetails = () => {
     useState<SelectedRangeDateType>({} as SelectedRangeDateType)
 
   const handleSuccessRentalPage = () => {
-    navigate('/car-successful-rented')
+    navigate('/dashboard/car-successful-rented')
   }
   const [selectedTab, setSelectedTab] = useState<string>('tab1')
 
   return (
-    <div className=" bg-base-white h-full min-h-screen px-20 py-8 ">
+    <div className=" bg-base-white min-h-screen px-20 py-8 ">
       <DateSelectModal
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -50,7 +50,7 @@ export const CarDetails = () => {
               <CarSpecification icon={SteeringWheel} name="280 HP" />
             </div>
           </div>
-          <Tabs
+          <TabsCarInformation
             selectedData={selectedRangeDate}
             setOpenModal={setOpenModal}
             selectedTab={selectedTab}
