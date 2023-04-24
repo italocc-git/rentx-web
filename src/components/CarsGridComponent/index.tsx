@@ -13,7 +13,7 @@ interface CarsGridComponentProps {
 
 export const CarsGridComponent = ({ cars }: CarsGridComponentProps) => {
   return (
-    <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 ">
+    <div className="grid mobile:grid-cols-1 tablet:grid-cols-1 laptop:grid-cols-2 desktop:grid-cols-3 ">
       <Link to="/home/car/1">
         <Card
           image={audiImg}
