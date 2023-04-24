@@ -29,7 +29,7 @@ export const SignIn = () => {
 
   const submitData = (data: loginUserFormDataType) => {
     console.log(data)
-    navigate('/profile')
+    navigate('/home/profile')
   }
 
   const {
@@ -76,7 +76,7 @@ export const SignIn = () => {
                 </span>
               )}
 
-              <Link to="/recovery-password">
+              <Link to="/home/recovery-password">
                 <span className="text-base-text font-inter transition-colors hover:text-base-title">
                   Esqueci minha senha
                 </span>
@@ -90,7 +90,7 @@ export const SignIn = () => {
                   Login
                 </button>
                 <Link
-                  to="/sign-up"
+                  to="/home/sign-up"
                   className="flex justify-center items-center bg-transparent text-base-title border border-base-gray h-16 transition-colors hover:border-base-title"
                 >
                   Criar conta gratuita
