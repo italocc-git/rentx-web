@@ -11,13 +11,13 @@ export const LateralMenu = () => {
         <img src={rentxIcon} alt="rentx-icon" className="cursor-pointer" />
       </div>
       <div className="h-full bg-black-700 flex flex-col items-center justify-center gap-3">
-        <Link to="/available-cars-list" className={linkStyleClass}>
+        <Link to="/home/available-cars-list" className={linkStyleClass}>
           <House weight="light" size={26} />
         </Link>
-        <Link to="/filtered-cars-by-date" className={linkStyleClass}>
+        <Link to="/home/filtered-cars-by-date" className={linkStyleClass}>
           <Car weight="light" size={26} />
         </Link>
-        <Link to="/profile" className={linkStyleClass}>
+        <Link to="/home/sign-in" className={linkStyleClass}>
           <User weight="light" size={26} />
         </Link>
       </div>
