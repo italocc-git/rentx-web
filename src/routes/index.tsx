@@ -15,6 +15,13 @@ import { SecondaryLayout } from '../layouts/SecondaryLayout'
 export const Router = () => {
   return (
     <Routes>
+      <Route path="/" element={<SecondaryLayout />}>
+        <Route path="/" element={<Dashboard />} />
+        <Route
+          path="/car-successful-rented"
+          element={<CarSuccessfulRented />}
+        />
+      </Route>
       <Route path="/home" element={<DefaultLayout />}>
         <Route
           path="/home/available-cars-list"
@@ -30,13 +37,6 @@ export const Router = () => {
         <Route path="/home/profile" element={<Profile />} />
         <Route path="/home/sign-up" element={<SignUp />} />
         <Route path="/home/recovery-password" element={<PasswordRecovery />} />
-      </Route>
-      <Route path="/" element={<SecondaryLayout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route
-          path="/car-successful-rented"
-          element={<CarSuccessfulRented />}
-        />
       </Route>
     </Routes>
   )
