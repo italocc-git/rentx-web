@@ -4,15 +4,15 @@ import carBackground from '../../assets/car-background.png'
 import { Link } from 'react-router-dom'
 export const Dashboard = () => {
   return (
-    <div className="w-full h-full min-h-screen bg-base-black max-w-[1300px] flex justify-between py-[140px] mx-auto ">
+    <div className="w-full h-full min-h-screen bg-base-black max-w-[1300px] flex mobile:justify-center tablet:justify-center laptop:justify-between py-[140px] laptop:mx-auto mobile:mx-3">
       <div className="max-w-[400px]">
         <img src={rentxImg} alt="logo-rentx" className="mb-[120px]" />
-        <div className="flex flex-col  gap-20">
-          <h1 className="font-semibold text-5xl text-base-white leading-[54px]">
+        <div className="flex flex-col mobile:items-center laptop:items-start gap-20">
+          <h1 className="font-semibold  mobile:text-2xl tablet:text-5xl text-base-white ">
             Alugue um carro de maneira simples e fácil
           </h1>
-          <span className="font-inter text-xl text-base-white leading-[30px]">
-            Vários modelos para você dirigir seguro, com conforoto e segurança
+          <span className="font-inter mobile:text-sm laptop:text-xl text-base-white leading-[30px]">
+            Vários modelos para você dirigir seguro, com conforto e segurança
           </span>
 
           <Link
@@ -23,7 +23,7 @@ export const Dashboard = () => {
           </Link>
         </div>
       </div>
-      <div className="relative min-w-[610px] ">
+      <div className="mobile:hidden  laptop:block relative min-w-[610px] ">
         <img
           src={carImg}
           alt="car-image-into"
