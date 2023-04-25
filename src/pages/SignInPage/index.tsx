@@ -39,8 +39,12 @@ export const SignIn = () => {
 
   return (
     <div className="bg-base-main h-full min-h-screen px-20 py-8">
-      <div className="flex justify-between items-center gap-40">
-        <img src={carImageSignPage} alt="image-sign-page" />
+      <div className="flex mobile:flex-col laptop:flex-row justify-between items-center mobile:gap-5 desktop:gap-40">
+        <img
+          src={carImageSignPage}
+          alt="image-sign-page"
+          className="tablet:max-w-md desktop:max-w-full"
+        />
         <div className="flex flex-col justify-center gap-6 flex-grow">
           <h1 className="font-archivo font-semibold text-4xl text-base-title">
             Estamos quase lá.

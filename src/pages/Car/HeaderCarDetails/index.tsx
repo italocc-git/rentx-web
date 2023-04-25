@@ -1,5 +1,5 @@
 import { CaretLeft } from '@phosphor-icons/react'
-
+import { useNavigate } from 'react-router-dom'
 interface HeaderCarDetailsProps {
   brand: string
   model: string
@@ -10,10 +10,16 @@ export const HeaderCarDetails = ({
   model,
   price,
 }: HeaderCarDetailsProps) => {
+  const navigate = useNavigate()
   return (
     <div className="flex items-center gap-9 border-b-2 border-base-gray pb-7 mb-10">
       <div className="flex items-center justify-center cursor-pointer">
-        <CaretLeft weight="bold" size={30} className="text-base-text " />
+        <CaretLeft
+          onClick={() => navigate(-1)}
+          weight="bold"
+          size={30}
+          className="text-base-text "
+        />
       </div>
       <div className="font-archivo">
         <span className="text-base-text-details font-medium text-sm ">

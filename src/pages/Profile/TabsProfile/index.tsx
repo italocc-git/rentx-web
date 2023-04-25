@@ -146,7 +146,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-product-red w-full text-white h-16 transition-colors hover:bg-product-red-dark  disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-product-red w-full text-white laptop:h-16 mobile:h-6  transition-colors hover:bg-product-red-dark  disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Salvar alterações
             </button>
