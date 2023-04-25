@@ -31,12 +31,12 @@ export const FilteredCarsByDate = () => {
   }
 
   return (
-    <div className="bg-base-main h-full min-h-screen px-20 py-8">
-      <div className="flex flex-col items-center w-full">
-        <h1 className="text-base-title font-semibold font-archivo text-4xl">
+    <div className="bg-base-main h-full min-h-screen laptop:px-20 mobile:px-4 py-8">
+      <div className="flex flex-col items-center tablet:w-full mobile:w-[300px]">
+        <h1 className="text-base-title font-semibold font-archivo laptop:text-4xl mobile:text-lg">
           Escolha uma data de início e fim do aluguel
         </h1>
-        <div className="flex justify-between h-[495px] p-12 min-w-[844px]">
+        <div className="flex mobile:flex-col desktop:flex-row justify-between gap-5 h-[495px] p-12 laptop:max-w-[844px] tablet:max-w-[515px] mobile:max-w-[315px]">
           <CalendarComponent onChangeCalendar={handleOnChangeCalendar} />
           <div className="flex flex-col justify-between ">
             <div className="flex flex-col gap-6">
@@ -54,7 +54,7 @@ export const FilteredCarsByDate = () => {
                 </span>
               </div>
 
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 mb-4">
                 <span className="text-base-text-details font-medium text-sm font-archivo">
                   ATÉ
                 </span>
@@ -71,7 +71,7 @@ export const FilteredCarsByDate = () => {
             <button
               type="button"
               onClick={handleSubmitDates}
-              className="h-16 w-64 flex justify-center items-center rounded bg-product-red  shadow-sm hover:bg-product-red-dark disabled:opacity-50 "
+              className="h-16 laptop:w-64 mobile:w-48 flex justify-center items-center rounded bg-product-red  shadow-sm hover:bg-product-red-dark disabled:opacity-50 "
             >
               <span className="text-base-white font-medium font-archivo text-lg ">
                 Confirmar

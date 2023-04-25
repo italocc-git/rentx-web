@@ -75,7 +75,7 @@ export const SignUp = () => {
         setOpenModal={setOpenSuccessCreationModal}
         username={name}
       />
-      <div className="flex justify-between items-center gap-40">
+      <div className="flex mobile:flex-col laptop:flex-row justify-between items-center mobile:gap-4 desktop:gap-20">
         <div className="flex flex-col  justify-center gap-6 flex-grow ">
           <h1 className="font-archivo font-semibold text-4xl text-base-title">
             Crie sua conta
@@ -148,7 +148,11 @@ export const SignUp = () => {
             </form>
           </FormProvider>
         </div>
-        <img src={carImageSignupPage} alt="image-sign-page" />
+        <img
+          src={carImageSignupPage}
+          alt="image-sign-page"
+          className="mobile:max-w-[300px] tablet:max-w-[340px] laptop:max-w-[470px]  desktop:max-w-full"
+        />
       </div>
     </div>
   )

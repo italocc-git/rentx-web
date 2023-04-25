@@ -63,13 +63,13 @@ export const Input = ({
           <Eye
             size={24}
             onClick={() => setPasswordVisibility(!passwordVisibility)}
-            className="absolute right-5 top-1/3 text-base-text cursor-pointer"
+            className="absolute right-5 mobile:top-1/4 laptop:top-1/3 text-base-text cursor-pointer"
           />
         ) : (
           <EyeSlash
             size={24}
             onClick={() => setPasswordVisibility(!passwordVisibility)}
-            className="absolute right-5 top-1/3 text-base-text cursor-pointer"
+            className="absolute right-5 mobile:top-1/4 laptop:top-1/3 text-base-text cursor-pointer"
           />
         ))}
     </div>
