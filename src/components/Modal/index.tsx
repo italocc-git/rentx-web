@@ -41,7 +41,7 @@ export default function Modal({ openModal, setOpen, children }: ModalProps) {
               leaveFrom="opacity-100 translate-y-0 mobile:scale-100"
               leaveTo="opacity-0 translate-y-4 mobile:translate-y-0 mobile:scale-95"
             >
-              <Dialog.Panel className="transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all mobile:my-8 mobile:w-full mobile:max-w-4xl">
+              <Dialog.Panel className="transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all mobile:my-8 mobile:max-w-lg laptop:max-w-4xl">
                 {children}
               </Dialog.Panel>
             </Transition.Child>

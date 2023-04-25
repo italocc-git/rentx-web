@@ -44,9 +44,9 @@ export const DateSelectModal = ({
           className="text-base-text-details cursor-pointer transition-colors hover:text-base-hover"
         />
       </div>
-      <div className="flex justify-between h-[495px] p-12">
+      <div className="flex laptop:flex-row mobile:flex-col justify-between laptop:h-[495px] mobile:h-[560px] p-12">
         <CalendarComponent onChangeCalendar={handleOnChangeCalendar} />
-        <div className="flex flex-col justify-between ">
+        <div className="flex flex-col gap-4 justify-between ">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <span className="text-base-text-details font-medium text-sm font-archivo">

@@ -37,7 +37,7 @@ export const CarDetails = () => {
         setSelectTab={setSelectedTab}
       />
       <HeaderCarDetails brand="AUDI" model="Q3 2023" price="120,00" />
-      <div className="flex justify-between w-full ">
+      <div className="flex mobile:flex-col mobile:items-center desktop:flex-row desktop:items-start justify-between w-full ">
         <CarouselComponent />
         <div className="flex flex-col max-w-[384px] ">
           <div className="flex flex-col gap-12 mb-[48px]">

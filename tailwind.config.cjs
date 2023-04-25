@@ -4,9 +4,10 @@ module.exports = {
   theme: {
     screens: {
       mobile: '320px',
-      tablet: '640px',
-      laptop: '1024px',
-      desktop: '1280px',
+      tablet: '675px',
+      laptop: '1060px',
+      desktop: '1410px',
+      full: '1920px',
     },
     extend: {
       colors: {

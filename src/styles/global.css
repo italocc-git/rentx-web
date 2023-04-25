@@ -23,7 +23,7 @@ body {
     }
     .calendar-style-customized {
         &.react-calendar {
-            min-width: 400px;
+            width: auto;
             border:0;
             background: transparent;
 

@@ -15,12 +15,12 @@ export const Profile = () => {
         openModal={openChangesConfirmModal}
         setOpenModal={setOpenChangesConfirmModal}
       />
-      <div className="flex justify-evenly items-start h-full">
-        <div className="flex flex-col items-center w-full max-w-[384px]">
+      <div className="flex mobile:flex-col laptop:flex-row  justify-evenly items-start h-full">
+        <div className="flex flex-col items-center w-full mobile:max-w-[260px] laptop:max-w-[384px]">
           <div className="relative">
             <img
               src="https://avatars.githubusercontent.com/u/50462308?v=4"
-              className="w-44 h-44 rounded-full"
+              className="mobile:w-32 mobile:h-32 laptop:w-44 laptop:h-44 rounded-full"
               alt="profile-image"
             />
             <div className="absolute right-0 bottom-0 rounded-md bg-product-red h-10 w-10 flex justify-center items-center transition-colors hover:bg-product-red-dark cursor-pointer">
@@ -29,7 +29,7 @@ export const Profile = () => {
           </div>
           <TabsProfile setModal={setOpenChangesConfirmModal} />
         </div>
-        <hr className="w-1 h-full bg-base-gray" />
+        <hr className=" mobile:w-full mobile:mt-24 laptop:w-1 laptop:mt-0 laptop:h-full bg-base-gray" />
         <div className="flex flex-col gap-6">
           <h1 className="font-archivo font-semibold text-2xl text-base-title">
             Agendamentos feitos
