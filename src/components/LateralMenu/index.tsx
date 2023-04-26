@@ -12,7 +12,7 @@ export const LateralMenu = () => {
   }
 
   return (
-    <div className="laptop:w-full laptop:max-w-[5rem] mobile:w-screen laptop:h-screen mobile:h-20 laptop:relative mobile:fixed mobile:bottom-0 bg-black-700 z-10">
+    <div className="laptop:w-full laptop:max-w-[5rem] mobile:w-screen laptop:h-screen mobile:h-20 laptop:relative mobile:fixed mobile:bottom-0 bg-black-500 z-10">
       <button
         onClick={handleNavigateToDashboard}
         className="w-full h-20 bg-product-red flex items-center justify-center transition-colors hover:bg-product-red-dark laptop:inline-flex mobile:hidden"
