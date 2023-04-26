@@ -10,7 +10,7 @@ import { ChangesConfirmModal } from './ChangesConfirmModal'
 export const Profile = () => {
   const [openChangesConfirmModal, setOpenChangesConfirmModal] = useState(false)
   return (
-    <div className=" bg-base-white h-full min-h-screen px-20 py-8 ">
+    <div className=" bg-base-white min-h-screen px-20 py-8 ">
       <ChangesConfirmModal
         openModal={openChangesConfirmModal}
         setOpenModal={setOpenChangesConfirmModal}

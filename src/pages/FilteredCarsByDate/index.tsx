@@ -31,7 +31,7 @@ export const FilteredCarsByDate = () => {
   }
 
   return (
-    <div className="bg-base-main h-full min-h-screen laptop:px-20 mobile:px-4 py-8">
+    <div className="bg-base-main min-h-screen laptop:px-20 mobile:px-4 py-8">
       <div className="flex flex-col items-center tablet:w-full mobile:w-[300px]">
         <h1 className="text-base-title font-semibold font-archivo laptop:text-4xl mobile:text-lg">
           Escolha uma data de início e fim do aluguel

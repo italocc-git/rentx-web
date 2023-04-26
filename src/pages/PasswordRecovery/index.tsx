@@ -27,7 +27,7 @@ export const PasswordRecovery = () => {
     formState: { isSubmitting, errors },
   } = recoveryPasswordForm
   return (
-    <div className="bg-base-main h-full min-h-screen px-20 py-8">
+    <div className="bg-base-main min-h-screen px-20 py-8">
       <div className="flex justify-between items-center gap-40">
         <img src={carImageSignPage} alt="image-sign-page" />
         <FormProvider {...recoveryPasswordForm}>

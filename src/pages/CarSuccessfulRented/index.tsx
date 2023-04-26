@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 export const CarSuccessfulRented = () => {
   const navigate = useNavigate()
   return (
-    <div className="bg-base-black h-full min-h-screen px-40 flex items-center justify-center relative">
+    <div className="bg-base-black min-h-screen px-40 flex items-center justify-center relative">
       <img
         src={union}
         className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
