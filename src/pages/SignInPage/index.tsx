@@ -38,7 +38,7 @@ export const SignIn = () => {
   } = loginUserForm
 
   return (
-    <div className="bg-base-main h-full min-h-screen px-20 py-8">
+    <div className="bg-base-main min-h-screen px-20 py-8">
       <div className="flex mobile:flex-col laptop:flex-row justify-between items-center mobile:gap-5 desktop:gap-40">
         <img
           src={carImageSignPage}

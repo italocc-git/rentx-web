@@ -69,7 +69,7 @@ export const SignUp = () => {
 
   const { name } = getValues()
   return (
-    <div className="bg-base-main h-full min-h-screen px-20 py-8">
+    <div className="bg-base-main min-h-screen px-20 py-8">
       <SuccessfullyUserCreationModal
         openModal={openSuccessCreationModal}
         setOpenModal={setOpenSuccessCreationModal}
