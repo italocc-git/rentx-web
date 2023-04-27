@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
 import { useAuth } from '../../hooks/authContext'
-
+import { useNavigate } from 'react-router-dom'
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -50,7 +50,7 @@ export const SignUp = () => {
   const createUserForm = useForm<loginUserFormDataType>({
     resolver: zodResolver(createUserFormSchema),
   })
-
+  const navigate = useNavigate()
   const { signUp } = useAuth()
 
   const submitData = (data: loginUserFormDataType) => {
@@ -62,6 +62,7 @@ export const SignUp = () => {
       email,
     })
     setOpenSuccessCreationModal(true)
+    navigate('/home/profile')
   }
 
   const {
