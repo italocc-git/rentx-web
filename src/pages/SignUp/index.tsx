@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
+import { useAuth } from '../../hooks/authContext'
 
 const createUserFormSchema = z.object({
   name: z
@@ -50,8 +51,16 @@ export const SignUp = () => {
     resolver: zodResolver(createUserFormSchema),
   })
 
+  const { signUp } = useAuth()
+
   const submitData = (data: loginUserFormDataType) => {
     console.log(data)
+    const { name, email, cnh } = data
+    signUp({
+      name,
+      cnh,
+      email,
+    })
     setOpenSuccessCreationModal(true)
   }
 

@@ -1,7 +1,7 @@
 import { Camera } from '@phosphor-icons/react'
 import { Card } from '../../components/Card'
 import { TabsProfile } from './TabsProfile'
-
+import userImage from '../../assets/user-image.png'
 import corvetteImg from '../../assets/tests/Corvete.png'
 import porsheImg from '../../assets/tests/Porche.png'
 import { useState } from 'react'
@@ -15,11 +15,11 @@ export const Profile = () => {
         openModal={openChangesConfirmModal}
         setOpenModal={setOpenChangesConfirmModal}
       />
-      <div className="flex mobile:flex-col laptop:flex-row  justify-evenly items-start h-full">
+      <div className="flex mobile:flex-col laptop:flex-row  justify-evenly items-start h-full mobile:gap-1 laptop:gap-16">
         <div className="flex flex-col items-center w-full ">
           <div className="relative">
             <img
-              src="https://avatars.githubusercontent.com/u/50462308?v=4"
+              src={userImage}
               className="mobile:w-32 mobile:h-32 laptop:w-44 laptop:h-44 rounded-full"
               alt="profile-image"
             />
