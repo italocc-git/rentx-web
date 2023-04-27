@@ -28,7 +28,7 @@ export const CarDetails = () => {
   const [selectedTab, setSelectedTab] = useState<string>('tab1')
 
   return (
-    <div className=" bg-base-white min-h-screen px-20 py-8 ">
+    <div className=" bg-base-white min-h-screen desktop:px-20 py-8 laptop:px-8 tablet:px-1 laptop:mb-0 mobile:mb-20">
       <DateSelectModal
         openModal={openModal}
         setOpenModal={setOpenModal}
@@ -37,11 +37,11 @@ export const CarDetails = () => {
         setSelectTab={setSelectedTab}
       />
       <HeaderCarDetails brand="AUDI" model="Q3 2023" price="120,00" />
-      <div className="flex mobile:flex-col mobile:items-center desktop:flex-row desktop:items-start justify-between w-full ">
+      <div className="flex mobile:flex-col desktop:flex-row items-center  justify-between w-full ">
         <CarouselComponent />
-        <div className="flex flex-col max-w-[384px] ">
-          <div className="flex flex-col gap-12 mb-[48px]">
-            <div className="grid grid-cols-2 gap-2 ">
+        <div className="flex flex-col w-full max-w-[384px] ">
+          <div className="flex flex-col gap-12 mb-[48px] ">
+            <div className="grid tablet:grid-cols-2 mobile:grid-rows-1 gap-2">
               <CarSpecification icon={Gauge} name="270km/h" />
               <CarSpecification icon={ArrowLineUp} name="6.8s" />
               <CarSpecification icon={Drop} name="Gasolina" />
@@ -60,7 +60,7 @@ export const CarDetails = () => {
             {selectedRangeDate.startDate ? (
               <button
                 onClick={handleSuccessRentalPage}
-                className="bg-product-green w-[384px] h-20 text-white transition-colors hover:bg-product-green-dark"
+                className="bg-product-green w-full h-20 text-white transition-colors hover:bg-product-green-dark"
               >
                 <span className="font-inter font-medium text-lg">
                   Alugar agora
@@ -69,7 +69,7 @@ export const CarDetails = () => {
             ) : (
               <button
                 onClick={() => setOpenModal(true)}
-                className="bg-product-red w-[384px] h-20 text-white transition-colors hover:bg-product-red-dark"
+                className="bg-product-red w-full h-20 text-white transition-colors hover:bg-product-red-dark"
               >
                 <span className="font-inter font-medium text-lg">
                   Escolher período do aluguel

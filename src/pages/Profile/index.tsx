@@ -1,7 +1,7 @@
 import { Camera } from '@phosphor-icons/react'
 import { Card } from '../../components/Card'
 import { TabsProfile } from './TabsProfile'
-
+import userImage from '../../assets/user-image.png'
 import corvetteImg from '../../assets/tests/Corvete.png'
 import porsheImg from '../../assets/tests/Porche.png'
 import { useState } from 'react'
@@ -10,16 +10,16 @@ import { ChangesConfirmModal } from './ChangesConfirmModal'
 export const Profile = () => {
   const [openChangesConfirmModal, setOpenChangesConfirmModal] = useState(false)
   return (
-    <div className=" bg-base-white min-h-screen px-20 py-8 ">
+    <div className=" bg-base-white min-h-screen laptop:px-20 laptop:py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
       <ChangesConfirmModal
         openModal={openChangesConfirmModal}
         setOpenModal={setOpenChangesConfirmModal}
       />
-      <div className="flex mobile:flex-col laptop:flex-row  justify-evenly items-start h-full">
-        <div className="flex flex-col items-center w-full mobile:max-w-[260px] laptop:max-w-[384px]">
+      <div className="flex mobile:flex-col laptop:flex-row  justify-evenly items-start h-full mobile:gap-1 laptop:gap-16">
+        <div className="flex flex-col items-center w-full ">
           <div className="relative">
             <img
-              src="https://avatars.githubusercontent.com/u/50462308?v=4"
+              src={userImage}
               className="mobile:w-32 mobile:h-32 laptop:w-44 laptop:h-44 rounded-full"
               alt="profile-image"
             />
@@ -30,7 +30,7 @@ export const Profile = () => {
           <TabsProfile setModal={setOpenChangesConfirmModal} />
         </div>
         <hr className=" mobile:w-full mobile:mt-24 laptop:w-1 laptop:mt-0 laptop:h-full bg-base-gray" />
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 w-full">
           <h1 className="font-archivo font-semibold text-2xl text-base-title">
             Agendamentos feitos
           </h1>
