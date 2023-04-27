@@ -11,13 +11,19 @@ body {
         
         &.carousel-root{
             .carousel-slider {
-                max-height: 500px;
+                max-height: 100%;
 
                 
             }
             .thumbs-wrapper{
                 display: flex;
                 justify-content: center; 
+
+                @media(max-width : 1060px){
+                    & {
+                        justify-content:left
+                    }
+                }
             }
         }
     }

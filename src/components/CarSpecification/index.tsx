@@ -9,11 +9,12 @@ export const CarSpecification = ({
   name,
 }: CarSpecificationProps) => {
   return (
-    <div className="flex w-[180px] h-16 gap-1 bg-base-main rounded-sm">
-      <div className="flex-grow flex justify-center items-center border-r-2 border-base-white">
+    <div className="flex w-full h-16 gap-1 bg-base-main ">
+      <div className="min-w-[52px] flex justify-center items-center">
         <Icon weight="bold" color="black" size={24} />
       </div>
-      <div className="min-w-[124px] flex items-center justify-center">
+      <hr className="w-[2px] h-full bg-base-white" />
+      <div className=" flex items-center justify-center  w-full">
         <span className=" text-base-text text-lg font-inter font-medium ">
           {name}
         </span>

@@ -85,11 +85,11 @@ export const Card = ({
   const CardVerticalLayoutComponent = () => {
     return (
       <div className="w-full h-[293px] border border-base-secondary bg-base-white mb-5 cursor-pointer">
-        <div className="flex items-center justify-center h-[209px]  laptop:px-6 tablet:px-1">
+        <div className="flex items-center justify-center h-[209px]  laptop:px-6 mobile:px-2">
           <img src={image} alt="image-car" className="w-[288px] h-[132px]" />
         </div>
         <hr className="bg-base-secondary border w-full" />
-        <div className="flex justify-between items-center laptop:px-6 tablet:px-1">
+        <div className="flex justify-between items-center laptop:px-6 mobile:px-2">
           <div className="flex gap-6 mt-4">
             <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
               <span className="text-base-text-details text-xs ">{brand}</span>

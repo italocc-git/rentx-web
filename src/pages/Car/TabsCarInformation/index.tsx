@@ -27,7 +27,7 @@ export const TabsCarInformation = ({
       defaultValue={selectedTab}
       onValueChange={handleChangeSelectedTab}
       value={selectedTab}
-      className="flex flex-col w-full h-40 my-2"
+      className="flex flex-col max-w-[400px] h-40 my-2"
     >
       <List
         aria-label="Car Information Manager"
