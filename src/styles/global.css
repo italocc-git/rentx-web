@@ -68,6 +68,9 @@ body {
                             border-radius:2px;
                             background-color: transparent;
                             
+                            &:disabled {
+                            color: #DEDEE3;
+                            }
                         }
                         & .react-calendar__tile--now {
                                 

@@ -23,7 +23,7 @@ export const FilteredCarsByDate = () => {
     })
   }
   const handleSubmitDates = () => {
-    navigate('/home/filtered-cars-list', {
+    navigate('/filtro/listagem-de-carros', {
       state: {
         dateSelected: selectedRangeDate,
       },

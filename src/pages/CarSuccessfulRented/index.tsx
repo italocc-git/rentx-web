@@ -23,7 +23,7 @@ export const CarSuccessfulRented = () => {
           automóvel.
         </span>
         <button
-          onClick={() => navigate('/home/profile')}
+          onClick={() => navigate('/perfil')}
           className="bg-black-300 h-16 w-[120px] rounded-md flex items-center justify-center transition-colors hover:bg-black-700"
         >
           <span className="font-inter font-medium text-white">Ok</span>

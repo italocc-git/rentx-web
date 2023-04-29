@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
 import { useAuth } from '../../hooks/authContext'
-
+import { useNavigate } from 'react-router-dom'
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -24,11 +24,11 @@ const createUserFormSchema = z.object({
     .string()
     .nonempty('E-mail obrigatório')
     .email('Formato de e-mail inválido')
-    .toLowerCase()
-    .refine(
+    .toLowerCase(),
+  /* .refine(
       (email) => email.endsWith('@gmail.com'),
       'Deve ser um e-mail do Gmail',
-    ),
+    ) */
   cnh: z.string().min(9, 'Deve conter no mínimo 9 caracteres'),
   password: z
     .object({
@@ -50,18 +50,19 @@ export const SignUp = () => {
   const createUserForm = useForm<loginUserFormDataType>({
     resolver: zodResolver(createUserFormSchema),
   })
-
-  const { signUp } = useAuth()
+  const navigate = useNavigate()
+  const { register } = useAuth()
 
   const submitData = (data: loginUserFormDataType) => {
     console.log(data)
     const { name, email, cnh } = data
-    signUp({
+    register({
       name,
       cnh,
       email,
     })
     setOpenSuccessCreationModal(true)
+    navigate('/perfil')
   }
 
   const {
@@ -160,7 +161,7 @@ export const SignUp = () => {
         <img
           src={carImageSignupPage}
           alt="image-sign-page"
-          className="mobile:max-w-[300px] tablet:max-w-[340px] laptop:max-w-[470px]  desktop:max-w-full"
+          className="desktop:max-w-full laptop:max-w-[470px] tablet:max-w-[340px] mobile:max-w-[300px]"
         />
       </div>
     </div>

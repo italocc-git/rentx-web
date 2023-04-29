@@ -27,13 +27,17 @@ export const PasswordRecovery = () => {
     formState: { isSubmitting, errors },
   } = recoveryPasswordForm
   return (
-    <div className="bg-base-main min-h-screen px-20 py-8">
-      <div className="flex justify-between items-center gap-40">
-        <img src={carImageSignPage} alt="image-sign-page" />
+    <div className="bg-base-main min-h-screen laptop:px-20 py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
+      <div className="flex mobile:flex-col-reverse laptop:flex-row justify-between items-center mobile:gap-20 desktop:gap-40">
+        <img
+          src={carImageSignPage}
+          alt="image-sign-page"
+          className="tablet:max-w-md desktop:max-w-full"
+        />
         <FormProvider {...recoveryPasswordForm}>
           <form
             onSubmit={handleSubmit(submitData)}
-            className="flex flex-col justify-center gap-6 flex-grow"
+            className="flex flex-col justify-center gap-6 flex-grow "
           >
             <h1 className="font-archivo font-semibold text-4xl text-base-title">
               Recuperar senha

@@ -5,6 +5,7 @@ import { Input } from '../../../components/Input'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAuth } from '../../../hooks/authContext'
 
 interface TabsProfileProps {
   setModal: (open: boolean) => void
@@ -34,6 +35,7 @@ type renewPasswordFormDataType = z.infer<typeof renewPasswordFormSchema>
 export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   const { Root, List, Trigger, Content } = TabRadix
   const [selectedTab, setSelectedTab] = useState('tab1')
+  const { user } = useAuth()
   const handleChangeSelectedTab = (value: string) => {
     setSelectedTab(value)
   }
@@ -51,10 +53,12 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   }
 
   useEffect(() => {
-    tabsProfileForm.setValue('username', 'Italo Costa Cavalcante')
-    tabsProfileForm.setValue('email', 'italocc16@gmail.com')
-    tabsProfileForm.setValue('cnh', '191044591')
-  })
+    if (user) {
+      tabsProfileForm.setValue('username', user.name)
+      tabsProfileForm.setValue('email', user.email)
+      tabsProfileForm.setValue('cnh', user.cnh)
+    }
+  }, [user, tabsProfileForm])
 
   const {
     handleSubmit,

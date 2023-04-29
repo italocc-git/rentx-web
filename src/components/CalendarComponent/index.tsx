@@ -24,9 +24,9 @@ export const CalendarComponent = ({
     <div>
       <Calendar
         onChange={onChangeCalendar}
+        minDate={new Date()}
         className="calendar-style-customized"
         {...calendarConfig}
-        /* value={value} */
       />
     </div>
   )
