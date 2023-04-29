@@ -5,6 +5,7 @@ import {
   Gauge,
   SteeringWheel,
   Users,
+  Warning,
 } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { CarouselComponent } from '../../components/CarouselComponent'
@@ -15,9 +16,11 @@ import { HeaderCarDetails } from './HeaderCarDetails'
 import { SelectedRangeDateType } from './types'
 import { useNavigate } from 'react-router-dom'
 import { TabsCarInformation } from './TabsCarInformation'
+import { useAuth } from '../../hooks/authContext'
 export const CarDetails = () => {
   const navigate = useNavigate()
-
+  const { user } = useAuth()
+  const isLogged = !!user
   const [openModal, setOpenModal] = useState(false)
   const [selectedRangeDate, setSelectedRangeDate] =
     useState<SelectedRangeDateType>({} as SelectedRangeDateType)
@@ -58,14 +61,23 @@ export const CarDetails = () => {
           />
           <div className="mt-[113px]">
             {selectedRangeDate.startDate ? (
-              <button
-                onClick={handleSuccessRentalPage}
-                className="bg-product-green w-full h-20 text-white transition-colors hover:bg-product-green-dark"
-              >
-                <span className="font-inter font-medium text-lg">
-                  Alugar agora
-                </span>
-              </button>
+              <>
+                <button
+                  onClick={handleSuccessRentalPage}
+                  disabled={!isLogged}
+                  className="bg-product-green w-full h-20 text-white transition-colors hover:bg-product-green-dark disabled:bg-product-green-light"
+                >
+                  <span className="font-inter font-medium text-lg">
+                    Alugar agora
+                  </span>
+                </button>
+                {!isLogged && (
+                  <div className="flex gap-1 text-xs text-product-red mt-2">
+                    <span>Faça o login para alugar</span>
+                    <Warning weight="bold" size={16} />
+                  </div>
+                )}
+              </>
             ) : (
               <button
                 onClick={() => setOpenModal(true)}
