@@ -11,8 +11,18 @@ import { FilteredCarsByDate } from '../pages/FilteredCarsByDate'
 import { FilteredCarsList } from '../pages/FilteredCarsList'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { SecondaryLayout } from '../layouts/SecondaryLayout'
+import { useAuth } from '../hooks/authContext'
 
 export const Router = () => {
+  const { user } = useAuth()
+
+  const userAuthenticated = !!user
+
+  /* 
+  -Rotas para usuário logado e não logado. 
+  - Utilizar o redirect se necessário
+  - Organizar os caminhos das rotas (home, filter , profile)
+  - Deixar rotas em português */
   return (
     <Routes>
       <Route path="/" element={<SecondaryLayout />}>

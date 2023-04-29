@@ -5,17 +5,18 @@ import { Input } from '../../components/Input'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAuth } from '../../hooks/authContext'
 
 const loginUserFormSchema = z.object({
   email: z
     .string()
     .nonempty('E-mail obrigatório')
     .email('Formato de e-mail inválido')
-    .toLowerCase()
-    .refine(
+    .toLowerCase(),
+  /* .refine(
       (email) => email.endsWith('@gmail.com'),
       'Deve ser um e-mail do Gmail',
-    ),
+    ) */
   password: z.string().min(8, 'A senha precisa ter no mínimo 8 caracteres'),
 })
 
@@ -26,9 +27,9 @@ export const SignIn = () => {
     resolver: zodResolver(loginUserFormSchema),
   })
   const navigate = useNavigate()
-
-  const submitData = (data: loginUserFormDataType) => {
-    console.log(data)
+  const { register } = useAuth()
+  const submitData = ({ email, password }: loginUserFormDataType) => {
+    register({ email, name: 'user-test', cnh: '11122233455' })
     navigate('/home/profile')
   }
 

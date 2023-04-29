@@ -24,11 +24,11 @@ const createUserFormSchema = z.object({
     .string()
     .nonempty('E-mail obrigatório')
     .email('Formato de e-mail inválido')
-    .toLowerCase()
-    .refine(
+    .toLowerCase(),
+  /* .refine(
       (email) => email.endsWith('@gmail.com'),
       'Deve ser um e-mail do Gmail',
-    ),
+    ) */
   cnh: z.string().min(9, 'Deve conter no mínimo 9 caracteres'),
   password: z
     .object({
@@ -51,12 +51,12 @@ export const SignUp = () => {
     resolver: zodResolver(createUserFormSchema),
   })
   const navigate = useNavigate()
-  const { signUp } = useAuth()
+  const { register } = useAuth()
 
   const submitData = (data: loginUserFormDataType) => {
     console.log(data)
     const { name, email, cnh } = data
-    signUp({
+    register({
       name,
       cnh,
       email,
