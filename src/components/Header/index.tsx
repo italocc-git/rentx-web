@@ -1,21 +1,25 @@
 import { Power, User } from '@phosphor-icons/react'
 import { useAuth } from '../../hooks/authContext'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 export const Header = () => {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
 
+  const { pathname } = useLocation()
+
+  let headerName = pathname.split('/')[1]
+  headerName = headerName[0].toUpperCase().concat(headerName.substring(1))
   const handleLogout = () => {
     logout()
-    navigate('/home/sign-in')
+    navigate('/perfil/login')
   }
   const handleSignIn = () => {
-    navigate('/home/sign-in')
+    navigate('/perfil/login')
   }
   return (
     <div className="w-full h-[5rem] bg-base-white px-20 border-b border-base-secondary ">
       <div className="  h-full flex justify-between items-center text-base-title ">
-        <span className="font-semibold text-xl   ">Início</span>
+        <span className="font-semibold text-xl">{headerName}</span>
         <div className="flex items-center gap-3 ">
           {user?.email ? (
             <>

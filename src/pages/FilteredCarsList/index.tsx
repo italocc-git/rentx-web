@@ -39,7 +39,7 @@ export const FilteredCarsList = () => {
                 </span>
               </div>
               <Link
-                to="/home/filtered-cars-by-date"
+                to="/filtro/carros-por-data"
                 className="w-12 h-12 bg-product-red rounded flex justify-center items-center transition-colors hover:bg-product-red-dark"
               >
                 <CalendarBlank size={20} weight="bold" className="text-white" />

@@ -30,7 +30,7 @@ export const SignIn = () => {
   const { register } = useAuth()
   const submitData = ({ email, password }: loginUserFormDataType) => {
     register({ email, name: 'user-test', cnh: '11122233455' })
-    navigate('/home/profile')
+    navigate('/perfil')
   }
 
   const {
@@ -81,7 +81,7 @@ export const SignIn = () => {
                 </span>
               )}
 
-              <Link to="/home/recovery-password">
+              <Link to="/perfil/recuperação-de-senha">
                 <span className="text-base-text font-inter transition-colors hover:text-base-title">
                   Esqueci minha senha
                 </span>
@@ -95,7 +95,7 @@ export const SignIn = () => {
                   Login
                 </button>
                 <Link
-                  to="/home/sign-up"
+                  to="/perfil/cadastro"
                   className="flex justify-center items-center bg-transparent text-base-title border border-base-gray h-16 transition-colors hover:border-base-title"
                 >
                   Criar conta gratuita

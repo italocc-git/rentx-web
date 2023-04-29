@@ -11,42 +11,43 @@ import { FilteredCarsByDate } from '../pages/FilteredCarsByDate'
 import { FilteredCarsList } from '../pages/FilteredCarsList'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { SecondaryLayout } from '../layouts/SecondaryLayout'
-import { useAuth } from '../hooks/authContext'
 
 export const Router = () => {
-  const { user } = useAuth()
-
-  const userAuthenticated = !!user
-
-  /* 
-  -Rotas para usuário logado e não logado. 
-  - Utilizar o redirect se necessário
-  - Organizar os caminhos das rotas (home, filter , profile)
-  - Deixar rotas em português */
   return (
     <Routes>
       <Route path="/" element={<SecondaryLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route
-          path="/car-successful-rented"
+          path="/carro-alugado-com-sucesso"
           element={<CarSuccessfulRented />}
         />
       </Route>
-      <Route path="/home" element={<DefaultLayout />}>
+      <Route path="/inicio" element={<DefaultLayout />}>
         <Route
-          path="/home/available-cars-list"
+          path="/inicio/lista-carros-disponíveis"
           element={<AvailableCarsList />}
         />
-        <Route path="/home/filtered-cars-list" element={<FilteredCarsList />} />
+
+        <Route path="/inicio/carro/:id" element={<CarDetails />} />
+      </Route>
+      <Route path="/filtro" element={<DefaultLayout />}>
         <Route
-          path="/home/filtered-cars-by-date"
+          path="/filtro/listagem-de-carros"
+          element={<FilteredCarsList />}
+        />
+        <Route
+          path="/filtro/carros-por-data"
           element={<FilteredCarsByDate />}
         />
-        <Route path="/home/car/:id" element={<CarDetails />} />
-        <Route path="/home/sign-in" element={<SignIn />} />
-        <Route path="/home/profile" element={<Profile />} />
-        <Route path="/home/sign-up" element={<SignUp />} />
-        <Route path="/home/recovery-password" element={<PasswordRecovery />} />
+      </Route>
+      <Route path="/perfil" element={<DefaultLayout />}>
+        <Route path="/perfil" element={<Profile />} />
+        <Route path="/perfil/login" element={<SignIn />} />
+        <Route path="/perfil/cadastro" element={<SignUp />} />
+        <Route
+          path="/perfil/recuperação-de-senha"
+          element={<PasswordRecovery />}
+        />
       </Route>
     </Routes>
   )

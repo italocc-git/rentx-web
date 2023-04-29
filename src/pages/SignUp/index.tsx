@@ -62,7 +62,7 @@ export const SignUp = () => {
       email,
     })
     setOpenSuccessCreationModal(true)
-    navigate('/home/profile')
+    navigate('/perfil')
   }
 
   const {
@@ -161,7 +161,7 @@ export const SignUp = () => {
         <img
           src={carImageSignupPage}
           alt="image-sign-page"
-          className="mobile:max-w-[300px] tablet:max-w-[340px] laptop:max-w-[470px]  desktop:max-w-full"
+          className="desktop:max-w-full laptop:max-w-[470px] tablet:max-w-[340px] mobile:max-w-[300px]"
         />
       </div>
     </div>

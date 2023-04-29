@@ -16,7 +16,7 @@ export const Dashboard = () => {
           </span>
 
           <Link
-            to="/home/available-cars-list"
+            to="/inicio/lista-carros-disponíveis"
             className="bg-product-red w-[292px] hover:bg-product-red-dark transition-colors h-[80px] text-base-white font-medium text-lg flex justify-center items-center"
           >
             Começar agora

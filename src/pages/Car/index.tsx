@@ -23,7 +23,7 @@ export const CarDetails = () => {
     useState<SelectedRangeDateType>({} as SelectedRangeDateType)
 
   const handleSuccessRentalPage = () => {
-    navigate('/car-successful-rented')
+    navigate('/carro-alugado-com-sucesso')
   }
   const [selectedTab, setSelectedTab] = useState<string>('tab1')
 
