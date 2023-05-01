@@ -11,7 +11,7 @@ Fictitious car rental application, using React with Tailwind CSS responsive. Thi
 
 ## Layout web
 
-![Web 1](https://github.com/italocc-git/my-portfolio/blob/master/src/assets/gif/my-portfolio-gif.gif)
+![Web 1](https://github.com/italocc-git/my-portfolio/blob/master/src/assets/gif/rentx-gif.gif)
 
 # Technologies
 ## Front end
