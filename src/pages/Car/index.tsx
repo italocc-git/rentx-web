@@ -22,6 +22,7 @@ export const CarDetails = () => {
   const { user } = useAuth()
   const isLogged = !!user
   const [openModal, setOpenModal] = useState(false)
+
   const [selectedRangeDate, setSelectedRangeDate] =
     useState<SelectedRangeDateType>({} as SelectedRangeDateType)
 

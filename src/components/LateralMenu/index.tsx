@@ -29,7 +29,7 @@ export const LateralMenu = () => {
           <Car weight="light" size={26} />
         </Link>
         <Link
-          to={user?.email ? '/perfil' : '/perfil/login'}
+          to={user !== null ? '/perfil' : '/perfil/login'}
           className={linkStyleClass}
         >
           <User weight="light" size={26} />

@@ -20,7 +20,7 @@ export const Header = () => {
       <div className="  h-full flex justify-between items-center text-base-title ">
         <span className="font-semibold text-xl">{headerName}</span>
         <div className="flex items-center gap-3 ">
-          {user && user.email ? (
+          {user !== null ? (
             <>
               <span className="font-inter font-semibold text-base laptop:block mobile:hidden">
                 {user.email}
