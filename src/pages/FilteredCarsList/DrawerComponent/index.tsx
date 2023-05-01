@@ -21,7 +21,7 @@ export const DrawerComponent = () => {
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-filter" className="drawer-overlay"></label>
-      <div className="px-9 py-16 w-[407px] bg-base-main ">
+      <div className="mobile:px-11 laptop:px-9 py-16 w-[407px] bg-base-main ">
         <div className="flex justify-between items-center">
           <h1 className="font-archivo font-semibold text-2xl">Filtro</h1>
           <label htmlFor="my-drawer-filter">
