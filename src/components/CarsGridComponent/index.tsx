@@ -25,46 +25,56 @@ export const CarsGridComponent = ({ cars }: CarsGridComponentProps) => {
           id={1}
         />
       </Link>
-      <Card
-        image={corvetteImg}
-        brand="CHEVROLET"
-        model="Corvette Z06"
-        price="1200"
-        fuelType="gasoline"
-        cardLayoutType="vertical"
-      />
-      <Card
-        image={porsheImg}
-        brand="PORCHE"
-        model="Panamera"
-        price="340"
-        fuelType="energy"
-        cardLayoutType="vertical"
-      />
-      <Card
-        image={lamboImg}
-        brand="LAMBORGHINI"
-        model="Huracan"
-        price="3600"
-        fuelType="gasoline"
-        cardLayoutType="vertical"
-      />
-      <Card
-        image={volvoImg}
-        brand="VOLVO"
-        model="XC40"
-        price="1200"
-        fuelType="hybrid"
-        cardLayoutType="vertical"
-      />
-      <Card
-        image={lancerImg}
-        brand="AUDI"
-        model="Lancer Evo X"
-        price="820"
-        fuelType="gasoline"
-        cardLayoutType="vertical"
-      />
+      <Link to="/inicio/carro/1">
+        <Card
+          image={corvetteImg}
+          brand="CHEVROLET"
+          model="Corvette Z06"
+          price="1200"
+          fuelType="gasoline"
+          cardLayoutType="vertical"
+        />
+      </Link>
+      <Link to="/inicio/carro/1">
+        <Card
+          image={porsheImg}
+          brand="PORCHE"
+          model="Panamera"
+          price="340"
+          fuelType="energy"
+          cardLayoutType="vertical"
+        />
+      </Link>
+      <Link to="/inicio/carro/1">
+        <Card
+          image={lamboImg}
+          brand="LAMBORGHINI"
+          model="Huracan"
+          price="3600"
+          fuelType="gasoline"
+          cardLayoutType="vertical"
+        />
+      </Link>
+      <Link to="/inicio/carro/1">
+        <Card
+          image={volvoImg}
+          brand="VOLVO"
+          model="XC40"
+          price="1200"
+          fuelType="hybrid"
+          cardLayoutType="vertical"
+        />
+      </Link>
+      <Link to="/inicio/carro/1">
+        <Card
+          image={lancerImg}
+          brand="AUDI"
+          model="Lancer Evo X"
+          price="820"
+          fuelType="gasoline"
+          cardLayoutType="vertical"
+        />
+      </Link>
     </div>
   )
 }
