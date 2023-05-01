@@ -21,23 +21,28 @@ export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(() => {
     const userCookie = parseCookies(null)
-    if (userCookie['@rentx-dev:userId']) {
-      return JSON.parse(userCookie['@rentx-dev:userId'])
+    if (userCookie[import.meta.env.VITE_STORAGE_KEY]) {
+      return JSON.parse(userCookie[import.meta.env.VITE_STORAGE_KEY])
     } else {
       return null
     }
   })
 
   const register = (userData: User) => {
-    setCookie(null, '@rentx-dev:userId', JSON.stringify(userData), {
-      maxAge: 30 * 24 * 60 * 60,
-    })
+    setCookie(
+      null,
+      import.meta.env.VITE_STORAGE_KEY,
+      JSON.stringify(userData),
+      {
+        maxAge: 30 * 24 * 60 * 60,
+      },
+    )
     setUser(userData)
   }
 
   const logout = () => {
     setUser(null)
-    destroyCookie(null, '@rentx-dev:userId')
+    destroyCookie(null, import.meta.env.VITE_STORAGE_KEY)
   }
 
   return (
