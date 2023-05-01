@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom'
 export const Header = () => {
   const { user, logout } = useAuth()
   const navigate = useNavigate()
-
   const { pathname } = useLocation()
 
   let headerName = pathname.split('/')[1]
@@ -21,7 +20,7 @@ export const Header = () => {
       <div className="  h-full flex justify-between items-center text-base-title ">
         <span className="font-semibold text-xl">{headerName}</span>
         <div className="flex items-center gap-3 ">
-          {user?.email ? (
+          {user !== null ? (
             <>
               <span className="font-inter font-semibold text-base laptop:block mobile:hidden">
                 {user.email}

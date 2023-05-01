@@ -4,7 +4,7 @@ import carBackground from '../../assets/car-background.png'
 import { Link } from 'react-router-dom'
 export const Dashboard = () => {
   return (
-    <div className="w-full min-h-screen bg-base-black max-w-[1300px] flex mobile:justify-center  laptop:justify-between py-[140px] laptop:mx-auto mobile:mx-3">
+    <div className="w-full min-h-screen bg-base-black max-w-[1300px] flex mobile:justify-center  laptop:justify-between px-5 py-[140px] laptop:mx-auto mobile:mx-3">
       <div className="max-w-[400px] ">
         <img src={rentxImg} alt="logo-rentx" className="mb-[120px] m-auto" />
         <div className="flex flex-col mobile:items-center laptop:items-start gap-20">

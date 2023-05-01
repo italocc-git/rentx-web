@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     if (userCookie['@rentx-dev:userId']) {
       return JSON.parse(userCookie['@rentx-dev:userId'])
     } else {
-      return {} as User
+      return null
     }
   })
 

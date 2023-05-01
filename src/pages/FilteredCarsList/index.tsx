@@ -18,7 +18,7 @@ export const FilteredCarsList = () => {
         <div className=" bg-base-main min-h-screen laptop:px-20 py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
           <div className="flex laptop:flex-row mobile:flex-col justify-between items-center drawer-content">
             <h1 className="text-base-title font-semibold font-archivo laptop:text-4xl mobile:text-2xl">
-              0 Carros encontrados
+              6 Carros encontrados
             </h1>
             <div className="flex items-center laptop:gap-6 mobile:gap-1">
               <div className="flex flex-col gap-1">

@@ -6,7 +6,6 @@ import { useAuth } from '../../hooks/authContext'
 export const LateralMenu = () => {
   const navigate = useNavigate()
   const { user } = useAuth()
-  const userAuthenticated = !!user
   const linkStyleClass =
     'h-[54px] w-full bg-transparent laptop:border-l-[3px] laptop:border-b-0 mobile:border-b-[3px] border-transparent transition-colors focus:outline-none focus:border-product-red hover:border-product-red flex items-center justify-center text-base-text focus:text-white'
 
@@ -30,7 +29,7 @@ export const LateralMenu = () => {
           <Car weight="light" size={26} />
         </Link>
         <Link
-          to={userAuthenticated ? '/perfil' : '/perfil/login'}
+          to={user !== null ? '/perfil' : '/perfil/login'}
           className={linkStyleClass}
         >
           <User weight="light" size={26} />
