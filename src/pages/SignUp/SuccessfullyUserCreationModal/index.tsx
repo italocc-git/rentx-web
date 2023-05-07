@@ -16,7 +16,7 @@ export const SuccessfullyUserCreationModal = ({
   const navigate = useNavigate()
 
   const handleSubmitNewUser = () => {
-    navigate('/perfil')
+    navigate('/perfil/login')
     setOpenModal(false)
   }
 

@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { SliderComponent } from './SliderComponent'
 export const DrawerComponent = () => {
   const [carInputValue, setCarInputValue] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedFuel, setSelectedFuel] = useState('')
   const [selectedTransmission, setSelectedTransmission] = useState('')
   const [selectedPricesValues, setSelectedPricesValues] = useState<number[]>([
@@ -14,6 +15,7 @@ export const DrawerComponent = () => {
   const resetStates = () => {
     setCarInputValue('')
     setSelectedFuel('')
+    setSelectedCategory('')
     setSelectedTransmission('')
     setSelectedPricesValues([0, 1000])
   }
@@ -28,13 +30,14 @@ export const DrawerComponent = () => {
             <X
               size={22}
               weight="bold"
-              className="text-base-text-details cursor-pointer"
+              className="text-base-text-details cursor-pointer transition-colors hover:text-base-black"
             />
           </label>
         </div>
         <hr className="h-[1px] bg-base-gray w-full mt-4 mb-8" />
         <div className="flex flex-col gap-8">
           <input
+            list="car-suggestions"
             className="bg-white placeholder:text-base-text-details font-inter
             px-4 py-[22px] border border-base-secondary focus:outline-none focus:ring-2 focus:ring-product-red"
             placeholder="Qual carro você deseja?"
@@ -43,6 +46,27 @@ export const DrawerComponent = () => {
             }
             value={carInputValue}
           />
+          <datalist id="car-suggestions">
+            <option value="Lancer EVO X" />
+            <option value="Lancer EVO VIII" />
+            <option value="Lanceiro Espanhol" />
+            <option value="Covette Z06" />
+            <option value="Huracan" />
+          </datalist>
+          <select
+            name="category"
+            defaultValue={''}
+            value={selectedCategory}
+            onChange={({ target }) => setSelectedCategory(target.value)}
+            className="h-full rounded-sm border-0 bg-white px-4 py-[22px] text-gray-500 focus:ring-2 focus:ring-inset focus:ring-product-red"
+          >
+            <option value="">Nenhuma Categoria</option>
+            <option value="4x4">4X4</option>
+            <option value="SUV">SUV</option>
+            <option value="Hatch">Hatch</option>
+            <option value="Sedan">Sedan</option>
+            <option value="Esportivo">Esportivo</option>
+          </select>
           <div className="flex flex-col gap-2">
             <div className="flex justify-between font-semibold ">
               <span className="font-archivo text-xl text-base-title">

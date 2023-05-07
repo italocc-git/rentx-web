@@ -7,7 +7,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
-import { useAuth } from '../../hooks/authContext'
+import api from '../../services/api'
+/* import { useAuth } from '../../hooks/authContext' */
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -50,15 +51,17 @@ export const SignUp = () => {
     resolver: zodResolver(createUserFormSchema),
   })
 
-  const { register } = useAuth()
+  /* const { register } = useAuth() */
 
-  const submitData = (data: loginUserFormDataType) => {
+  const submitData = async (data: loginUserFormDataType) => {
     console.log(data)
-    const { name, email, cnh } = data
-    register({
+    const { name, email, cnh, password } = data
+
+    await api.post('users', {
       name,
-      cnh,
       email,
+      password: password.confirm,
+      driver_license: cnh,
     })
     setOpenSuccessCreationModal(true)
   }

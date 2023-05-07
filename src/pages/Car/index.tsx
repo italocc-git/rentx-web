@@ -19,8 +19,8 @@ import { TabsCarInformation } from './TabsCarInformation'
 import { useAuth } from '../../hooks/authContext'
 export const CarDetails = () => {
   const navigate = useNavigate()
-  const { user } = useAuth()
-  const isLogged = !!user
+  const { userData } = useAuth()
+  const isLogged = !!userData
   const [openModal, setOpenModal] = useState(false)
 
   const [selectedRangeDate, setSelectedRangeDate] =

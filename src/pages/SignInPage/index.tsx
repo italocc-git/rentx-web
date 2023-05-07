@@ -27,9 +27,9 @@ export const SignIn = () => {
     resolver: zodResolver(loginUserFormSchema),
   })
   const navigate = useNavigate()
-  const { register } = useAuth()
+  const { signIn } = useAuth()
   const submitData = ({ email, password }: loginUserFormDataType) => {
-    register({ email, name: 'user-test', cnh: '11122233455' })
+    signIn({ email, password })
     navigate('/perfil')
   }
 

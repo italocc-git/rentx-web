@@ -1,52 +1,72 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { parseCookies, destroyCookie, setCookie } from 'nookies'
+import api from '../services/api'
 interface AuthProviderProps {
   children: ReactNode
 }
 
 interface User {
-  id?: string
   email: string
   name: string
   cnh: string
 }
 
+interface SignInCredentials {
+  email: string
+  password: string
+}
+
+interface AuthState {
+  user: User
+  token: string
+}
+
 interface AuthContextData {
-  register: (userData: User) => void
-  user: User | null
+  signIn: (userData: SignInCredentials) => void
+  userData: AuthState | null
   logout: () => void
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User | null>(() => {
+  const [userData, setUserData] = useState<AuthState | null>(() => {
     const userCookie = parseCookies(null)
     if (userCookie[import.meta.env.VITE_STORAGE_KEY]) {
-      return JSON.parse(userCookie[import.meta.env.VITE_STORAGE_KEY])
+      const { user, token } = JSON.parse(
+        userCookie[import.meta.env.VITE_STORAGE_KEY],
+      )
+      api.defaults.headers.common.Authorization = `Bearer ${token}`
+      return { user, token }
     } else {
       return null
     }
   })
 
-  const register = (userData: User) => {
+  const signIn = async (userData: SignInCredentials) => {
+    const response = await api.post('sessions', userData)
+
+    const { user, token } = response.data
     setCookie(
       null,
       import.meta.env.VITE_STORAGE_KEY,
-      JSON.stringify(userData),
+      JSON.stringify({ user, token }),
       {
         maxAge: 30 * 24 * 60 * 60,
       },
     )
-    setUser(userData)
+    setUserData({
+      token,
+      user,
+    })
   }
 
   const logout = () => {
-    setUser(null)
+    setUserData(null)
     destroyCookie(null, import.meta.env.VITE_STORAGE_KEY)
   }
 
   return (
-    <AuthContext.Provider value={{ user, logout, register }}>
+    <AuthContext.Provider value={{ userData, logout, signIn }}>
       {children}
     </AuthContext.Provider>
   )
