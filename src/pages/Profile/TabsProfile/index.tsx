@@ -35,7 +35,7 @@ type renewPasswordFormDataType = z.infer<typeof renewPasswordFormSchema>
 export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   const { Root, List, Trigger, Content } = TabRadix
   const [selectedTab, setSelectedTab] = useState('tab1')
-  const { user } = useAuth()
+  const { userData } = useAuth()
   const handleChangeSelectedTab = (value: string) => {
     setSelectedTab(value)
   }
@@ -53,12 +53,13 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   }
 
   useEffect(() => {
-    if (user) {
+    if (userData) {
+      const { user } = userData
       tabsProfileForm.setValue('username', user.name)
       tabsProfileForm.setValue('email', user.email)
       tabsProfileForm.setValue('cnh', user.cnh)
     }
-  }, [user, tabsProfileForm])
+  }, [userData, tabsProfileForm])
 
   const {
     handleSubmit,

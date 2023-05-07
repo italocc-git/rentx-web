@@ -2,7 +2,7 @@ import { Power, User } from '@phosphor-icons/react'
 import { useAuth } from '../../hooks/authContext'
 import { useNavigate, useLocation } from 'react-router-dom'
 export const Header = () => {
-  const { user, logout } = useAuth()
+  const { userData, logout } = useAuth()
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
@@ -20,10 +20,10 @@ export const Header = () => {
       <div className="  h-full flex justify-between items-center text-base-title ">
         <span className="font-semibold text-xl">{headerName}</span>
         <div className="flex items-center gap-3 ">
-          {user !== null ? (
+          {userData !== null ? (
             <>
               <span className="font-inter font-semibold text-base laptop:block mobile:hidden">
-                {user.email}
+                {userData.user.email}
               </span>
               <button onClick={handleLogout}>
                 <Power
