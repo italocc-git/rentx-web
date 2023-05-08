@@ -6,7 +6,7 @@ import { useAuth } from '../../hooks/authContext'
 export const LateralMenu = () => {
   const navigate = useNavigate()
   const { userData } = useAuth()
-  console.log(userData)
+
   const linkStyleClass =
     'h-[54px] w-full bg-transparent laptop:border-l-[3px] laptop:border-b-0 mobile:border-b-[3px] border-transparent transition-colors focus:outline-none focus:border-product-red hover:border-product-red flex items-center justify-center text-base-text focus:text-white'
 

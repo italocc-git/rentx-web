@@ -54,7 +54,6 @@ export const SignUp = () => {
   /* const { register } = useAuth() */
 
   const submitData = async (data: loginUserFormDataType) => {
-    console.log(data)
     const { name, email, cnh, password } = data
 
     await api.post('users', {

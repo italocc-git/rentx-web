@@ -45,7 +45,6 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   })
 
   const submitData = (data: renewPasswordFormDataType) => {
-    console.log(data)
     setModal(true)
     tabsProfileForm.resetField('oldPassword')
     tabsProfileForm.resetField('password.newPassword')

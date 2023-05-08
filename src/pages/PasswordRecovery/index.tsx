@@ -19,9 +19,7 @@ export const PasswordRecovery = () => {
     resolver: zodResolver(recoveryPasswordFormSchema),
   })
 
-  const submitData = (data: recoveryPasswordFormDataType) => {
-    console.log(data)
-  }
+  const submitData = (data: recoveryPasswordFormDataType) => {}
   const {
     handleSubmit,
     formState: { isSubmitting, errors },
