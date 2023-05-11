@@ -1,11 +1,14 @@
+/* eslint-disable camelcase */
+/* eslint-disable prefer-regex-literals */
 import { Car, Envelope, Lock, User } from '@phosphor-icons/react'
 import * as TabRadix from '@radix-ui/react-tabs'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Input } from '../../../components/Input'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../../../hooks/authContext'
+import api from '../../../services/api'
 
 interface TabsProfileProps {
   setModal: (open: boolean) => void
@@ -36,6 +39,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   const { Root, List, Trigger, Content } = TabRadix
   const [selectedTab, setSelectedTab] = useState('tab1')
   const { userData } = useAuth()
+
   const handleChangeSelectedTab = (value: string) => {
     setSelectedTab(value)
   }
@@ -44,22 +48,58 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
     resolver: zodResolver(renewPasswordFormSchema),
   })
 
-  const submitData = (data: renewPasswordFormDataType) => {
-    console.log(data)
-    setModal(true)
-    tabsProfileForm.resetField('oldPassword')
-    tabsProfileForm.resetField('password.newPassword')
-    tabsProfileForm.resetField('password.confirmNewPassword')
+  const compareSamePassword = (oldPassword: string, newPassword: string) => {
+    const oldPassowrd = oldPassword.toLocaleLowerCase()
+    const newPassowrd = newPassword.toLocaleLowerCase()
+
+    return oldPassowrd === newPassowrd
   }
 
-  useEffect(() => {
+  const submitResetPassword = (data: renewPasswordFormDataType) => {
+    const { oldPassword, password } = data
+
+    const isPasswordStrong = new RegExp(
+      '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})',
+    ).test(password.newPassword)
+
+    if (!isPasswordStrong) {
+      tabsProfileForm.setError('password.newPassword', {
+        message:
+          ' Deve conter ao menos 8 caracteres com letras maiúsculas e minúsculas, números, e caracteres especiais.',
+      })
+      return
+    }
+
+    if (compareSamePassword(oldPassword, password.newPassword)) {
+      tabsProfileForm.setError('oldPassword', {
+        message: 'A senha antiga não pode ser igual a nova',
+      })
+      return
+    }
+    if (userData) {
+      const { refreshToken } = userData
+      api
+        .post(`password/reset?token=${refreshToken}`, {
+          oldPassword,
+          newPassword: password.confirmNewPassword,
+        })
+        .then(() => {
+          setModal(true)
+        })
+    }
+  }
+  const loadProfile = useCallback(() => {
     if (userData) {
       const { user } = userData
       tabsProfileForm.setValue('username', user.name)
       tabsProfileForm.setValue('email', user.email)
-      tabsProfileForm.setValue('cnh', user.cnh)
+      tabsProfileForm.setValue('cnh', user.driver_license)
     }
-  }, [userData, tabsProfileForm])
+  }, [tabsProfileForm, userData])
+
+  useEffect(() => {
+    loadProfile()
+  }, [loadProfile])
 
   const {
     handleSubmit,
@@ -108,17 +148,13 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
             disabled
           />
           <Input icon={Car} name="cnh" placeholder="CNH" type="text" disabled />
-          {/* <button
-            type="submit"
-            
-            className="bg-product-red w-full text-white h-16 transition-colors hover:bg-product-red-dark  disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Salvar alterações
-          </button> */}
         </Content>
+
+        {/*  */}
+
         <Content value="tab2">
           <form
-            onSubmit={handleSubmit(submitData)}
+            onSubmit={handleSubmit(submitResetPassword)}
             className="text-justify flex flex-col gap-2"
           >
             <Input

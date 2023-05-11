@@ -1,21 +1,27 @@
 import Modal from '../../../components/Modal'
 import { CheckFat } from '@phosphor-icons/react'
 import union from '../../../assets/union.png'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../../hooks/authContext'
 interface SuccessfullyUserCreationModalProps {
   openModal: boolean
-  setOpenModal: (open: boolean) => void
+  setModal: (open: boolean) => void
 }
 
 export const ChangesConfirmModal = ({
   openModal,
-  setOpenModal,
+  setModal,
 }: SuccessfullyUserCreationModalProps) => {
+  const navigate = useNavigate()
+  const auth = useAuth()
   const handleSubmitNewUser = () => {
-    setOpenModal(false)
+    setModal(false)
+    auth.logout()
+    navigate('/perfil/login')
   }
 
   return (
-    <Modal openModal={openModal} setOpen={setOpenModal}>
+    <Modal openModal={openModal} setOpen={setModal}>
       <div className="bg-black-300 py-7 flex flex-col justify-between items-center gap-4 relative ">
         <img
           src={union}
@@ -27,8 +33,13 @@ export const ChangesConfirmModal = ({
         <h1 className="font-archivo font-semibold laptop:text-4xl mobile:text-xl text-white ">
           Feito!
         </h1>
-        <div className="font-inter laptop:text-lg mobile:text-xs text-base-text-details px-1">
-          <span>Agora suas informações foram atualizadas. </span>
+        <div className="font-inter laptop:text-lg mobile:text-xs  px-1 flex flex-col gap-2 items-center">
+          <span className="text-base-text-details">
+            Agora suas informações foram atualizadas.
+          </span>
+          <span className="font-bold text-base-white">
+            Atenção: Faça o login com a nova senha !
+          </span>
         </div>
         <button
           onClick={handleSubmitNewUser}

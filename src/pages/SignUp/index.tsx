@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
 import api from '../../services/api'
+
 /* import { useAuth } from '../../hooks/authContext' */
 const createUserFormSchema = z.object({
   name: z
@@ -51,32 +52,34 @@ export const SignUp = () => {
     resolver: zodResolver(createUserFormSchema),
   })
 
-  /* const { register } = useAuth() */
-
-  const submitData = async (data: loginUserFormDataType) => {
-    console.log(data)
+  const submitData = (data: loginUserFormDataType) => {
     const { name, email, cnh, password } = data
 
-    await api.post('users', {
-      name,
-      email,
-      password: password.confirm,
-      driver_license: cnh,
-    })
-    setOpenSuccessCreationModal(true)
+    const isPasswordStrong = new RegExp(
+      '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})',
+    ).test(password.password)
+    if (!isPasswordStrong) {
+      createUserForm.setError('password.password', {
+        message:
+          ' Deve conter ao menos 8 caracteres com letras maiúsculas e minúsculas, números, e caracteres especiais.',
+      })
+      return
+    }
+    api
+      .post('users', {
+        name,
+        email,
+        password: password.confirm,
+        driver_license: cnh,
+      })
+      .then(() => setOpenSuccessCreationModal(true))
   }
 
   const {
     handleSubmit,
     getValues,
     formState: { isSubmitting, errors },
-    watch,
   } = createUserForm
-
-  const userPassword = watch('password.password')
-  const isPasswordStrong = new RegExp(
-    '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})',
-  ).test(userPassword)
 
   const { name } = getValues()
   return (
@@ -125,18 +128,9 @@ export const SignUp = () => {
                 placeholder="Senha"
                 name="password.password"
               />
-
-              {userPassword?.length > 0 &&
-                (isPasswordStrong ? (
-                  <span className="text-xs text-product-green">
-                    Senha forte
-                  </span>
-                ) : (
-                  <span className="text-xs text-product-red">
-                    Deve conter ao menos 8 caracteres com letras maiúsculas e
-                    minúsculas, números, e caracteres especiais.
-                  </span>
-                ))}
+              <span className="text-product-red text-xs font-semibold">
+                {errors?.password?.password?.message}
+              </span>
               <Input
                 icon={Lock}
                 type="password"
