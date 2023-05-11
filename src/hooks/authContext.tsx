@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { parseCookies, destroyCookie, setCookie } from 'nookies'
 import api from '../services/api'
@@ -8,7 +9,9 @@ interface AuthProviderProps {
 interface User {
   email: string
   name: string
-  cnh: string
+  driver_license: string
+  avatar: string
+  avatar_url: string
 }
 
 interface SignInCredentials {
@@ -19,12 +22,14 @@ interface SignInCredentials {
 interface AuthState {
   user: User
   token: string
+  refreshToken: string
 }
 
 interface AuthContextData {
-  signIn: (userData: SignInCredentials) => void
+  signIn: (userData: SignInCredentials) => Promise<void>
   userData: AuthState | null
   logout: () => void
+  updateUser: (userData: User) => void
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
@@ -32,11 +37,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [userData, setUserData] = useState<AuthState | null>(() => {
     const userCookie = parseCookies(null)
     if (userCookie[import.meta.env.VITE_STORAGE_KEY]) {
-      const { user, token } = JSON.parse(
+      const { user, token, refresh_token } = JSON.parse(
         userCookie[import.meta.env.VITE_STORAGE_KEY],
       )
       api.defaults.headers.common.Authorization = `Bearer ${token}`
-      return { user, token }
+      return { user, token, refreshToken: refresh_token }
     } else {
       return null
     }
@@ -45,18 +50,20 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signIn = async (userData: SignInCredentials) => {
     const response = await api.post('sessions', userData)
 
-    const { user, token } = response.data
+    const { user, token, refresh_token } = response.data
     setCookie(
       null,
       import.meta.env.VITE_STORAGE_KEY,
-      JSON.stringify({ user, token }),
+      JSON.stringify({ user, token, refresh_token }),
       {
         maxAge: 30 * 24 * 60 * 60,
       },
     )
+    api.defaults.headers.common.Authorization = `Bearer ${token}`
     setUserData({
       token,
       user,
+      refreshToken: refresh_token,
     })
   }
 
@@ -65,8 +72,28 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     destroyCookie(null, import.meta.env.VITE_STORAGE_KEY)
   }
 
+  const updateUser = (user: User) => {
+    if (userData) {
+      const dataUpdated = {
+        refreshToken: userData.refreshToken,
+        token: userData.token,
+        user,
+      }
+      setCookie(
+        null,
+        import.meta.env.VITE_STORAGE_KEY,
+        JSON.stringify(dataUpdated),
+        {
+          maxAge: 30 * 24 * 60 * 60,
+        },
+      )
+
+      setUserData(dataUpdated)
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ userData, logout, signIn }}>
+    <AuthContext.Provider value={{ userData, logout, signIn, updateUser }}>
       {children}
     </AuthContext.Provider>
   )

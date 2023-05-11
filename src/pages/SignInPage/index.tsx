@@ -6,7 +6,7 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../../hooks/authContext'
-
+/* import { toast } from 'react-toastify' */
 const loginUserFormSchema = z.object({
   email: z
     .string()
@@ -29,8 +29,9 @@ export const SignIn = () => {
   const navigate = useNavigate()
   const { signIn } = useAuth()
   const submitData = ({ email, password }: loginUserFormDataType) => {
-    signIn({ email, password })
-    navigate('/perfil')
+    signIn({ email, password }).then(() => {
+      navigate('/perfil')
+    })
   }
 
   const {
@@ -81,8 +82,10 @@ export const SignIn = () => {
                 </span>
               )}
 
-              <Link to="/perfil/recuperação-de-senha">
-                <span className="text-base-text font-inter transition-colors hover:text-base-title">
+              <Link to="/perfil/login">
+                {' '}
+                {/* Temporariamente indisponível */}
+                <span className="text-base-text font-inter transition-colors hover:text-base-title cursor-not-allowed">
                   Esqueci minha senha
                 </span>
               </Link>
