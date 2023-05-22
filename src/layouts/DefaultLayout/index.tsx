@@ -6,7 +6,7 @@ export const DefaultLayout = () => {
   return (
     <div className="flex">
       <LateralMenu />
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-grow flex-col">
         <Header />
         <Outlet />
       </div>

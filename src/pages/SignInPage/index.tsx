@@ -40,15 +40,15 @@ export const SignIn = () => {
   } = loginUserForm
 
   return (
-    <div className="bg-base-main min-h-screen laptop:px-20 laptop:py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
-      <div className="flex mobile:flex-col laptop:flex-row justify-between items-center mobile:gap-5 desktop:gap-40 ">
+    <div className="min-h-screen bg-base-main mobile:mb-20 mobile:px-8 laptop:mb-0 laptop:px-20 laptop:py-8">
+      <div className="flex items-center justify-between mobile:flex-col mobile:gap-5 laptop:flex-row desktop:gap-40 ">
         <img
           src={carImageSignPage}
           alt="image-sign-page"
           className="tablet:max-w-md desktop:max-w-full"
         />
-        <div className="flex flex-col justify-center gap-6 flex-grow">
-          <h1 className="font-archivo font-semibold text-4xl text-base-title">
+        <div className="flex flex-grow flex-col justify-center gap-6">
+          <h1 className="font-archivo text-4xl font-semibold text-base-title">
             Estamos quase lá.
           </h1>
           <span className="font-inter text-base-text">
@@ -66,7 +66,7 @@ export const SignIn = () => {
                 name="email"
               />
               {errors.email && (
-                <span className="text-product-red text-xs font-semibold">
+                <span className="text-xs font-semibold text-product-red">
                   {errors.email.message}
                 </span>
               )}
@@ -77,7 +77,7 @@ export const SignIn = () => {
                 name="password"
               />
               {errors.password && (
-                <span className="text-product-red text-xs font-semibold">
+                <span className="text-xs font-semibold text-product-red">
                   {errors.password.message}
                 </span>
               )}
@@ -85,21 +85,21 @@ export const SignIn = () => {
               <Link to="/perfil/login">
                 {' '}
                 {/* Temporariamente indisponível */}
-                <span className="text-base-text font-inter transition-colors hover:text-base-title cursor-not-allowed">
+                <span className="cursor-not-allowed font-inter text-base-text transition-colors hover:text-base-title">
                   Esqueci minha senha
                 </span>
               </Link>
-              <div className="w-full flex flex-col  gap-4 font-inter font-medium mt-4">
+              <div className="mt-4 flex w-full  flex-col gap-4 font-inter font-medium">
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-product-red text-white h-16 transition-colors hover:bg-product-red-dark  disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="h-16 bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Login
                 </button>
                 <Link
                   to="/perfil/cadastro"
-                  className="flex justify-center items-center bg-transparent text-base-title border border-base-gray h-16 transition-colors hover:border-base-title"
+                  className="flex h-16 items-center justify-center border border-base-gray bg-transparent text-base-title transition-colors hover:border-base-title"
                 >
                   Criar conta gratuita
                 </Link>

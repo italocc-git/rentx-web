@@ -89,7 +89,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
     }
   }
   const loadProfile = useCallback(() => {
-    if (userData) {
+    if (userData?.user) {
       const { user } = userData
       tabsProfileForm.setValue('username', user.name)
       tabsProfileForm.setValue('email', user.email)
@@ -110,29 +110,29 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
       defaultValue={selectedTab}
       onValueChange={handleChangeSelectedTab}
       value={selectedTab}
-      className="flex flex-col w-full  h-40 my-2"
+      className="my-2 flex h-40  w-full flex-col"
     >
       <List
         aria-label="Car Information Manager"
-        className="flex border-b-2 shrink-0 mb-6 "
+        className="mb-6 flex shrink-0 border-b-2 "
       >
         <Trigger
-          className="bg-white text-base-gray px-5 h-11 flex-grow flex items-center justify-center data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow select-none"
+          className="flex h-11 flex-grow select-none items-center justify-center bg-white px-5 text-base-gray data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow"
           value="tab1"
         >
-          <span className=" font-semibold text-sm font-inter">Dados</span>
+          <span className=" font-inter text-sm font-semibold">Dados</span>
         </Trigger>
         <Trigger
-          className="bg-white text-base-gray px-5 h-11 flex-grow flex items-center justify-center  data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow select-none"
+          className="flex h-11 flex-grow select-none items-center justify-center bg-white px-5  text-base-gray data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow"
           value="tab2"
         >
-          <span className=" font-semibold text-sm font-inter">
+          <span className=" font-inter text-sm font-semibold">
             Trocar senha
           </span>
         </Trigger>
       </List>
       <FormProvider {...tabsProfileForm}>
-        <Content value="tab1" className="text-justify flex flex-col gap-2">
+        <Content value="tab1" className="flex flex-col gap-2 text-justify">
           <Input
             icon={User}
             name="username"
@@ -155,7 +155,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
         <Content value="tab2">
           <form
             onSubmit={handleSubmit(submitResetPassword)}
-            className="text-justify flex flex-col gap-2"
+            className="flex flex-col gap-2 text-justify"
           >
             <Input
               icon={Lock}
@@ -163,7 +163,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
               placeholder="Senha atual"
               type="password"
             />
-            <span className="text-product-red text-xs font-semibold">
+            <span className="text-xs font-semibold text-product-red">
               {errors.oldPassword?.message}
             </span>
             <Input
@@ -172,7 +172,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
               placeholder="Senha"
               type="password"
             />
-            <span className="text-product-red text-xs font-semibold">
+            <span className="text-xs font-semibold text-product-red">
               {errors.password?.newPassword?.message}
             </span>
             <Input
@@ -181,13 +181,13 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
               placeholder="Repetir senha"
               type="password"
             />
-            <span className="text-product-red text-xs font-semibold">
+            <span className="text-xs font-semibold text-product-red">
               {errors.password?.message}
             </span>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-product-red w-full text-white laptop:h-16 mobile:h-7  transition-colors hover:bg-product-red-dark  disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50  mobile:h-7 laptop:h-16"
             >
               Salvar alterações
             </button>

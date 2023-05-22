@@ -12,8 +12,8 @@ export const HeaderCarDetails = ({
 }: HeaderCarDetailsProps) => {
   const navigate = useNavigate()
   return (
-    <div className="flex tablet:flex-row mobile:flex-col tablet:items-center mobile:items-baseline tablet:gap-9 mobile:gap-1 border-b-2 border-base-gray px-2 pb-7 mb-10">
-      <div className="flex items-center justify-center cursor-pointer">
+    <div className="mb-10 flex border-b-2 border-base-gray px-2 pb-7 mobile:flex-col mobile:items-baseline mobile:gap-1 tablet:flex-row tablet:items-center tablet:gap-9">
+      <div className="flex cursor-pointer items-center justify-center">
         <CaretLeft
           onClick={() => navigate(-1)}
           weight="bold"
@@ -22,18 +22,18 @@ export const HeaderCarDetails = ({
         />
       </div>
       <div className="font-archivo">
-        <span className="text-base-text-details font-medium laptop:text-sm mobile:text-xs">
+        <span className="font-medium text-base-text-details mobile:text-xs laptop:text-sm">
           {brand}
         </span>
-        <h1 className="text-base-title font-semibold laptop:text-4xl mobile:text-2xl">
+        <h1 className="font-semibold text-base-title mobile:text-2xl laptop:text-4xl">
           {model}
         </h1>
       </div>
       <div className="font-archivo">
-        <span className="text-base-text-details font-medium laptop:text-sm mobile:text-xs">
+        <span className="font-medium text-base-text-details mobile:text-xs laptop:text-sm">
           AO DIA
         </span>
-        <h1 className="text-product-red font-semibold laptop:text-4xl mobile:text-2xl">
+        <h1 className="font-semibold text-product-red mobile:text-2xl laptop:text-4xl">
           R$ {price}
         </h1>
       </div>

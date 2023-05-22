@@ -22,25 +22,25 @@ export const SuccessfullyUserCreationModal = ({
 
   return (
     <Modal openModal={openModal} setOpen={setOpenModal}>
-      <div className="bg-black-300 py-7 flex flex-col justify-between items-center gap-4 relative ">
+      <div className="relative flex flex-col items-center justify-between gap-4 bg-black-300 py-7 ">
         <img
           src={union}
-          className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-0"
+          className="absolute top-[50%] left-[50%] z-0 translate-x-[-50%] translate-y-[-50%]"
           alt="union-img"
         />
 
-        <CheckFat size={56} weight="fill" className="text-product-green mb-8" />
-        <h1 className="font-archivo font-semibold laptop:text-4xl mobile:text-xl text-white ">
+        <CheckFat size={56} weight="fill" className="mb-8 text-product-green" />
+        <h1 className="font-archivo font-semibold text-white mobile:text-xl laptop:text-4xl ">
           Conta criada
         </h1>
-        <div className="font-inter laptop:text-lg mobile:text-xs text-base-text-details flex flex-col items-center">
+        <div className="flex flex-col items-center font-inter text-base-text-details mobile:text-xs laptop:text-lg">
           <span>Agora você faz parte da RentX. </span>
           <span>Seja bem-vindo </span>
           <span>{username}</span>
         </div>
         <button
           onClick={handleSubmitNewUser}
-          className="laptop:h-16 mobile:h-8 w-[120px] mt-3 bg-base-title font-inter text-white font-medium transition-colors hover:bg-base-black z-10"
+          className="z-10 mt-3 w-[120px] bg-base-title font-inter font-medium text-white transition-colors hover:bg-base-black mobile:h-8 laptop:h-16"
         >
           Ok
         </button>

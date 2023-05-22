@@ -12,36 +12,34 @@ import { useAuth } from '../../hooks/authContext'
 import DotLoader from 'react-spinners/DotLoader'
 export const Profile = () => {
   const [openChangesConfirmModal, setOpenChangesConfirmModal] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const { userData, updateUser } = useAuth()
 
-  const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const { userData, updateUser, setIsLoading, isLoading } = useAuth()
+
+  const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
     if (files) {
       const data = new FormData()
       data.append('avatar', files[0])
       if (files.length > 0) {
         setIsLoading(true)
-        api
-          .patch('/users/avatar', data)
-          .then((response) => {
-            updateUser(response.data)
-            toast.success('Avatar alterado com sucesso')
-          })
-          .finally(() => setIsLoading(false))
+        await api.patch('/users/avatar', data).then((response) => {
+          updateUser(response.data)
+          toast.success('Avatar alterado com sucesso')
+          setIsLoading(false)
+        })
       }
     }
   }
 
   return (
-    <div className=" bg-base-white min-h-screen laptop:px-20 laptop:py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
+    <div className=" min-h-screen bg-base-white mobile:mb-20 mobile:px-8 laptop:mb-0 laptop:px-20 laptop:py-8">
       <ChangesConfirmModal
         openModal={openChangesConfirmModal}
         setModal={setOpenChangesConfirmModal}
       />
-      <div className="flex mobile:flex-col laptop:flex-row  justify-evenly items-start h-full mobile:gap-1 laptop:gap-16">
-        <div className="flex flex-col items-center w-full ">
-          <div className="relative mobile:w-32 mobile:h-32 laptop:w-44 laptop:h-44 flex items-center justify-center">
+      <div className="flex h-full items-start  justify-evenly mobile:flex-col mobile:gap-1 laptop:flex-row laptop:gap-16">
+        <div className="flex w-full flex-col items-center ">
+          <div className="relative flex items-center justify-center mobile:h-32 mobile:w-32 laptop:h-44 laptop:w-44">
             {isLoading ? (
               <DotLoader
                 color="#dc1637"
@@ -51,14 +49,16 @@ export const Profile = () => {
               />
             ) : (
               <img
-                src={userData?.user ? userData.user.avatar_url : userImage}
-                className="rounded-full w-full h-full"
-                alt="profile-image"
+                src={
+                  userData?.user?.avatar ? userData.user.avatar_url : userImage
+                }
+                className="h-full w-full rounded-full"
+                alt=""
               />
             )}
             <label
               htmlFor="avatarInput"
-              className="absolute right-0 bottom-0 rounded-md bg-product-red h-10 w-10 flex justify-center items-center transition-colors hover:bg-product-red-dark cursor-pointer"
+              className="absolute right-0 bottom-0 flex h-10 w-10 cursor-pointer items-center justify-center rounded-md bg-product-red transition-colors hover:bg-product-red-dark"
             >
               <Camera size={20} weight="bold" className="text-white" />
               <input
@@ -71,9 +71,9 @@ export const Profile = () => {
           </div>
           <TabsProfile setModal={setOpenChangesConfirmModal} />
         </div>
-        <hr className=" mobile:w-full mobile:mt-24 laptop:w-1 laptop:mt-0 laptop:h-full bg-base-gray" />
-        <div className="flex flex-col gap-6 w-full">
-          <h1 className="font-archivo font-semibold text-2xl text-base-title">
+        <hr className=" bg-base-gray mobile:mt-24 mobile:w-full laptop:mt-0 laptop:h-full laptop:w-1" />
+        <div className="flex w-full flex-col gap-6">
+          <h1 className="font-archivo text-2xl font-semibold text-base-title">
             Agendamentos feitos
           </h1>
           <div className="grid-rows-1 ">
@@ -84,6 +84,7 @@ export const Profile = () => {
               price="1200"
               fuelType="gasoline"
               cardLayoutType="horizontal"
+              transmission="automatic"
             />
             <Card
               image={porsheImg}
@@ -92,6 +93,7 @@ export const Profile = () => {
               price="340"
               fuelType="energy"
               cardLayoutType="horizontal"
+              transmission="automatic"
             />
           </div>
         </div>

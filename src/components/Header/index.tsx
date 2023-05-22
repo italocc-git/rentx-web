@@ -16,28 +16,28 @@ export const Header = () => {
     navigate('/perfil/login')
   }
   return (
-    <div className="w-full h-[5rem] bg-base-white px-20 border-b border-base-secondary ">
-      <div className="  h-full flex justify-between items-center text-base-title ">
-        <span className="font-semibold text-xl">{headerName}</span>
+    <div className="h-[5rem] w-full border-b border-base-secondary bg-base-white px-20 ">
+      <div className="  flex h-full items-center justify-between text-base-title ">
+        <span className="text-xl font-semibold">{headerName}</span>
         <div className="flex items-center gap-3 ">
-          {userData !== null ? (
+          {userData?.user !== undefined ? (
             <>
-              <span className="font-inter font-semibold text-base laptop:block mobile:hidden">
+              <span className="font-inter text-base font-semibold mobile:hidden laptop:block">
                 {userData.user.email}
               </span>
               <button onClick={handleLogout}>
                 <Power
                   weight="light"
-                  className="text-base-title w-10 h-10 transition-colors hover:text-base-text cursor-pointer"
+                  className="h-10 w-10 cursor-pointer text-base-title transition-colors hover:text-base-text"
                 />
               </button>
             </>
           ) : (
             <button className="flex items-center gap-2" onClick={handleSignIn}>
-              <span className="font-inter font-semibold text-base laptop:block mobile:hidden">
+              <span className="font-inter text-base font-semibold mobile:hidden laptop:block">
                 Faça o login
               </span>
-              <div className="w-10 h-10 rounded-full ring-2 bg-base-secondary ring-base-secondary flex justify-center items-center">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-base-secondary ring-2 ring-base-secondary">
                 <User size={24} className="text-base-title" />
               </div>
             </button>
