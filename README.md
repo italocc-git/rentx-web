@@ -22,9 +22,12 @@ Fictitious car rental application, using React with Tailwind CSS responsive. Thi
 - Radix UI / HeadlessUI React
 - DayJS
 - React-Calendar
+- React-Toastify
+- React-spinners
 - React Router DOM
 - React Responsive Carousel
 - Nookies
+
 
 ## Production Implementation
 - Front end web: Vercel

@@ -30,10 +30,13 @@ interface AuthContextData {
   userData: AuthState | null
   logout: () => void
   updateUser: (userData: User) => void
+  isLoading: boolean
+  setIsLoading: (isLoading: boolean) => void
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState<AuthState | null>(() => {
     const userCookie = parseCookies(null)
     if (userCookie[import.meta.env.VITE_STORAGE_KEY]) {
@@ -93,7 +96,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   return (
-    <AuthContext.Provider value={{ userData, logout, signIn, updateUser }}>
+    <AuthContext.Provider
+      value={{ userData, logout, signIn, updateUser, setIsLoading, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   )

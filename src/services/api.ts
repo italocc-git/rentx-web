@@ -22,6 +22,8 @@ api.interceptors.response.use(
   (error) => {
     if (error.response) {
       toast.error(error.response.data.message)
+    } else {
+      toast.error('Erro interno , tente novamente')
     }
 
     return Promise.reject(error)
