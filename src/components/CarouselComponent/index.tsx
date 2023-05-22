@@ -1,12 +1,9 @@
 import { Carousel } from 'react-responsive-carousel'
-import CarImageFront from '../../assets/tests/specific car/audi/audi-front.jpg'
-import CarImageBack from '../../assets/tests/specific car/audi/audi-back.jpg'
-import CarImageInside from '../../assets/tests/specific car/audi/audi-inside.jpg'
-import CarImageInside2 from '../../assets/tests/specific car/audi/audi-inside2.jpg'
 import { useState } from 'react'
+import { ImagesCarType } from '../../types/Car'
 
 interface CarouselComponentProps {
-  imagesUrl?: string[]
+  imagesUrl: ImagesCarType[]
 }
 
 export const CarouselComponent = ({ imagesUrl }: CarouselComponentProps) => {
@@ -33,25 +30,14 @@ export const CarouselComponent = ({ imagesUrl }: CarouselComponentProps) => {
       interval={3000}
       infiniteLoop */
     >
-      <img
-        src={CarImageFront}
-        className=" max-w-[650px]"
-        alt="car-audi-image"
-      />
-
-      <img src={CarImageBack} className=" max-w-[650px]" alt="car-audi-image" />
-
-      <img
-        src={CarImageInside}
-        className=" max-w-[650px]"
-        alt="car-audi-image"
-      />
-
-      <img
-        src={CarImageInside2}
-        className="max-h-[500px] max-w-[650px]"
-        alt="car-audi-image"
-      />
+      {imagesUrl?.map((image) => (
+        <img
+          key={image.id}
+          src={image.image_url}
+          className=" max-w-[650px]"
+          alt="car-image"
+        />
+      ))}
     </Carousel>
   )
 }
