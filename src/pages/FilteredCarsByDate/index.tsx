@@ -31,21 +31,21 @@ export const FilteredCarsByDate = () => {
   }
 
   return (
-    <div className="bg-base-main min-h-screen laptop:px-20 py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
-      <div className="flex flex-col items-center tablet:w-full mobile:w-[300px]">
-        <h1 className="text-base-title font-semibold font-archivo laptop:text-4xl mobile:text-lg">
+    <div className="min-h-screen bg-base-main py-8 mobile:mb-20 mobile:px-8 laptop:mb-0 laptop:px-20">
+      <div className="flex flex-col items-center mobile:w-[300px] tablet:w-full">
+        <h1 className="font-archivo font-semibold text-base-title mobile:text-lg laptop:text-4xl">
           Escolha uma data de início e fim do aluguel
         </h1>
-        <div className="flex mobile:flex-col desktop:flex-row justify-between gap-5 h-[495px] p-12 laptop:max-w-[844px] tablet:max-w-[515px] mobile:max-w-[315px]">
+        <div className="flex h-[495px] justify-between gap-5 p-12 mobile:max-w-[315px] mobile:flex-col tablet:max-w-[515px] laptop:max-w-[844px] desktop:flex-row">
           <CalendarComponent onChangeCalendar={handleOnChangeCalendar} />
           <div className="flex flex-col justify-between ">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <span className="text-base-text-details font-medium text-sm font-archivo">
+                <span className="font-archivo text-sm font-medium text-base-text-details">
                   DE
                 </span>
                 <span
-                  className={`text-base-title font-semibold text-3xl font-inter h-9 ${
+                  className={`h-9 font-inter text-3xl font-semibold text-base-title ${
                     !selectedRangeDate.startDate &&
                     'border-b-2 border-base-text-details'
                   }`}
@@ -54,12 +54,12 @@ export const FilteredCarsByDate = () => {
                 </span>
               </div>
 
-              <div className="flex flex-col gap-2 mb-4">
-                <span className="text-base-text-details font-medium text-sm font-archivo">
+              <div className="mb-4 flex flex-col gap-2">
+                <span className="font-archivo text-sm font-medium text-base-text-details">
                   ATÉ
                 </span>
                 <span
-                  className={`text-base-title font-semibold text-3xl font-inter h-9 ${
+                  className={`h-9 font-inter text-3xl font-semibold text-base-title ${
                     !selectedRangeDate.endDate &&
                     'border-b-2 border-base-text-details'
                   }`}
@@ -71,9 +71,9 @@ export const FilteredCarsByDate = () => {
             <button
               type="button"
               onClick={handleSubmitDates}
-              className="h-16 laptop:w-64 mobile:w-48 flex justify-center items-center rounded bg-product-red  shadow-sm hover:bg-product-red-dark disabled:opacity-50 "
+              className="flex h-16 items-center justify-center rounded bg-product-red shadow-sm hover:bg-product-red-dark  disabled:opacity-50 mobile:w-48 laptop:w-64 "
             >
-              <span className="text-base-white font-medium font-archivo text-lg ">
+              <span className="font-archivo text-lg font-medium text-base-white ">
                 Confirmar
               </span>
             </button>

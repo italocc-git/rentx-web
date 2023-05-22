@@ -25,8 +25,8 @@ export const PasswordRecovery = () => {
     formState: { isSubmitting, errors },
   } = recoveryPasswordForm
   return (
-    <div className="bg-base-main min-h-screen laptop:px-20 py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
-      <div className="flex mobile:flex-col-reverse laptop:flex-row justify-between items-center mobile:gap-20 desktop:gap-40">
+    <div className="min-h-screen bg-base-main py-8 mobile:mb-20 mobile:px-8 laptop:mb-0 laptop:px-20">
+      <div className="flex items-center justify-between mobile:flex-col-reverse mobile:gap-20 laptop:flex-row desktop:gap-40">
         <img
           src={carImageSignPage}
           alt="image-sign-page"
@@ -35,9 +35,9 @@ export const PasswordRecovery = () => {
         <FormProvider {...recoveryPasswordForm}>
           <form
             onSubmit={handleSubmit(submitData)}
-            className="flex flex-col justify-center gap-6 flex-grow "
+            className="flex flex-grow flex-col justify-center gap-6 "
           >
-            <h1 className="font-archivo font-semibold text-4xl text-base-title">
+            <h1 className="font-archivo text-4xl font-semibold text-base-title">
               Recuperar senha
             </h1>
             <span className="font-inter text-base-text">
@@ -51,14 +51,14 @@ export const PasswordRecovery = () => {
               name="email"
             />
             {errors.email && (
-              <span className="text-product-red text-xs font-semibold">
+              <span className="text-xs font-semibold text-product-red">
                 {errors.email.message}
               </span>
             )}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-product-red  text-white h-16 transition-colors hover:bg-product-red-dark  disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-16  bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50"
             >
               Recuperar senha
             </button>

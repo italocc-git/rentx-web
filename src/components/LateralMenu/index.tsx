@@ -15,14 +15,14 @@ export const LateralMenu = () => {
   }
 
   return (
-    <div className="laptop:w-full laptop:max-w-[5rem] mobile:w-screen laptop:h-screen mobile:h-20 laptop:relative mobile:fixed mobile:bottom-0 bg-black-500 z-10">
+    <div className="z-10 bg-black-500 mobile:fixed mobile:bottom-0 mobile:h-20 mobile:w-screen laptop:relative laptop:h-screen laptop:w-full laptop:max-w-[5rem]">
       <button
         onClick={handleNavigateToDashboard}
-        className="w-full h-20 bg-product-red flex items-center justify-center transition-colors hover:bg-product-red-dark laptop:inline-flex mobile:hidden"
+        className="flex h-20 w-full items-center justify-center bg-product-red transition-colors hover:bg-product-red-dark mobile:hidden laptop:inline-flex"
       >
         <img src={rentxIcon} alt="rentx-icon" className="cursor-pointer" />
       </button>
-      <div className="h-[calc(100%-5rem)] mobile:h-full flex laptop:flex-col mobile:flex-row items-center justify-center gap-3">
+      <div className="flex h-[calc(100%-5rem)] items-center justify-center gap-3 mobile:h-full mobile:flex-row laptop:flex-col">
         <Link to="/inicio/lista-carros-disponíveis" className={linkStyleClass}>
           <House weight="light" size={26} />
         </Link>

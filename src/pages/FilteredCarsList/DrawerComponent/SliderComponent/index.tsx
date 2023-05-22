@@ -11,30 +11,30 @@ export const SliderComponent = ({
   return (
     <form>
       <Slider.Root
-        className="relative flex items-center select-none touch-none w-full h-5"
-        defaultValue={[0, 1000]}
+        className="relative flex h-5 w-full touch-none select-none items-center"
+        defaultValue={[0, 5000]}
         onValueChange={setSelectedRangeValues}
         value={selectedRangeValues}
         step={50}
-        max={1000}
+        max={5000}
         min={0}
         aria-label="Volume"
       >
-        <Slider.Track className="bg-base-gray relative grow rounded-full h-[3px]">
-          <Slider.Range className="absolute bg-product-red rounded-full h-full" />
+        <Slider.Track className="relative h-[3px] grow rounded-full bg-base-gray">
+          <Slider.Range className="absolute h-full rounded-full bg-product-red" />
         </Slider.Track>
 
         <Slider.Thumb
           key={1}
           asChild
-          className="block w-8 h-6 bg-white shadow-[0_2px_10px] shadow-black-500 rounded-[2px] hover:bg-base-hover focus:outline-none  focus:shadow-black-300 cursor-pointer"
+          className="block h-6 w-8 cursor-pointer rounded-[2px] bg-white shadow-[0_2px_10px] shadow-black-500 hover:bg-base-hover  focus:shadow-black-300 focus:outline-none"
         >
           <Dot weight="light" />
         </Slider.Thumb>
         <Slider.Thumb
           key={2}
           asChild
-          className="block w-8 h-6 bg-white shadow-[0_2px_10px] shadow-black-500 rounded-[2px] hover:bg-base-hover focus:outline-none  focus:shadow-black-300 cursor-pointer"
+          className="block h-6 w-8 cursor-pointer rounded-[2px] bg-white shadow-[0_2px_10px] shadow-black-500 hover:bg-base-hover  focus:shadow-black-300 focus:outline-none"
         >
           <Dot weight="light" />
         </Slider.Thumb>

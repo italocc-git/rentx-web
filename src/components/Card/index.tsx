@@ -1,11 +1,13 @@
 import { ArrowRight, Drop, Leaf, Lightning } from '@phosphor-icons/react'
-
+import AutomaticIcon from '../../assets/icons/automatic-transmission.png'
+import ManualIcon from '../../assets/icons/manual-transmission.png'
 interface CardProps {
-  id?: number
-  image: any
+  id?: number | string
+  image: string
   brand: string
   model: string
   price: string
+  transmission: 'automatic' | 'manual'
   fuelType: 'gasoline' | 'hybrid' | 'energy'
   cardLayoutType?: 'horizontal' | 'vertical'
 }
@@ -15,65 +17,68 @@ export const Card = ({
   brand,
   model,
   price,
+  transmission,
   fuelType,
   cardLayoutType,
 }: CardProps) => {
   const CardLayoutHorizontalComponent = () => {
     return (
-      <div className="w-full max-w-[600px] h-[258px] cursor-pointer mb-4">
-        <div className="border max-h-[198px] border-base-secondary bg-base-white flex gap-1 items-center justify-between px-6">
-          <div className="flex justify-between items-end ">
-            <div className="flex flex-col gap-6 mt-4">
+      <div className="mb-4 h-[258px] w-full max-w-[600px] cursor-pointer">
+        <div className="flex max-h-[198px] items-center justify-between gap-1 border border-base-secondary bg-base-white px-6">
+          <div className="flex items-end justify-between ">
+            <div className="mt-4 flex flex-col gap-6">
               <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-                <span className="text-base-text-details text-xs ">{brand}</span>
-                <span className="text-base-title text-xl ">{model}</span>
+                <span className="text-xs text-base-text-details ">{brand}</span>
+                <span className="text-xl text-base-title ">{model}</span>
               </div>
               <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-                <span className="text-base-text-details text-xs ">AO DIA</span>
-                <span className="text-product-red text-xl font-medium">
+                <span className="text-xs text-base-text-details ">AO DIA</span>
+                <span className="text-xl font-medium text-product-red">
                   R$ {price}
                 </span>
               </div>
             </div>
-            {fuelType === 'energy' ? (
-              <Lightning
-                size={32}
-                weight="bold"
-                className="text-base-text-details"
-              />
-            ) : fuelType === 'gasoline' ? (
-              <Drop
-                size={32}
-                weight="regular"
-                className="text-base-text-details"
-              />
-            ) : (
-              <Leaf
-                size={32}
-                weight="regular"
-                className="text-base-text-details"
-              />
-            )}
+            <div>
+              {fuelType === 'energy' ? (
+                <Lightning
+                  size={32}
+                  weight="bold"
+                  className="text-base-text-details"
+                />
+              ) : fuelType === 'gasoline' ? (
+                <Drop
+                  size={32}
+                  weight="regular"
+                  className="text-base-text-details"
+                />
+              ) : (
+                <Leaf
+                  size={32}
+                  weight="regular"
+                  className="text-base-text-details"
+                />
+              )}
+            </div>
           </div>
-          <div className="flex items-center justify-center h-[209px] ">
+          <div className="flex h-[209px] items-center justify-center ">
             <img
               src={image}
               alt="image-car"
-              className="mobile:w-[130px] mobile:h-[80px] laptop:w-[288px] laptop:h-[132px]"
+              className="mobile:h-[80px] mobile:w-[130px] laptop:h-[132px] laptop:w-[288px]"
             />
           </div>
         </div>
-        <hr className="h-1 bg-base-main  w-full" />
-        <div className="border h-14 border-base-secondary bg-base-white flex gap-1 items-center  justify-between px-6 py-5">
+        <hr className="h-1 w-full  bg-base-main" />
+        <div className="flex h-14 items-center justify-between gap-1 border border-base-secondary  bg-base-white px-6 py-5">
           <span className="font-archivo text-xs font-medium text-base-text-details">
             PERÍODO DO ALUGUEL
           </span>
-          <div className="flex  items-center laptop:gap-6 mobile:gap-2">
-            <span className="text-base-title font-medium mobile:text-sm laptop:text-lg">
+          <div className="flex  items-center mobile:gap-2 laptop:gap-6">
+            <span className="font-medium text-base-title mobile:text-sm laptop:text-lg">
               18 Jul 2021
             </span>
             <ArrowRight size={20} className="text-base-text-details" />
-            <span className="text-base-title font-medium mobile:text-sm laptop:text-lg">
+            <span className="font-medium text-base-title mobile:text-sm laptop:text-lg">
               20 Jul 2021
             </span>
           </div>
@@ -84,45 +89,54 @@ export const Card = ({
 
   const CardVerticalLayoutComponent = () => {
     return (
-      <div className="w-full h-[293px] border border-base-secondary bg-base-white mb-5 cursor-pointer">
-        <div className="flex items-center justify-center h-[209px]  laptop:px-6 mobile:px-2">
-          <img src={image} alt="image-car" className="w-[288px] h-[132px]" />
+      <div className="mb-5 h-[293px] w-full cursor-pointer border border-base-secondary bg-base-white">
+        <div className="flex h-[209px] items-center justify-center  mobile:px-2 laptop:px-6">
+          <img src={image} alt="image-car" className="h-[200px] w-[370px]" />
         </div>
-        <hr className="bg-base-secondary border w-full" />
-        <div className="flex justify-between items-center laptop:px-6 mobile:px-2">
-          <div className="flex gap-6 mt-4">
+        <hr className="w-full border bg-base-secondary" />
+        <div className="flex items-center justify-between mobile:px-2 laptop:px-6">
+          <div className="mt-4 flex gap-6">
             <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-              <span className="text-base-text-details text-xs ">{brand}</span>
+              <span className="text-xs text-base-text-details ">{brand}</span>
               <span className="text-base-title tablet:text-base desktop:text-xl ">
                 {model}
               </span>
             </div>
             <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-              <span className="text-base-text-details text-xs ">AO DIA</span>
-              <span className="text-product-red tablet:text-base desktop:text-xl font-medium">
+              <span className="text-xs text-base-text-details ">AO DIA</span>
+              <span className="font-medium text-product-red tablet:text-base desktop:text-xl">
                 R$ {price}
               </span>
             </div>
           </div>
-          {fuelType === 'energy' ? (
-            <Lightning
-              size={32}
-              weight="bold"
-              className="text-base-text-details"
-            />
-          ) : fuelType === 'gasoline' ? (
-            <Drop
-              size={32}
-              weight="regular"
-              className="text-base-text-details"
-            />
-          ) : (
-            <Leaf
-              size={32}
-              weight="regular"
-              className="text-base-text-details"
-            />
-          )}
+          <div className="flex items-start gap-2">
+            <div>
+              <img
+                src={transmission === 'automatic' ? AutomaticIcon : ManualIcon}
+                alt="transmission image"
+                className="h-8 w-8"
+              />
+            </div>
+            {fuelType === 'energy' ? (
+              <Lightning
+                size={34}
+                weight="bold"
+                className="text-base-text-details"
+              />
+            ) : fuelType === 'gasoline' ? (
+              <Drop
+                size={34}
+                weight="regular"
+                className="text-base-text-details"
+              />
+            ) : (
+              <Leaf
+                size={34}
+                weight="regular"
+                className="text-base-text-details"
+              />
+            )}
+          </div>
         </div>
       </div>
     )
@@ -132,38 +146,4 @@ export const Card = ({
   } else {
     return <CardLayoutHorizontalComponent />
   }
-
-  /* return (
-    <div className="w-full max-w-[360px] h-[293px] border border-base-secondary bg-base-white flex-col gap-1 items-center mb-5 cursor-pointer">
-      <div className="flex items-center justify-center h-[209px] px-6">
-        <img src={image} alt="image-car" className="w-[288px] h-[132px]" />
-      </div>
-      <hr className="bg-base-secondary border w-full" />
-      <div className="flex justify-between items-center px-6">
-        <div className="flex gap-6 mt-4">
-          <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-            <span className="text-base-text-details text-xs ">{brand}</span>
-            <span className="text-base-title text-xl ">{model}</span>
-          </div>
-          <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-            <span className="text-base-text-details text-xs ">AO DIA</span>
-            <span className="text-product-red text-xl font-medium">
-              R$ {price}
-            </span>
-          </div>
-        </div>
-        {fuelType === 'energy' ? (
-          <Lightning
-            size={32}
-            weight="bold"
-            className="text-base-text-details"
-          />
-        ) : fuelType === 'gasoline' ? (
-          <Drop size={32} weight="regular" className="text-base-text-details" />
-        ) : (
-          <Leaf size={32} weight="regular" className="text-base-text-details" />
-        )}
-      </div>
-    </div>
-  ) */
 }

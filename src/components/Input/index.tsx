@@ -47,8 +47,8 @@ export const Input = ({
   }
 
   return (
-    <div className="flex gap-[2px] laptop:h-16 mobile:h-10 relative ">
-      <div className="w-[60px] h-full rounded-l-sm bg-white flex justify-center items-center border border-base-secondary">
+    <div className="relative flex gap-[2px] mobile:h-10 laptop:h-16 ">
+      <div className="flex h-full w-[60px] items-center justify-center rounded-l-sm border border-base-secondary bg-white">
         <Icon
           size={24}
           weight="regular"
@@ -63,13 +63,13 @@ export const Input = ({
           <Eye
             size={24}
             onClick={() => setPasswordVisibility(!passwordVisibility)}
-            className="absolute right-5 mobile:top-1/4 laptop:top-1/3 text-base-text cursor-pointer"
+            className="absolute right-5 cursor-pointer text-base-text mobile:top-1/4 laptop:top-1/3"
           />
         ) : (
           <EyeSlash
             size={24}
             onClick={() => setPasswordVisibility(!passwordVisibility)}
-            className="absolute right-5 mobile:top-1/4 laptop:top-1/3 text-base-text cursor-pointer"
+            className="absolute right-5 cursor-pointer text-base-text mobile:top-1/4 laptop:top-1/3"
           />
         ))}
     </div>
