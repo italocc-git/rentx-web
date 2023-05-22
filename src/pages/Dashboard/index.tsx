@@ -4,30 +4,30 @@ import carBackground from '../../assets/car-background.png'
 import { Link } from 'react-router-dom'
 export const Dashboard = () => {
   return (
-    <div className="w-full min-h-screen bg-base-black max-w-[1300px] flex mobile:justify-center  laptop:justify-between px-5 py-[140px] laptop:mx-auto mobile:mx-3">
+    <div className="flex min-h-screen w-full max-w-[1300px] bg-base-black px-5  py-[140px] mobile:mx-3 mobile:justify-center laptop:mx-auto laptop:justify-between">
       <div className="max-w-[400px] ">
-        <img src={rentxImg} alt="logo-rentx" className="mb-[120px] m-auto" />
-        <div className="flex flex-col mobile:items-center laptop:items-start gap-20">
-          <h1 className="font-semibold  mobile:text-3xl tablet:text-5xl text-base-white ">
+        <img src={rentxImg} alt="logo-rentx" className="m-auto mb-[120px]" />
+        <div className="flex flex-col gap-20 mobile:items-center laptop:items-start">
+          <h1 className="font-semibold  text-base-white mobile:text-3xl tablet:text-5xl ">
             Alugue um carro de maneira simples e fácil
           </h1>
-          <span className="font-inter mobile:text-md tablet:text-xl text-base-white leading-[30px]">
+          <span className="mobile:text-md font-inter leading-[30px] text-base-white tablet:text-xl">
             Vários modelos para você dirigir seguro, com conforto e segurança
           </span>
 
           <Link
             to="/inicio/lista-carros-disponíveis"
-            className="bg-product-red w-[292px] hover:bg-product-red-dark transition-colors h-[80px] text-base-white font-medium text-lg flex justify-center items-center"
+            className="flex h-[80px] w-[292px] items-center justify-center bg-product-red text-lg font-medium text-base-white transition-colors hover:bg-product-red-dark"
           >
             Começar agora
           </Link>
         </div>
       </div>
-      <div className="mobile:hidden  laptop:block relative min-w-[610px] ">
+      <div className="relative  min-w-[610px] mobile:hidden laptop:block ">
         <img
           src={carImg}
           alt="car-image-into"
-          className="absolute z-10 top-40 right-12"
+          className="absolute top-40 right-12 z-10"
         />
         <img
           src={carBackground}

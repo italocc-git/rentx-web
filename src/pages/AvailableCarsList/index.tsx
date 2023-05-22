@@ -1,18 +1,51 @@
+import { useCallback, useEffect, useState } from 'react'
+import DotLoader from 'react-spinners/DotLoader'
 import { CarsGridComponent } from '../../components/CarsGridComponent'
+import { useAuth } from '../../hooks/authContext'
+import api from '../../services/api'
+import { CarsType } from '../../types/Car'
 
 export const AvailableCarsList = () => {
+  const [carsList, setCarsList] = useState<CarsType[]>([])
+  const { isLoading, setIsLoading } = useAuth()
+  const loadAvailableCarsList = useCallback(async () => {
+    setIsLoading(true)
+    const { data } = await api.get('cars/available')
+    if (data) {
+      setCarsList(data)
+      setIsLoading(false)
+    }
+  }, [setIsLoading])
+
+  useEffect(() => {
+    loadAvailableCarsList()
+  }, [loadAvailableCarsList])
+
   return (
-    <div className=" bg-base-main min-h-screen laptop:px-20 py-8 mobile:px-8 laptop:mb-0 mobile:mb-20">
-      <div className=" flex laptop:flex-row mobile:flex-col justify-between items-center">
-        <h1 className="text-base-title font-semibold font-archivo laptop:text-4xl mobile:text-xl">
-          Carros disponíveis
-        </h1>
-        <span className="text-base-text font-normal font-inter text-base">
-          Total 12 carros
-        </span>
-      </div>
-      <hr className="bg-base-secondary border w-full my-10" />
-      <CarsGridComponent />
+    <div className=" min-h-screen bg-base-main py-8 mobile:mb-20 mobile:px-8 laptop:mb-0 laptop:px-20">
+      {isLoading ? (
+        <div className="flex w-full items-center justify-center">
+          <DotLoader
+            color="#dc1637"
+            loading={isLoading}
+            size={100}
+            aria-label="Loading Image Spinner"
+          />
+        </div>
+      ) : (
+        <>
+          <div className=" flex items-center justify-between mobile:flex-col laptop:flex-row">
+            <h1 className="font-archivo font-semibold text-base-title mobile:text-xl laptop:text-4xl">
+              Carros disponíveis
+            </h1>
+            <span className="font-inter text-base font-normal text-base-text">
+              Total {carsList.length} carros
+            </span>
+          </div>
+          <hr className="my-10 w-full border bg-base-secondary" />
+          <CarsGridComponent carsList={carsList} />
+        </>
+      )}
     </div>
   )
 }
