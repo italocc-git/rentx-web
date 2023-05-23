@@ -89,7 +89,7 @@ export const Card = ({
 
   const CardVerticalLayoutComponent = () => {
     return (
-      <div className="mb-5 h-[293px] w-full cursor-pointer border border-base-secondary bg-base-white">
+      <div className="mb-5 h-[310px] w-full cursor-pointer border border-base-secondary bg-base-white">
         <div className="flex h-[209px] items-center justify-center  mobile:px-2 laptop:px-6">
           <img src={image} alt="image-car" className="h-[200px] w-[370px]" />
         </div>
@@ -109,7 +109,7 @@ export const Card = ({
               </span>
             </div>
           </div>
-          <div className="flex items-start gap-2">
+          <div className="flex items-start">
             <div>
               <img
                 src={transmission === 'automatic' ? AutomaticIcon : ManualIcon}
