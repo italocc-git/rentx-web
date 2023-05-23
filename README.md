@@ -22,6 +22,7 @@ Fictitious car rental application, using React with Tailwind CSS responsive. Thi
 - Radix UI / HeadlessUI React
 - DayJS
 - React-Calendar
+- React-hook-form
 - React-Toastify
 - React-spinners
 - React Router DOM
