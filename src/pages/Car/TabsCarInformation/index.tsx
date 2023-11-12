@@ -9,7 +9,7 @@ interface TabsProps {
   setSelectedTab: (tabSelected: string) => void
   carInformation: {
     description: string
-    daily_rate: string
+    dailyRate: string
   }
 }
 
@@ -98,12 +98,12 @@ export const TabsCarInformation = ({
               </span>
 
               <span className="text-lg font-medium text-base-title">
-                R$ {carInformation.daily_rate} x {quantityOfDays} diária(s)
+                R$ {carInformation.dailyRate} x {quantityOfDays} diária(s)
               </span>
             </div>
 
             <span className="font-archivo text-4xl font-medium text-product-green">
-              R$ {Number(carInformation.daily_rate) * (quantityOfDays ?? 0)}
+              R$ {Number(carInformation.dailyRate) * (quantityOfDays ?? 0)}
             </span>
           </div>
         </div>

@@ -1,7 +1,7 @@
 export type ImagesCarType = {
   id: string
-  image_name: string
-  image_url: string
+  name: string
+  url: string
 }
 type SpecificationsCarType = {
   id: string
@@ -15,10 +15,10 @@ export interface CarsType {
   available?: boolean
   description: string
   name: string
-  fuel_type: 'gasoline' | 'hybrid' | 'energy'
+  fuelType: 'gasoline' | 'hybrid' | 'energy'
   transmission: 'automatic' | 'manual'
-  daily_rate: string
+  dailyRate: string
   brand: string
-  images: ImagesCarType[]
-  specifications: SpecificationsCarType[]
+  carImages: ImagesCarType[]
+  carSpecifications: SpecificationsCarType[]
 }

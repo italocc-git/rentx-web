@@ -6,7 +6,6 @@ import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../../hooks/authContext'
-/* import { toast } from 'react-toastify' */
 const loginUserFormSchema = z.object({
   email: z
     .string()

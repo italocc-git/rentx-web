@@ -33,9 +33,9 @@ export const CarouselComponent = ({ imagesUrl }: CarouselComponentProps) => {
       {imagesUrl?.map((image) => (
         <img
           key={image.id}
-          src={image.image_url}
+          src={image.url}
           className=" max-w-[650px]"
-          alt="car-image"
+          alt={image.name}
         />
       ))}
     </Carousel>

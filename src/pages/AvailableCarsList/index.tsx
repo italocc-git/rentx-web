@@ -2,17 +2,17 @@ import { useCallback, useEffect, useState } from 'react'
 import DotLoader from 'react-spinners/DotLoader'
 import { CarsGridComponent } from '../../components/CarsGridComponent'
 import { useAuth } from '../../hooks/authContext'
-import api from '../../services/api'
 import { CarsType } from '../../types/Car'
+import { getCarsList } from './query'
 
 export const AvailableCarsList = () => {
   const [carsList, setCarsList] = useState<CarsType[]>([])
   const { isLoading, setIsLoading } = useAuth()
   const loadAvailableCarsList = useCallback(async () => {
     setIsLoading(true)
-    const { data } = await api.get('cars/available')
+    const { data } = await getCarsList()
     if (data) {
-      setCarsList(data)
+      setCarsList(data.cars)
       setIsLoading(false)
     }
   }, [setIsLoading])

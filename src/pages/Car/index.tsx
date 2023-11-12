@@ -20,14 +20,14 @@ import { SelectedRangeDateType } from './types'
 import { useNavigate, useParams } from 'react-router-dom'
 import { TabsCarInformation } from './TabsCarInformation'
 import { useAuth } from '../../hooks/authContext'
-import api from '../../services/api'
+
 import { DotLoader } from 'react-spinners'
 import { CarsType } from '../../types/Car'
+import { getCar } from './query'
 
 export const CarDetails = () => {
   const navigate = useNavigate()
   const { id } = useParams()
-
   const { userData, setIsLoading, isLoading } = useAuth()
   const isLogged = !!userData
   const [openModal, setOpenModal] = useState(false)
@@ -67,9 +67,9 @@ export const CarDetails = () => {
 
   const loadCarData = useCallback(async () => {
     setIsLoading(true)
-    const { data } = await api.get(`cars/${id}`)
+    const { data } = await getCar(id)
     if (data) {
-      setCarInformation(data)
+      setCarInformation(data.car)
       setIsLoading(false)
     }
   }, [id, setIsLoading])
@@ -90,7 +90,7 @@ export const CarDetails = () => {
       <HeaderCarDetails
         brand={carInformation?.brand}
         model={carInformation?.name}
-        price={carInformation?.daily_rate}
+        price={carInformation?.dailyRate}
       />
 
       <div className="flex w-full items-center justify-between mobile:flex-col desktop:flex-row ">
@@ -105,11 +105,11 @@ export const CarDetails = () => {
           </div>
         ) : (
           <>
-            <CarouselComponent imagesUrl={carInformation.images} />
+            <CarouselComponent imagesUrl={carInformation.carImages} />
             <div className="flex w-full max-w-[384px] flex-col ">
               <div className="mb-[48px] flex flex-col gap-12 ">
                 <div className="grid gap-2 mobile:grid-rows-1 tablet:grid-cols-2">
-                  {carInformation.specifications?.map((specification) => (
+                  {carInformation.carSpecifications?.map((specification) => (
                     <CarSpecification
                       key={specification.id}
                       icon={handleWithIcons(specification.iconName)}

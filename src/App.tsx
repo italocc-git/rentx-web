@@ -1,15 +1,18 @@
 import { BrowserRouter } from 'react-router-dom'
 import { AppProvider } from './hooks'
-
+import { ApolloProvider } from '@apollo/client'
 import { Router } from './routes'
+import { apolloClient } from './services/api'
 
 function App() {
   return (
-    <AppProvider>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
-    </AppProvider>
+    <ApolloProvider client={apolloClient}>
+      <AppProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </AppProvider>
+    </ApolloProvider>
   )
 }
 

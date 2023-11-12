@@ -13,11 +13,11 @@ export const CarsGridComponent = ({ carsList }: CarsGridComponentProps) => {
       {carsList.map((car) => (
         <Link to={`/inicio/carro/${car.id}`} key={car.id}>
           <Card
-            image={car.images[0]?.image_url ?? audiImg}
+            image={car.carImages[0]?.url ?? audiImg}
             brand={car.brand}
             model={car.name}
-            price={car.daily_rate}
-            fuelType={car.fuel_type}
+            price={car.dailyRate}
+            fuelType={car.fuelType}
             cardLayoutType="vertical"
             transmission={car.transmission}
             id={car.id}
