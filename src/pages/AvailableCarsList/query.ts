@@ -4,7 +4,7 @@ import { apolloClient } from '../../services/api'
 
 const GET_CARS_LIST = gql`
   query Cars {
-    cars {
+    cars(first: 50) {
       available
       brand
       dailyRate

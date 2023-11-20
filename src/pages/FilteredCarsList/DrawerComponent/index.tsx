@@ -3,9 +3,9 @@ import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import api from '../../../services/api'
 import { filterTypes } from '../types'
 import { SliderComponent } from './SliderComponent'
+import { getCategoriesList } from './query'
 
 type carCategories = {
   id: string
@@ -57,7 +57,7 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
   }
 
   useEffect(() => {
-    api.get('categories').then((resp) => setCarCategories(resp.data))
+    getCategoriesList().then(({ categories }) => setCarCategories(categories))
   }, [])
 
   return (

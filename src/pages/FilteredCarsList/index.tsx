@@ -9,26 +9,33 @@ import { DrawerComponent } from './DrawerComponent'
 import { CarsType } from '../../types/Car'
 import { useCallback, useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/authContext'
-import api from '../../services/api'
 import { DotLoader } from 'react-spinners'
 import { filterTypes } from './types'
+import { getFilteredCars } from './query'
 
 export const FilteredCarsList = () => {
+  const filterInitialValues = {
+    name: '',
+    category_id: '',
+    fuel_type: '',
+    transmission: '',
+    lower_price: 0,
+    highest_price: 5000,
+  }
   const { state } = useLocation()
   const { dateSelected } = state
   const [carsList, setCarsList] = useState<CarsType[]>([])
   const { isLoading, setIsLoading } = useAuth()
-  const [filter, setFilter] = useState<filterTypes>({} as filterTypes)
+  const [filter, setFilter] = useState<filterTypes>(filterInitialValues)
 
   const loadFilteredCarsList = useCallback(async () => {
     setIsLoading(true)
-    const { data } = await api.get('cars/available', {
-      params: filter,
+    await getFilteredCars(filter).then(({ cars }) => {
+      if (cars) {
+        setCarsList(cars)
+      }
     })
-    if (data) {
-      setCarsList(data)
-      setIsLoading(false)
-    }
+    setIsLoading(false)
   }, [setIsLoading, filter])
 
   useEffect(() => {
