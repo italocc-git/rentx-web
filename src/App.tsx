@@ -1,3 +1,4 @@
+import './lib/firebase'
 import { BrowserRouter } from 'react-router-dom'
 import { AppProvider } from './hooks'
 import { ApolloProvider } from '@apollo/client'

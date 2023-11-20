@@ -7,9 +7,8 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
-import api from '../../services/api'
-
-/* import { useAuth } from '../../hooks/authContext' */
+import { useAuth } from '../../hooks/authContext'
+import { toast } from 'react-toastify'
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -52,12 +51,15 @@ export const SignUp = () => {
     resolver: zodResolver(createUserFormSchema),
   })
 
-  const submitData = (data: loginUserFormDataType) => {
-    const { name, email, cnh, password } = data
+  const { signUpUser } = useAuth()
 
+  const submitData = (data: loginUserFormDataType) => {
+    const { email, password } = data
+    // Ficou faltando as informações cnh e name, adicionar no banco firebase
     const isPasswordStrong = new RegExp(
       '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})',
     ).test(password.password)
+
     if (!isPasswordStrong) {
       createUserForm.setError('password.password', {
         message:
@@ -65,14 +67,12 @@ export const SignUp = () => {
       })
       return
     }
-    api
-      .post('users', {
-        name,
-        email,
-        password: password.confirm,
-        driver_license: cnh,
-      })
+
+    signUpUser({ email, password: password.confirm })
       .then(() => setOpenSuccessCreationModal(true))
+      .catch((error) => {
+        toast.error(error.message)
+      })
   }
 
   const {

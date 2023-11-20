@@ -5,6 +5,7 @@ import { Input } from '../../components/Input'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { toast } from 'react-toastify'
 import { useAuth } from '../../hooks/authContext'
 const loginUserFormSchema = z.object({
   email: z
@@ -27,10 +28,14 @@ export const SignIn = () => {
   })
   const navigate = useNavigate()
   const { signIn } = useAuth()
-  const submitData = ({ email, password }: loginUserFormDataType) => {
-    signIn({ email, password }).then(() => {
+  const submitData = async ({ email, password }: loginUserFormDataType) => {
+    try {
+      await signIn({ email, password })
+
       navigate('/perfil')
-    })
+    } catch (error) {
+      toast.error('Usuário não encontrado na nossa base de dados.')
+    }
   }
 
   const {

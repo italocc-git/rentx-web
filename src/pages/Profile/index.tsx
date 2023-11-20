@@ -50,7 +50,9 @@ export const Profile = () => {
             ) : (
               <img
                 src={
-                  userData?.user?.avatar ? userData.user.avatar_url : userImage
+                  userData?.user.avatar_url
+                    ? userData.user.avatar_url
+                    : userImage
                 }
                 className="h-full w-full rounded-full"
                 alt=""
