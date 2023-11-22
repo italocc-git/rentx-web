@@ -9,6 +9,7 @@ import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
 import { useAuth } from '../../hooks/authContext'
 import { toast } from 'react-toastify'
+import { createUserInDB } from '../../lib/services/crud'
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -69,8 +70,27 @@ export const SignUp = () => {
     }
 
     signUpUser({ email, password: password.confirm })
-      .then(() => setOpenSuccessCreationModal(true))
+      .then(({ user }) => {
+        createUserInDB({
+          id: user.uid,
+          name: data.name,
+          email: data.email,
+          driverLicense: data.cnh,
+          avatarUrl: '',
+          admin: false,
+        }).then(() => {
+          toast.success('Usuário Cadastrado com sucesso')
+        })
+
+        setOpenSuccessCreationModal(true)
+      })
       .catch((error) => {
+        if (error.code === 'auth/email-already-in-use') {
+          toast.error(
+            'Usuário já cadastrado na nossa base de dados, tente novamente.',
+          )
+          return
+        }
         toast.error(error.message)
       })
   }

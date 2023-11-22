@@ -1,23 +1,25 @@
 /* eslint-disable camelcase */
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { parseCookies, destroyCookie, setCookie } from 'nookies'
+import { UserCredential } from 'firebase/auth'
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  UserCredential,
-  signInWithEmailAndPassword,
-  signOut,
-} from 'firebase/auth'
+  authenticateUserInFirebase,
+  signOutUserInFirebase,
+  signUpUserInFirebase,
+} from '../lib/services/auth'
+import { getUserInDB } from '../lib/services/crud'
+
 interface AuthProviderProps {
   children: ReactNode
 }
 
 interface User {
-  email: string | null
-  name: string | null
-  driver_license?: string | null
-  avatar?: string | null
-  avatar_url: string | null
+  id: string
+  email: string
+  name: string
+  driverLicense: string
+  admin?: boolean
+  avatarUrl?: string
 }
 
 interface UserCredentialsData {
@@ -46,58 +48,59 @@ interface AuthContextData {
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const auth = getAuth()
-
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState<AuthState | null>(() => {
     const userCookie = parseCookies(null)
 
     if (userCookie[import.meta.env.VITE_STORAGE_KEY]) {
-      const { user, token, refresh_token } = JSON.parse(
+      const { user, token, refreshToken } = JSON.parse(
         userCookie[import.meta.env.VITE_STORAGE_KEY],
       )
-      // api.defaults.headers.common.Authorization = `Bearer ${token}`
-      return { user, token, refreshToken: refresh_token }
+      return { user, token, refreshToken }
     } else {
       return null
     }
   })
 
   const signIn = async ({ email, password }: UserCredentialsData) => {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
+    const { uid, refreshToken, token } = await authenticateUserInFirebase({
       email,
       password,
-    )
-    const user = userCredential.user
+    })
 
-    const token = await user.getIdToken()
-    const refresh_token = user.refreshToken
+    const userInfo = await getUserInDB(uid)
+
+    if (!userInfo) {
+      throw new Error('User doesn`t exists')
+    }
+
+    const userData: User = {
+      id: uid,
+      email: userInfo.email,
+      name: userInfo.name,
+      driverLicense: userInfo.driver_license,
+      admin: userInfo.admin,
+      avatarUrl: userInfo.avatar_url,
+    }
+
     setCookie(
       null,
       import.meta.env.VITE_STORAGE_KEY,
-      JSON.stringify({ user, token, refresh_token }),
+      JSON.stringify({ user: userData, token, refreshToken }),
       {
         maxAge: 30 * 24 * 60 * 60,
       },
     )
-    const userData: User = {
-      name: user.displayName,
-      email: user.email,
-      avatar_url: user.photoURL,
-    }
 
     setUserData({
       token,
       user: userData,
-      refreshToken: refresh_token,
+      refreshToken,
     })
-
-    // api.defaults.headers.common.Authorization = `Bearer ${token}`
   }
 
   const logout = () => {
-    signOut(auth)
+    signOutUserInFirebase()
       .then(() => {
         setUserData(null)
         destroyCookie(null, import.meta.env.VITE_STORAGE_KEY)
@@ -106,7 +109,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }
 
   const signUpUser = ({ email, password }: UserCredentialsData) => {
-    return createUserWithEmailAndPassword(auth, email, password)
+    return signUpUserInFirebase({ email, password })
   }
 
   const updateUser = (user: User) => {

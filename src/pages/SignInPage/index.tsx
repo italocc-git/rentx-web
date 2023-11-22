@@ -34,7 +34,7 @@ export const SignIn = () => {
 
       navigate('/perfil')
     } catch (error) {
-      toast.error('Usuário não encontrado na nossa base de dados.')
+      toast.error('Usuário/Senha incorretos.')
     }
   }
 

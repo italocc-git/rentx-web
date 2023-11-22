@@ -6,10 +6,11 @@ import corvetteImg from '../../assets/tests/Corvete.png'
 import porsheImg from '../../assets/tests/Porche.png'
 import { ChangeEvent, useState } from 'react'
 import { ChangesConfirmModal } from './ChangesConfirmModal'
-import api from '../../services/api'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../hooks/authContext'
 import DotLoader from 'react-spinners/DotLoader'
+import { uploadUserAvatar } from '../../lib/services/storage'
+import { updateUserAvatarInFirebase } from '../../lib/services/crud'
 export const Profile = () => {
   const [openChangesConfirmModal, setOpenChangesConfirmModal] = useState(false)
 
@@ -17,16 +18,19 @@ export const Profile = () => {
 
   const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
-    if (files) {
-      const data = new FormData()
-      data.append('avatar', files[0])
+    if (files && userData) {
+      const { user } = userData
+
       if (files.length > 0) {
         setIsLoading(true)
-        await api.patch('/users/avatar', data).then((response) => {
-          updateUser(response.data)
-          toast.success('Avatar alterado com sucesso')
-          setIsLoading(false)
-        })
+
+        const userUpdatedData = await uploadUserAvatar(user, files)
+        updateUser(userUpdatedData)
+
+        updateUserAvatarInFirebase(userUpdatedData)
+
+        toast.success('Avatar alterado com sucesso')
+        setIsLoading(false)
       }
     }
   }
@@ -50,9 +54,7 @@ export const Profile = () => {
             ) : (
               <img
                 src={
-                  userData?.user.avatar_url
-                    ? userData.user.avatar_url
-                    : userImage
+                  userData?.user.avatarUrl ? userData.user.avatarUrl : userImage
                 }
                 className="h-full w-full rounded-full"
                 alt=""

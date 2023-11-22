@@ -89,11 +89,11 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
     }
   }
   const loadProfile = useCallback(() => {
-    if (userData?.user) {
+    if (userData && userData.user) {
       const { user } = userData
       tabsProfileForm.setValue('username', user.name)
       tabsProfileForm.setValue('email', user.email)
-      tabsProfileForm.setValue('cnh', user.driver_license)
+      tabsProfileForm.setValue('cnh', user.driverLicense)
     }
   }, [tabsProfileForm, userData])
 
