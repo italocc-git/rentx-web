@@ -7,6 +7,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../hooks/authContext'
+import { useTranslation } from 'react-i18next'
 const loginUserFormSchema = z.object({
   email: z
     .string()
@@ -28,11 +29,12 @@ export const SignIn = () => {
   })
   const navigate = useNavigate()
   const { signIn } = useAuth()
+  const { t } = useTranslation()
   const submitData = async ({ email, password }: loginUserFormDataType) => {
     try {
       await signIn({ email, password })
 
-      navigate('/perfil')
+      navigate('/profile')
     } catch (error) {
       toast.error('Usuário/Senha incorretos.')
     }
@@ -53,10 +55,10 @@ export const SignIn = () => {
         />
         <div className="flex flex-grow flex-col justify-center gap-6">
           <h1 className="font-archivo text-4xl font-semibold text-base-title">
-            Estamos quase lá.
+            {t('pages.profileContent.signIn.title')}
           </h1>
           <span className="font-inter text-base-text">
-            Faça seu login para começar uma experiência incrível.
+            {t('pages.profileContent.signIn.description')}
           </span>
           <FormProvider {...loginUserForm}>
             <form
@@ -65,7 +67,7 @@ export const SignIn = () => {
             >
               <Input
                 icon={Envelope}
-                placeholder="E-mail"
+                placeholder={t('pages.profileContent.signIn.inputText.email')}
                 type="text"
                 name="email"
               />
@@ -77,7 +79,9 @@ export const SignIn = () => {
               <Input
                 icon={Lock}
                 type="password"
-                placeholder="Senha"
+                placeholder={t(
+                  'pages.profileContent.signIn.inputText.password',
+                )}
                 name="password"
               />
               {errors.password && (
@@ -86,26 +90,25 @@ export const SignIn = () => {
                 </span>
               )}
 
-              <Link to="/perfil/login">
-                {' '}
-                {/* Temporariamente indisponível */}
-                <span className="cursor-not-allowed font-inter text-base-text transition-colors hover:text-base-title">
+              {/* <Link to="/profile/password-recovery">
+                IMPLEMENTANDO...
+                <span className="font-inter text-base-text transition-colors hover:text-base-title">
                   Esqueci minha senha
                 </span>
-              </Link>
+              </Link> */}
               <div className="mt-4 flex w-full  flex-col gap-4 font-inter font-medium">
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   className="h-16 bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Login
+                  {t('pages.profileContent.signIn.buttonText.signIn')}
                 </button>
                 <Link
-                  to="/perfil/cadastro"
+                  to="/profile/sign-up"
                   className="flex h-16 items-center justify-center border border-base-gray bg-transparent text-base-title transition-colors hover:border-base-title"
                 >
-                  Criar conta gratuita
+                  {t('pages.profileContent.signIn.buttonText.signUp')}
                 </Link>
               </div>
             </form>

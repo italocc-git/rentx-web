@@ -9,7 +9,8 @@ import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
 import { useAuth } from '../../hooks/authContext'
 import { toast } from 'react-toastify'
-import { createUserInDB } from '../../lib/services/crud'
+import { createUserInDB } from '../../lib/firebase/services/crud'
+import { useTranslation } from 'react-i18next'
 const createUserFormSchema = z.object({
   name: z
     .string()
@@ -51,6 +52,7 @@ export const SignUp = () => {
   const createUserForm = useForm<loginUserFormDataType>({
     resolver: zodResolver(createUserFormSchema),
   })
+  const { t } = useTranslation()
 
   const { signUpUser } = useAuth()
 
@@ -112,17 +114,22 @@ export const SignUp = () => {
       <div className="flex items-center justify-between mobile:flex-col mobile:gap-4 laptop:flex-row desktop:gap-20">
         <div className="flex flex-grow  flex-col justify-center gap-6 ">
           <h1 className="font-archivo text-4xl font-semibold text-base-title">
-            Crie sua conta
+            {t('pages.profileContent.signUp.title')}
           </h1>
           <span className="font-inter text-base-text">
-            Faça seu cadastro de forma rápida e fácil.
+            {t('pages.profileContent.signUp.description')}
           </span>
           <FormProvider {...createUserForm}>
             <form
               onSubmit={handleSubmit(submitData)}
               className="flex flex-col gap-2"
             >
-              <Input icon={User} placeholder="Nome" type="text" name="name" />
+              <Input
+                icon={User}
+                placeholder={t('pages.profileContent.signUp.textFields.name')}
+                type="text"
+                name="name"
+              />
 
               <span className="text-xs font-semibold text-product-red">
                 {errors.name?.message}
@@ -130,7 +137,7 @@ export const SignUp = () => {
 
               <Input
                 icon={Envelope}
-                placeholder="E-mail"
+                placeholder={t('pages.profileContent.signUp.textFields.email')}
                 type="text"
                 name="email"
               />
@@ -138,14 +145,21 @@ export const SignUp = () => {
                 {errors.email?.message}
               </span>
 
-              <Input icon={Car} placeholder="CNH" type="text" name="cnh" />
+              <Input
+                icon={Car}
+                placeholder={t(
+                  'pages.profileContent.signUp.textFields.driverLicense',
+                )}
+                type="text"
+                name="cnh"
+              />
               <span className="text-xs font-semibold text-product-red">
                 {errors.cnh?.message}
               </span>
               <Input
                 icon={Lock}
                 type="password"
-                placeholder="Senha"
+                placeholder={t('pages.profileContent.signUp.textFields.pass')}
                 name="password.password"
               />
               <span className="text-xs font-semibold text-product-red">
@@ -154,7 +168,9 @@ export const SignUp = () => {
               <Input
                 icon={Lock}
                 type="password"
-                placeholder="Repetir senha"
+                placeholder={t(
+                  'pages.profileContent.signUp.textFields.confirmPassword',
+                )}
                 name="password.confirm"
               />
               <span className="text-xs font-semibold text-product-red">
@@ -167,7 +183,7 @@ export const SignUp = () => {
                   disabled={isSubmitting}
                   className="h-16 bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Cadastrar
+                  {t('pages.profileContent.signUp.buttonText')}
                 </button>
               </div>
             </form>

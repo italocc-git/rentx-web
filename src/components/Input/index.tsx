@@ -1,17 +1,10 @@
-import {
-  InputHTMLAttributes,
-  ComponentType,
-  useState,
-  useCallback,
-} from 'react'
+import { ComponentType, useState, useCallback, ComponentProps } from 'react'
 import { Eye, EyeSlash, IconProps } from '@phosphor-icons/react'
 import { useFormContext } from 'react-hook-form'
-interface InputPropsComponent extends InputHTMLAttributes<HTMLInputElement> {
+interface InputPropsComponent extends ComponentProps<'input'> {
   icon: ComponentType<IconProps>
-  placeholder: string
   type: 'text' | 'password'
   name: string
-  disabled?: boolean
 }
 
 export const Input = ({
@@ -34,7 +27,7 @@ export const Input = ({
     setIsFocused(false)
   }, [])
 
-  const inputProps = {
+  const inputProps: ComponentProps<'input'> = {
     id: name,
     autoComplete: 'on',
     onFocus: handleInputFocused,

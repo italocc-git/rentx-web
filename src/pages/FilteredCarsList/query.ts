@@ -3,13 +3,13 @@ import { gql } from '@apollo/client'
 import { apolloClient } from '../../services/api'
 import { filterTypes } from './types'
 
-const getFilteredCarsQuery = (filters: filterTypes) => {
+const getFilteredCarsQuery = (filters: filterTypes, locale?: string) => {
   const { name, lower_price, highest_price, fuel_type, transmission } = filters
-
+  // trazer o language por parametro
   return gql`
   query Cars {
     cars(
-        where: {name_contains: "${name}", dailyRate_gt: ${lower_price}, dailyRate_lt: ${highest_price}, transmission_contains: "${transmission}", fuelType_contains: "${fuel_type}"}
+       locales: ${locale}, where: {name_contains: "${name}", dailyRate_gt: ${lower_price}, dailyRate_lt: ${highest_price}, transmission_contains: "${transmission}", fuelType_contains: "${fuel_type}"}
     first: 50
     ) {
       available
@@ -29,7 +29,11 @@ const getFilteredCarsQuery = (filters: filterTypes) => {
 `
 }
 
-export const getFilteredCars = async (filters: filterTypes) => {
-  return (await apolloClient.query({ query: getFilteredCarsQuery(filters) }))
-    .data
+export const getFilteredCars = async (
+  filters: filterTypes,
+  locale?: string,
+) => {
+  return (
+    await apolloClient.query({ query: getFilteredCarsQuery(filters, locale) })
+  ).data
 }

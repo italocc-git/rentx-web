@@ -1,8 +1,8 @@
 import dayjs from 'dayjs'
-import ptbr from 'dayjs/locale/pt-br'
 
-export function convertDateToString(date: Date): string {
-  return dayjs(date).locale(ptbr).format('DD [de] MMMM')
+export function convertDateToString(date: Date, locale: string): string {
+  const formatText = locale === 'pt' ? 'DD [de] MMMM' : 'MMMM DD[th]'
+  return dayjs(date).format(formatText)
 }
 
 export function differenceBetweenDates(

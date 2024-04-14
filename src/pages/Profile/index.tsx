@@ -9,13 +9,15 @@ import { ChangesConfirmModal } from './ChangesConfirmModal'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../hooks/authContext'
 import DotLoader from 'react-spinners/DotLoader'
-import { uploadUserAvatar } from '../../lib/services/storage'
-import { updateUserAvatarInFirebase } from '../../lib/services/crud'
+import { uploadUserAvatar } from '../../lib/firebase/services/storage'
+import { updateUserAvatarInFirebase } from '../../lib/firebase/services/crud'
+import { useTranslation } from 'react-i18next'
 export const Profile = () => {
   const [openChangesConfirmModal, setOpenChangesConfirmModal] = useState(false)
 
   const { userData, updateUser, setIsLoading, isLoading } = useAuth()
 
+  const { t } = useTranslation()
   const handleAvatarChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
     if (files && userData) {
@@ -78,7 +80,7 @@ export const Profile = () => {
         <hr className=" bg-base-gray mobile:mt-24 mobile:w-full laptop:mt-0 laptop:h-full laptop:w-1" />
         <div className="flex w-full flex-col gap-6">
           <h1 className="font-archivo text-2xl font-semibold text-base-title">
-            Agendamentos feitos
+            {t('pages.profileContent.account.scheduleSection.title')}
           </h1>
           <div className="grid-rows-1 ">
             <Card

@@ -1,8 +1,10 @@
 import { CheckFat } from '@phosphor-icons/react'
 import union from '../../assets/union.png'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 export const CarSuccessfulRented = () => {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   return (
     <div className="relative flex min-h-screen items-center justify-center bg-base-black px-40">
       <img
@@ -16,14 +18,13 @@ export const CarSuccessfulRented = () => {
           weight="bold"
         />
         <h1 className="mb-6 font-archivo text-[54px] font-semibold leading-relaxed text-white">
-          Carro alugado!
+          {t('pages.listContent.successfulRented.title')}
         </h1>
         <span className="mb-12 text-center font-inter text-lg text-base-text-details">
-          Agora você só precisa ir até a concessionária da RentX pegar o seu
-          automóvel.
+          {t('pages.listContent.successfulRented.description')}
         </span>
         <button
-          onClick={() => navigate('/perfil')}
+          onClick={() => navigate('/profile')}
           className="flex h-16 w-[120px] items-center justify-center rounded-md bg-black-300 transition-colors hover:bg-black-700"
         >
           <span className="font-inter font-medium text-white">Ok</span>

@@ -1,6 +1,7 @@
 import { ArrowRight, Drop, Leaf, Lightning } from '@phosphor-icons/react'
 import AutomaticIcon from '../../assets/icons/automatic-transmission.png'
 import ManualIcon from '../../assets/icons/manual-transmission.png'
+import { useTranslation } from 'react-i18next'
 interface CardProps {
   id?: number | string
   image: string
@@ -21,6 +22,7 @@ export const Card = ({
   fuelType,
   cardLayoutType,
 }: CardProps) => {
+  const { t } = useTranslation()
   const CardLayoutHorizontalComponent = () => {
     return (
       <div className="mb-4 h-[258px] w-full max-w-[600px] cursor-pointer">
@@ -32,7 +34,9 @@ export const Card = ({
                 <span className="text-xl text-base-title ">{model}</span>
               </div>
               <div className="flex flex-col justify-between gap-2 font-archivo font-medium">
-                <span className="text-xs text-base-text-details ">AO DIA</span>
+                <span className="text-xs text-base-text-details ">
+                  {t('components.card.body.perDay')}
+                </span>
                 <span className="text-xl font-medium text-product-red">
                   R$ {price}
                 </span>
@@ -71,7 +75,7 @@ export const Card = ({
         <hr className="h-1 w-full  bg-base-main" />
         <div className="flex h-14 items-center justify-between gap-1 border border-base-secondary  bg-base-white px-6 py-5">
           <span className="font-archivo text-xs font-medium text-base-text-details">
-            PERÍODO DO ALUGUEL
+            {t('components.card.body.rentalPeriod')}
           </span>
           <div className="flex  items-center mobile:gap-2 laptop:gap-6">
             <span className="font-medium text-base-title mobile:text-sm laptop:text-lg">
