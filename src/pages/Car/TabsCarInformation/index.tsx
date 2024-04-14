@@ -1,6 +1,7 @@
 import { ArrowRight, CalendarBlank } from '@phosphor-icons/react'
 import * as TabRadix from '@radix-ui/react-tabs'
 import { SelectedRangeDateType } from '../types'
+import { useTranslation } from 'react-i18next'
 
 interface TabsProps {
   selectedData: SelectedRangeDateType
@@ -26,13 +27,14 @@ export const TabsCarInformation = ({
   const handleChangeSelectedTab = (value: string) => {
     setSelectedTab(value)
   }
+  const { t } = useTranslation()
 
   return (
     <Root
       defaultValue={selectedTab}
       onValueChange={handleChangeSelectedTab}
       value={selectedTab}
-      className="my-2 flex h-40 max-w-[400px] flex-col"
+      className="min-h-40 my-2 flex max-w-[400px] flex-col"
     >
       <List
         aria-label="Car Information Manager"
@@ -43,7 +45,7 @@ export const TabsCarInformation = ({
           value="tab1"
         >
           <span className=" font-inter text-sm font-semibold">
-            SOBRE O CARRO
+            {t('pages.listContent.home.car.body.tabComponent.tab1')}
           </span>
         </Trigger>
         <Trigger
@@ -51,7 +53,9 @@ export const TabsCarInformation = ({
           value="tab2"
           disabled={!startDate}
         >
-          <span className=" font-inter text-sm font-semibold">PERÍODO</span>
+          <span className=" font-inter text-sm font-semibold">
+            {t('pages.listContent.home.car.body.tabComponent.tab2.title')}
+          </span>
         </Trigger>
       </List>
       <Content value="tab1" className="text-justify">
@@ -65,7 +69,9 @@ export const TabsCarInformation = ({
             <div className="flex flex-grow items-center gap-6">
               <div className="flex flex-col gap-1">
                 <span className="font-archivo text-xs font-medium text-base-text-details">
-                  DE
+                  {t(
+                    'pages.listContent.home.car.body.tabComponent.tab2.calendar.from',
+                  )}
                 </span>
                 <span className="text-lg font-medium text-base-title">
                   {startDate}
@@ -74,7 +80,9 @@ export const TabsCarInformation = ({
               <ArrowRight />
               <div className="flex flex-col gap-1">
                 <span className="font-archivo text-xs font-medium text-base-text-details">
-                  ATÉ
+                  {t(
+                    'pages.listContent.home.car.body.tabComponent.tab2.calendar.to',
+                  )}
                 </span>
                 <span className="text-lg font-medium text-base-title">
                   {endDate}
@@ -97,12 +105,15 @@ export const TabsCarInformation = ({
                 TOTAL
               </span>
 
-              <span className="text-lg font-medium text-base-title">
-                R$ {carInformation.dailyRate} x {quantityOfDays} diária(s)
+              <span className="font-medium text-base-title tablet:text-lg">
+                R$ {carInformation.dailyRate} x {quantityOfDays}{' '}
+                {t(
+                  'pages.listContent.home.car.body.tabComponent.tab2.totalRent.dailyRent',
+                )}
               </span>
             </div>
 
-            <span className="font-archivo text-4xl font-medium text-product-green">
+            <span className="font-archivo font-medium text-product-green mobile:text-2xl tablet:text-4xl">
               R$ {Number(carInformation.dailyRate) * (quantityOfDays ?? 0)}
             </span>
           </div>

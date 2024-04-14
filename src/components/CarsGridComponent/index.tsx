@@ -11,7 +11,7 @@ export const CarsGridComponent = ({ carsList }: CarsGridComponentProps) => {
   return (
     <div className="grid gap-x-1 mobile:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-2 desktop:grid-cols-3 full:grid-cols-4 ">
       {carsList.map((car) => (
-        <Link to={`/inicio/carro/${car.id}`} key={car.id}>
+        <Link to={`/home/car/${car.id}`} key={car.id}>
           <Card
             image={car.carImages[0]?.url ?? audiImg}
             brand={car.brand}

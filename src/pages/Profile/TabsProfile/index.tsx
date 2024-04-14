@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../../../hooks/authContext'
 import api from '../../../services/api'
+import { useTranslation } from 'react-i18next'
 
 interface TabsProfileProps {
   setModal: (open: boolean) => void
@@ -39,6 +40,7 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
   const { Root, List, Trigger, Content } = TabRadix
   const [selectedTab, setSelectedTab] = useState('tab1')
   const { userData } = useAuth()
+  const { t } = useTranslation()
 
   const handleChangeSelectedTab = (value: string) => {
     setSelectedTab(value)
@@ -120,14 +122,20 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
           className="flex h-11 flex-grow select-none items-center justify-center bg-white px-5 text-base-gray data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow"
           value="tab1"
         >
-          <span className=" font-inter text-sm font-semibold">Dados</span>
+          <span className=" font-inter text-sm font-semibold">
+            {t(
+              'pages.profileContent.account.profileSection.personalData.personalInfo',
+            )}
+          </span>
         </Trigger>
         <Trigger
           className="flex h-11 flex-grow select-none items-center justify-center bg-white px-5  text-base-gray data-[state=active]:text-base-title data-[state=active]:shadow-tabShadow"
           value="tab2"
         >
           <span className=" font-inter text-sm font-semibold">
-            Trocar senha
+            {t(
+              'pages.profileContent.account.profileSection.personalData.changePass',
+            )}
           </span>
         </Trigger>
       </List>
@@ -160,7 +168,9 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
             <Input
               icon={Lock}
               name="oldPassword"
-              placeholder="Senha atual"
+              placeholder={t(
+                'pages.profileContent.account.profileSection.passwordInformation.currentPass',
+              )}
               type="password"
             />
             <span className="text-xs font-semibold text-product-red">
@@ -169,7 +179,9 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
             <Input
               icon={Lock}
               name="password.newPassword"
-              placeholder="Senha"
+              placeholder={t(
+                'pages.profileContent.account.profileSection.passwordInformation.newPass',
+              )}
               type="password"
             />
             <span className="text-xs font-semibold text-product-red">
@@ -178,7 +190,9 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
             <Input
               icon={Lock}
               name="password.confirmNewPassword"
-              placeholder="Repetir senha"
+              placeholder={t(
+                'pages.profileContent.account.profileSection.passwordInformation.confirmNewPass',
+              )}
               type="password"
             />
             <span className="text-xs font-semibold text-product-red">
@@ -189,7 +203,9 @@ export const TabsProfile = ({ setModal }: TabsProfileProps) => {
               disabled={isSubmitting}
               className="w-full bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50  mobile:h-7 laptop:h-16"
             >
-              Salvar alterações
+              {t(
+                'pages.profileContent.account.profileSection.passwordInformation.buttonText',
+              )}
             </button>
           </form>
         </Content>

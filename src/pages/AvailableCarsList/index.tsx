@@ -4,17 +4,23 @@ import { CarsGridComponent } from '../../components/CarsGridComponent'
 import { useAuth } from '../../hooks/authContext'
 import { CarsType } from '../../types/Car'
 import { getCarsList } from './query'
+import { useTranslation } from 'react-i18next'
 
 export const AvailableCarsList = () => {
   const [carsList, setCarsList] = useState<CarsType[]>([])
   const { isLoading, setIsLoading } = useAuth()
+  const { t } = useTranslation()
   const loadAvailableCarsList = useCallback(async () => {
     setIsLoading(true)
-    const { data } = await getCarsList()
-    if (data) {
-      setCarsList(data.cars)
-      setIsLoading(false)
-    }
+    await getCarsList()
+      .then(({ data }) => {
+        if (data) {
+          setCarsList(data.cars)
+        }
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }, [setIsLoading])
 
   useEffect(() => {
@@ -36,10 +42,12 @@ export const AvailableCarsList = () => {
         <>
           <div className=" flex items-center justify-between mobile:flex-col laptop:flex-row">
             <h1 className="font-archivo font-semibold text-base-title mobile:text-xl laptop:text-4xl">
-              Carros disponíveis
+              {t('pages.listContent.home.availableCars.title')}
             </h1>
             <span className="font-inter text-base font-normal text-base-text">
-              Total {carsList.length} carros
+              {t('pages.listContent.home.availableCars.description1')}{' '}
+              {carsList.length}{' '}
+              {t('pages.listContent.home.availableCars.description2')}
             </span>
           </div>
           <hr className="my-10 w-full border bg-base-secondary" />

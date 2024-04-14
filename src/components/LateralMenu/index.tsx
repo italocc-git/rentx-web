@@ -23,14 +23,14 @@ export const LateralMenu = () => {
         <img src={rentxIcon} alt="rentx-icon" className="cursor-pointer" />
       </button>
       <div className="flex h-[calc(100%-5rem)] items-center justify-center gap-3 mobile:h-full mobile:flex-row laptop:flex-col">
-        <Link to="/inicio/lista-carros-disponíveis" className={linkStyleClass}>
+        <Link to="/home/available-list-cars" className={linkStyleClass}>
           <House weight="light" size={26} />
         </Link>
-        <Link to="/filtro/carros-por-data" className={linkStyleClass}>
+        <Link to="/filter/car-by-date" className={linkStyleClass}>
           <Car weight="light" size={26} />
         </Link>
         <Link
-          to={userData !== null ? '/perfil' : '/perfil/login'}
+          to={userData !== null ? '/profile' : '/profile/sign-in'}
           className={linkStyleClass}
         >
           <User weight="light" size={26} />

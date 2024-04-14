@@ -6,6 +6,7 @@ import {
   differenceBetweenDates,
 } from '../../../utils/convertDate'
 import { SelectedRangeDateType } from '../types'
+import { useTranslation } from 'react-i18next'
 
 interface DateSelectModalProps {
   openModal: boolean
@@ -22,24 +23,27 @@ export const DateSelectModal = ({
   setSelectedRangeDate,
   setSelectTab,
 }: DateSelectModalProps) => {
+  const {
+    i18n: { language },
+  } = useTranslation()
   const handleOnChangeCalendar = (dateValue: any) => {
     const [start, end] = dateValue
     setSelectedRangeDate({
-      startDate: convertDateToString(start),
-      endDate: convertDateToString(end),
+      startDate: convertDateToString(start, language),
+      endDate: convertDateToString(end, language),
       quantityOfDays: Math.abs(differenceBetweenDates(start, end)),
     })
     setSelectTab('tab2')
   }
   return (
     <Modal openModal={openModal} setOpen={setOpenModal}>
-      <div className="flex h-20 items-center justify-between bg-black-700 px-12 py-7">
+      <div className="flex h-20 items-center justify-between bg-black-700 px-5 py-7">
         <span className="font-archivo text-lg font-semibold text-base-white">
           Escolha uma data de início e fim do aluguel
         </span>
         <X
           onClick={() => setOpenModal(false)}
-          size={18}
+          size={32}
           className="cursor-pointer text-base-text-details transition-colors hover:text-base-hover"
         />
       </div>

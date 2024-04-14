@@ -18,34 +18,28 @@ export const Router = () => {
       <Route path="/" element={<SecondaryLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route
-          path="/carro-alugado-com-sucesso"
+          path="/successfully-rented-car"
           element={<CarSuccessfulRented />}
         />
       </Route>
-      <Route path="/inicio" element={<DefaultLayout />}>
+      <Route path="/home" element={<DefaultLayout />}>
         <Route
-          path="/inicio/lista-carros-disponíveis"
+          path="/home/available-list-cars"
           element={<AvailableCarsList />}
         />
 
-        <Route path="/inicio/carro/:id" element={<CarDetails />} />
+        <Route path="/home/car/:id" element={<CarDetails />} />
       </Route>
-      <Route path="/filtro" element={<DefaultLayout />}>
-        <Route
-          path="/filtro/listagem-de-carros"
-          element={<FilteredCarsList />}
-        />
-        <Route
-          path="/filtro/carros-por-data"
-          element={<FilteredCarsByDate />}
-        />
+      <Route path="/filter" element={<DefaultLayout />}>
+        <Route path="/filter/cars-list" element={<FilteredCarsList />} />
+        <Route path="/filter/car-by-date" element={<FilteredCarsByDate />} />
       </Route>
-      <Route path="/perfil" element={<DefaultLayout />}>
-        <Route path="/perfil" element={<Profile />} />
-        <Route path="/perfil/login" element={<SignIn />} />
-        <Route path="/perfil/cadastro" element={<SignUp />} />
+      <Route path="/profile" element={<DefaultLayout />}>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/sign-in" element={<SignIn />} />
+        <Route path="/profile/sign-up" element={<SignUp />} />
         <Route
-          path="/perfil/recuperação-de-senha"
+          path="/profile/password-recovery"
           element={<PasswordRecovery />}
         />
       </Route>

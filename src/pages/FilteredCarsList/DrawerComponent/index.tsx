@@ -1,16 +1,16 @@
 import { Drop, Leaf, Lightning, X } from '@phosphor-icons/react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { filterTypes } from '../types'
 import { SliderComponent } from './SliderComponent'
-import { getCategoriesList } from './query'
+import { useTranslation } from 'react-i18next'
 
-type carCategories = {
-  id: string
-  name: string
-}
+// type carCategories = {
+//   id: string
+//   name: string
+// }
 interface DrawerComponentProps {
   setFilterCars: Dispatch<SetStateAction<filterTypes>>
 }
@@ -19,7 +19,11 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
   const [selectedPricesValues, setSelectedPricesValues] = useState<number[]>([
     0, 5000,
   ])
-  const [carCategories, setCarCategories] = useState<carCategories[]>([])
+  const { t } = useTranslation()
+  // const {
+  //   i18n: { language },
+  // } = useTranslation()
+  // const [carCategories, setCarCategories] = useState<carCategories[]>([])
   const [fuelType, setFuelType] = useState('')
   const [transmission, setTransmission] = useState('')
   const createForm = useForm<filterTypes>()
@@ -56,16 +60,18 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
     })
   }
 
-  useEffect(() => {
-    getCategoriesList().then(({ categories }) => setCarCategories(categories))
-  }, [])
+  // useEffect(() => {
+  //   getCategoriesList().then(({ categories }) => setCarCategories(categories))
+  // }, [])
 
   return (
     <div className="drawer-side">
       <label htmlFor="my-drawer-filter" className="drawer-overlay"></label>
       <div className="w-[407px] bg-base-main py-16 mobile:px-11 laptop:px-9 ">
         <div className="flex items-center justify-between">
-          <h1 className="font-archivo text-2xl font-semibold">Filtro</h1>
+          <h1 className="font-archivo text-2xl font-semibold">
+            {t('pages.listContent.filteredCars.drawerComponent.title')}
+          </h1>
           <label htmlFor="my-drawer-filter">
             <X
               size={22}
@@ -84,7 +90,9 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
             {...register('name')}
             className="border border-base-secondary bg-white
             px-4 py-[22px] font-inter placeholder:text-base-text-details focus:outline-none focus:ring-2 focus:ring-product-red"
-            placeholder="Qual carro você deseja?"
+            placeholder={t(
+              'pages.listContent.filteredCars.drawerComponent.carNamePlaceholder',
+            )}
           />
           <datalist id="car-suggestions">
             <option value="Lancer EVO X" />
@@ -93,7 +101,7 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
             <option value="Covette Z06" />
             <option value="Huracan" />
           </datalist>
-          <select
+          {/* <select
             defaultValue={''}
             {...register('category_id')}
             className="h-full rounded-sm border-0 bg-white px-4 py-[22px] text-gray-500 focus:ring-2 focus:ring-inset focus:ring-product-red"
@@ -104,11 +112,13 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
                 {category.name}
               </option>
             ))}
-          </select>
+          </select> */}
           <div className="flex flex-col gap-2">
             <div className="flex justify-between font-semibold ">
               <span className="font-archivo text-xl text-base-title">
-                Preço ao dia
+                {t(
+                  'pages.listContent.filteredCars.drawerComponent.pricePerDayTitle',
+                )}
               </span>
               <span className="font-inter text-product-red">
                 R$ {selectedPricesValues[0]} - R$ {selectedPricesValues[1]}
@@ -121,7 +131,7 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
           </div>
           <div className="flex flex-col gap-2">
             <span className="font-archivo text-xl text-base-title">
-              Combustível
+              {t('pages.listContent.filteredCars.drawerComponent.fuel.title')}
             </span>
 
             <RadioGroup.Root
@@ -131,36 +141,50 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
             >
               <RadioGroup.Item
                 value="gasoline"
-                className="flex flex-col items-center gap-2 py-2 px-7 text-base-text-details data-[state=checked]:bg-base-main
-                  data-[state=checked]:font-medium data-[state=checked]:text-product-red
+                className="flex flex-col items-center gap-2 py-2 px-7 text-base-text-details transition-colors duration-500
+                  data-[state=checked]:bg-base-main data-[state=checked]:font-medium data-[state=checked]:text-product-red
                   "
               >
                 <Drop weight="bold" size={20} />
-                <span className="text-sm">Gasolina</span>
+                <span className="text-sm">
+                  {t(
+                    'pages.listContent.filteredCars.drawerComponent.fuel.radio.op1',
+                  )}
+                </span>
               </RadioGroup.Item>
               <RadioGroup.Item
-                value="eletric"
-                className="flex flex-col items-center  gap-2 py-2 px-7 text-base-text-details data-[state=checked]:bg-base-main
-                  data-[state=checked]:font-medium data-[state=checked]:text-product-red
+                value="energy"
+                className="flex flex-col items-center  gap-2 py-2 px-7 text-base-text-details transition-colors duration-500
+                  data-[state=checked]:bg-base-main data-[state=checked]:font-medium data-[state=checked]:text-product-red
                   "
               >
                 <Lightning weight="bold" size={20} />
-                <span className=" text-sm">Elétrico</span>
+                <span className=" text-sm">
+                  {t(
+                    'pages.listContent.filteredCars.drawerComponent.fuel.radio.op2',
+                  )}
+                </span>
               </RadioGroup.Item>
               <RadioGroup.Item
                 value="hybrid"
-                className="flex flex-col items-center  gap-2 py-2 px-7 text-base-text-details data-[state=checked]:bg-base-main
-                  data-[state=checked]:font-medium data-[state=checked]:text-product-red
+                className="flex flex-col items-center  gap-2 py-2 px-7 text-base-text-details transition-colors
+                  duration-500 data-[state=checked]:bg-base-main data-[state=checked]:font-medium data-[state=checked]:text-product-red
                   "
               >
                 <Leaf weight="bold" size={20} />
-                <span className=" text-sm">Álcool</span>
+                <span className=" text-sm">
+                  {t(
+                    'pages.listContent.filteredCars.drawerComponent.fuel.radio.op3',
+                  )}
+                </span>
               </RadioGroup.Item>
             </RadioGroup.Root>
           </div>
           <div className="flex flex-col gap-2">
             <span className="font-archivo text-xl text-base-title">
-              Transmissão
+              {t(
+                'pages.listContent.filteredCars.drawerComponent.transmission.title',
+              )}
             </span>
 
             <RadioGroup.Root
@@ -170,19 +194,27 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
             >
               <RadioGroup.Item
                 value="automatic"
-                className=" flex-grow py-2 text-base-text-details 
+                className=" flex-grow py-2 text-base-text-details transition-all
                 data-[state=checked]:bg-base-main data-[state=checked]:font-semibold data-[state=checked]:text-base-title
                 "
               >
-                <span className="text-sm">Automático</span>
+                <span className="text-sm">
+                  {t(
+                    'pages.listContent.filteredCars.drawerComponent.transmission.radio.op1',
+                  )}
+                </span>
               </RadioGroup.Item>
               <RadioGroup.Item
                 value="manual"
-                className="flex-grow py-2 text-base-text-details  
+                className="flex-grow py-2 text-base-text-details  transition-all
                 data-[state=checked]:bg-base-main data-[state=checked]:font-semibold data-[state=checked]:text-base-title
                 "
               >
-                <span className=" text-sm">Manual</span>
+                <span className=" text-sm">
+                  {t(
+                    'pages.listContent.filteredCars.drawerComponent.transmission.radio.op2',
+                  )}
+                </span>
               </RadioGroup.Item>
             </RadioGroup.Root>
           </div>
@@ -191,13 +223,17 @@ export const DrawerComponent = ({ setFilterCars }: DrawerComponentProps) => {
               type="submit"
               className="h-16 bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Filtrar Resultados
+              {t(
+                'pages.listContent.filteredCars.drawerComponent.button.submitText',
+              )}
             </button>
             <button
               onClick={resetStates}
               className='"flex h-16 items-center justify-center border border-base-gray bg-transparent text-base-title transition-colors hover:border-base-title'
             >
-              Limpar dados
+              {t(
+                'pages.listContent.filteredCars.drawerComponent.button.clearText',
+              )}
             </button>
           </div>
         </form>

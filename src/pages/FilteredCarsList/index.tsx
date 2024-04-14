@@ -11,6 +11,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/authContext'
 import { DotLoader } from 'react-spinners'
 import { filterTypes } from './types'
+import { useTranslation } from 'react-i18next'
 import { getFilteredCars } from './query'
 
 export const FilteredCarsList = () => {
@@ -23,20 +24,24 @@ export const FilteredCarsList = () => {
     highest_price: 5000,
   }
   const { state } = useLocation()
+  const { t } = useTranslation()
   const { dateSelected } = state
   const [carsList, setCarsList] = useState<CarsType[]>([])
   const { isLoading, setIsLoading } = useAuth()
   const [filter, setFilter] = useState<filterTypes>(filterInitialValues)
+  const {
+    i18n: { language },
+  } = useTranslation()
 
   const loadFilteredCarsList = useCallback(async () => {
     setIsLoading(true)
-    await getFilteredCars(filter).then(({ cars }) => {
+    await getFilteredCars(filter, language).then(({ cars }) => {
       if (cars) {
         setCarsList(cars)
       }
     })
     setIsLoading(false)
-  }, [setIsLoading, filter])
+  }, [setIsLoading, filter, language])
 
   useEffect(() => {
     loadFilteredCarsList()
@@ -59,47 +64,49 @@ export const FilteredCarsList = () => {
           ) : (
             <div className="drawer-content flex items-center justify-between mobile:flex-col laptop:flex-row">
               <h1 className="font-archivo font-semibold text-base-title mobile:text-2xl laptop:text-4xl">
-                {carsList.length} Carros encontrados
+                {carsList.length} {t('pages.listContent.filteredCars.title')}
               </h1>
-              <div className="flex items-center mobile:gap-1 laptop:gap-6">
-                <div className="flex flex-col gap-1">
+              <div className="flex items-center mobile:mt-4 mobile:flex-col mobile:gap-4 laptop:mt-0 laptop:flex-row laptop:gap-6">
+                <div className="flex items-center gap-4  laptop:flex-col">
                   <span className="font-archivo text-xs font-medium text-base-text-details">
-                    DE
+                    {t('pages.listContent.filteredCars.dateContent.from')}
                   </span>
                   <span className="text-lg font-medium text-base-title">
                     {dateSelected.startDate}
                   </span>
                 </div>
                 <ArrowRight weight="bold" className="text-base-text-details" />
-                <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-4  laptop:flex-col">
                   <span className="font-archivo text-xs font-medium text-base-text-details">
-                    ATÉ
+                    {t('pages.listContent.filteredCars.dateContent.to')}
                   </span>
                   <span className="text-lg font-medium text-base-title">
                     {dateSelected.endDate}
                   </span>
                 </div>
-                <Link
-                  to="/filtro/carros-por-data"
-                  className="flex h-12 w-12 items-center justify-center rounded bg-product-red transition-colors hover:bg-product-red-dark"
-                >
-                  <CalendarBlank
-                    size={20}
-                    weight="bold"
-                    className="text-white"
-                  />
-                </Link>
-                <hr className="h-6 border border-base-gray" />
-                <label
-                  htmlFor="my-drawer-filter"
-                  className="flex h-12 w-12 cursor-pointer items-center justify-center rounded bg-product-red transition-colors hover:bg-product-red-dark"
-                >
-                  <SlidersHorizontal
-                    size={20}
-                    weight="bold"
-                    className="text-white"
-                  />
-                </label>
+                <div className="flex items-center gap-4 ">
+                  <Link
+                    to="/filter/car-by-date"
+                    className="flex h-12 w-12 items-center justify-center rounded bg-product-red transition-colors hover:bg-product-red-dark"
+                  >
+                    <CalendarBlank
+                      size={20}
+                      weight="bold"
+                      className="text-white"
+                    />
+                  </Link>
+                  <hr className="h-6 border border-base-gray" />
+                  <label
+                    htmlFor="my-drawer-filter"
+                    className="flex h-12 w-12 cursor-pointer items-center justify-center rounded bg-product-red transition-colors hover:bg-product-red-dark"
+                  >
+                    <SlidersHorizontal
+                      size={20}
+                      weight="bold"
+                      className="text-white"
+                    />
+                  </label>
+                </div>
               </div>
             </div>
           )}

@@ -2,10 +2,10 @@ import { gql } from '@apollo/client'
 // import { researchTeamFallback } from '@app/cms/contentFallback'
 import { apolloClient } from '../../services/api'
 
-const getCarByID = (carID?: string) => {
+const getCarByID = (carID: string, locale: string) => {
   return gql`
-  query Cars($carID: ID! = "${carID}") {
-    car(where: { id: $carID }) {
+  query Cars {
+    car(locales: ${locale}, where: { id: "${carID}" }) {
       available
       description
       brand
@@ -30,8 +30,11 @@ const getCarByID = (carID?: string) => {
 `
 }
 
-export const getCar = async (id?: string) => {
-  return await apolloClient.query({
-    query: getCarByID(id),
-  })
+export const getCar = async (id: string, locale: string) => {
+  return (
+    await apolloClient.query({
+      query: getCarByID(id, locale),
+      fetchPolicy: 'no-cache',
+    })
+  ).data
 }
