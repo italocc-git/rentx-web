@@ -1,0 +1,94 @@
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.checkbox-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+   background: rgb(183,183,183);
+  background: linear-gradient(180deg, rgba(183,183,183,1) 5%, rgba(221,221,221,1) 43%, rgba(236,236,236,1) 82%); 
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.checkbox-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  //background-image: url('en-flag.jpg');
+  background-size: 27px 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input + .checkbox-slider:before {
+    background-image: url('./assets/flags/pt-flag.jpeg');
+}
+
+input:checked + .checkbox-slider:before {
+    background-image: url('./assets/flags/en-flag.jpeg');
+}
+input:checked + .checkbox-slider:after {
+    position: absolute;
+    top:5%;
+    left: 15%;
+    content: "EN";
+    font-size:0.9rem;
+    color:#b32b3f;
+   
+  }
+  input + .checkbox-slider:after {
+    position: absolute;
+    top:5%;
+    right: 15%;
+    content: "PT";
+    font-size:0.9rem;
+    color:#00822c;
+   
+  }
+
+input:checked + .checkbox-slider {
+  background-color: graylight;
+  
+}
+
+input:focus + .checkbox-slider {
+  box-shadow: 0 0 1px graylight;
+  
+}
+
+input:checked + .checkbox-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.checkbox-slider.round {
+  border-radius: 34px;
+}
+
+.checkbox-slider.round:before {
+  border-radius: 50%;
+}

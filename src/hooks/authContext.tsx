@@ -6,8 +6,8 @@ import {
   authenticateUserInFirebase,
   signOutUserInFirebase,
   signUpUserInFirebase,
-} from '../lib/services/auth'
-import { getUserInDB } from '../lib/services/crud'
+} from '../lib/firebase/services/auth'
+import { getUserInDB } from '../lib/firebase/services/crud'
 
 interface AuthProviderProps {
   children: ReactNode
@@ -51,7 +51,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState<AuthState | null>(() => {
     const userCookie = parseCookies(null)
-
     if (userCookie[import.meta.env.VITE_STORAGE_KEY]) {
       const { user, token, refreshToken } = JSON.parse(
         userCookie[import.meta.env.VITE_STORAGE_KEY],
