@@ -111,6 +111,7 @@ export default {
           inputText: {
             password: 'Password',
             email: 'E-mail',
+            forgotPassoword: 'Forgot my password',
           },
           buttonText: {
             signIn: 'Login',
@@ -139,6 +140,10 @@ export default {
         },
         account: {
           profileSection: {
+            toast: {
+              password: 'User password updated',
+              avatar: 'Avatar updated',
+            },
             personalData: {
               personalInfo: 'Personal Info',
               changePass: 'Change Password',
@@ -166,17 +171,31 @@ export default {
         },
       },
       passwordRecovery: {
-        errorMessage: {
-          requiredField: 'Email Required',
-          invalidField: 'Invalid email format',
+        emailValidationComponent: {
+          errorMessage: {
+            requiredField: 'Email Required',
+            invalidField: 'Invalid email format',
+          },
+          sendPasswordResetEmail: {
+            success: 'Password verification email sent to : ',
+            error: 'Unexpected error, please try again later.',
+          },
+          title: 'Recovery password',
+          description: 'Enter your email to receive a recovery link',
+          buttonText: 'Recovery password',
         },
-        sendPasswordResetEmail: {
-          success: 'Password verification email sent to : ',
-          error: 'Unexpected error, please try again later.',
+        newPasswordComponent: {
+          errorMessage: {
+            requiredField: 'Required field',
+            invalidMatchPasswords: 'Password must be the same',
+            regexValidation:
+              'It must contain at least 8 characters with upper and lower case letters, numbers, and special characters.',
+          },
+          title: 'New password',
+          description:
+            'Enter your new password and confirm on the field below.',
+          buttonText: 'Renew password',
         },
-        title: 'Recovery password',
-        description: 'Enter your email to receive a recovery link',
-        buttonText: 'Recovery password',
       },
     },
   },

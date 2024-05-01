@@ -4,7 +4,7 @@ import { TabsProfile } from './TabsProfile'
 import userImage from '../../assets/user-image.png'
 import corvetteImg from '../../assets/tests/Corvete.png'
 import porsheImg from '../../assets/tests/Porche.png'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { ChangesConfirmModal } from './ChangesConfirmModal'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../hooks/authContext'
@@ -12,6 +12,7 @@ import DotLoader from 'react-spinners/DotLoader'
 import { uploadUserAvatar } from '../../lib/firebase/services/storage'
 import { updateUserAvatarInFirebase } from '../../lib/firebase/services/crud'
 import { useTranslation } from 'react-i18next'
+
 export const Profile = () => {
   const [openChangesConfirmModal, setOpenChangesConfirmModal] = useState(false)
 
@@ -31,12 +32,22 @@ export const Profile = () => {
 
         updateUserAvatarInFirebase(userUpdatedData)
 
-        toast.success('Avatar alterado com sucesso')
+        toast.success(
+          t('pages.profileContent.account.profileSection.toast.avatar'),
+        )
         setIsLoading(false)
       }
     }
   }
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search)
+    if (params.get('passwordUpdated')) {
+      toast.success(
+        t('pages.profileContent.account.profileSection.toast.password'),
+      )
+    }
+  }, [])
   return (
     <div className=" min-h-screen bg-base-white mobile:mb-20 mobile:px-8 laptop:mb-0 laptop:px-20 laptop:py-8">
       <ChangesConfirmModal

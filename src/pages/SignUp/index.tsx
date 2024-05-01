@@ -1,15 +1,15 @@
 /* eslint-disable prefer-regex-literals */
 import { User, Envelope, Car, Lock } from '@phosphor-icons/react'
-import carImageSignupPage from '../../assets/car-image-signup.png'
-import { Input } from '../../components/Input'
+import carImageSignupPage from '@/assets/car-image-signup.png'
+import { Input } from '@/components/Input'
 import { useForm, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SuccessfullyUserCreationModal } from './SuccessfullyUserCreationModal'
 import { useState } from 'react'
-import { useAuth } from '../../hooks/authContext'
+import { useAuth } from '@/hooks/authContext'
 import { toast } from 'react-toastify'
-import { createUserInDB } from '../../lib/firebase/services/crud'
+import { createUserInDB } from '@/lib/firebase/services/crud'
 import { useTranslation } from 'react-i18next'
 const createUserFormSchema = z.object({
   name: z

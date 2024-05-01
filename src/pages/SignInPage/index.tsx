@@ -92,7 +92,7 @@ export const SignIn = () => {
 
               <Link to="/profile/password-recovery">
                 <span className="font-inter text-base-text transition-colors hover:text-base-title">
-                  Esqueci minha senha
+                  {t('pages.profileContent.signIn.inputText.forgotPassoword')}
                 </span>
               </Link>
               <div className="mt-4 flex w-full  flex-col gap-4 font-inter font-medium">

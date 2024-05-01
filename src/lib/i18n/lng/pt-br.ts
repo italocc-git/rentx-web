@@ -112,6 +112,7 @@ export default {
           inputText: {
             password: 'Senha',
             email: 'E-mail',
+            forgotPassoword: 'Esqueci minha senha',
           },
           buttonText: {
             signIn: 'Logar',
@@ -140,6 +141,10 @@ export default {
         },
         account: {
           profileSection: {
+            toast: {
+              success: 'Senha do usuário atualizada',
+              avatar: 'Avatar alterado',
+            },
             personalData: {
               personalInfo: 'Informações Pessoais',
               changePass: 'Mudar Senha',
@@ -167,17 +172,31 @@ export default {
         },
       },
       passwordRecovery: {
-        errorMessage: {
-          requiredField: 'Email obrigatório',
-          invalidField: 'Formato de email inválido',
+        emailValidationComponent: {
+          errorMessage: {
+            requiredField: 'Email obrigatório',
+            invalidField: 'Formato de email inválido',
+          },
+          sendPasswordResetEmail: {
+            success: 'Email de redefinição de senha enviado para : ',
+            error: 'Erro inesperado , por favor tente novamente mais tarde.',
+          },
+          title: 'Recuperar senha',
+          description: 'Insira seu email para receber um link de recuperação',
+          buttonText: 'Recuperar senha',
         },
-        sendPasswordResetEmail: {
-          success: 'Email de redefinição de senha enviado para : ',
-          error: 'Erro inesperado , por favor tente novamente mais tarde.',
+        newPasswordComponent: {
+          errorMessage: {
+            requiredField: 'Campo obrigatório',
+            invalidMatchPasswords: 'As senhas devem ser iguais',
+            regexValidation:
+              'Deve conter ao menos 8 caracteres com letras maiúsculas e minúsculas, números, e caracteres especiais.',
+          },
+
+          title: 'Nova senha',
+          description: 'Insira sua nova senha e confirme no campo abaixo.',
+          buttonText: 'Renovar senha',
         },
-        title: 'Recuperar senha',
-        description: 'Insira seu email para receber um link de recuperação',
-        buttonText: 'Recuperar senha',
       },
     },
   },
