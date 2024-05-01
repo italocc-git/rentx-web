@@ -3,6 +3,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
 } from 'firebase/auth'
 
 const auth = getAuth()
@@ -33,4 +35,31 @@ export const signUpUserInFirebase = async ({ email, password }: userInfo) => {
 
 export const signOutUserInFirebase = async () => {
   return await signOut(auth)
+}
+
+export const handleResetPassword = async (
+  newPassword: string,
+  actionCode: string,
+) => {
+  let accountEmail = ''
+  await verifyPasswordResetCode(auth, actionCode)
+    .then(async (email) => {
+      accountEmail = email
+      try {
+        await confirmPasswordReset(auth, actionCode, newPassword)
+        return {
+          email,
+          password: newPassword,
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  return {
+    accountEmail,
+    newPassword,
+  }
 }
