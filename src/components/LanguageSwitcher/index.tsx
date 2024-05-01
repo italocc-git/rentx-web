@@ -4,10 +4,10 @@ import './toggleSwitch.css'
 export const LanguageSwitcher = () => {
   const { i18n } = useTranslation()
   const { language } = i18n
-  // const { language } = i18n
   const [isEnglishLanguageSelected, setIsEnglishLanguageSelected] = useState(
     language === 'en',
   )
+
   const handleChangeLanguage = useCallback(
     (lng?: 'pt' | 'en') => {
       setIsEnglishLanguageSelected(!isEnglishLanguageSelected)

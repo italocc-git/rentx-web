@@ -7,9 +7,7 @@ const api = axios.create({
 
 export const apolloClient = new ApolloClient({
   link: new HttpLink({
-    uri:
-      'https://api-sa-east-1.hygraph.com/v2/cloviisu438ez01t9e4vl4vzm/master' ??
-      '',
+    uri: import.meta.env.VITE_HYGRAPH_URI ?? '',
   }),
   cache: new InMemoryCache(),
   ssrMode: false,
