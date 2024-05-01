@@ -166,6 +166,19 @@ export default {
           },
         },
       },
+      passwordRecovery: {
+        errorMessage: {
+          requiredField: 'Email obrigatório',
+          invalidField: 'Formato de email inválido',
+        },
+        sendPasswordResetEmail: {
+          success: 'Email de redefinição de senha enviado para : ',
+          error: 'Erro inesperado , por favor tente novamente mais tarde.',
+        },
+        title: 'Recuperar senha',
+        description: 'Insira seu email para receber um link de recuperação',
+        buttonText: 'Recuperar senha',
+      },
     },
   },
 }

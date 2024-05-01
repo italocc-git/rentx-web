@@ -90,12 +90,11 @@ export const SignIn = () => {
                 </span>
               )}
 
-              {/* <Link to="/profile/password-recovery">
-                IMPLEMENTANDO...
+              <Link to="/profile/password-recovery">
                 <span className="font-inter text-base-text transition-colors hover:text-base-title">
                   Esqueci minha senha
                 </span>
-              </Link> */}
+              </Link>
               <div className="mt-4 flex w-full  flex-col gap-4 font-inter font-medium">
                 <button
                   type="submit"

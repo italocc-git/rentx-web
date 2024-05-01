@@ -4,22 +4,46 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import carImageSignPage from '../../assets/car-image-signin.png'
 import { Input } from '../../components/Input'
+import { toast } from 'react-toastify'
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+import { useTranslation } from 'react-i18next'
 
-const recoveryPasswordFormSchema = z.object({
-  email: z
-    .string()
-    .nonempty('E-mail obrigatório')
-    .email('Formato de e-mail inválido')
-    .toLowerCase(),
-})
-
-type recoveryPasswordFormDataType = z.infer<typeof recoveryPasswordFormSchema>
 export const PasswordRecovery = () => {
+  const {
+    i18n: { language },
+  } = useTranslation()
+  const { t } = useTranslation()
+  const recoveryPasswordFormSchema = z.object({
+    email: z
+      .string()
+      .nonempty(t('pages.passwordRecovery.errorMessage.requiredField'))
+      .email(t('pages.passwordRecovery.errorMessage.invalidField'))
+      .toLowerCase(),
+  })
+  type recoveryPasswordFormDataType = z.infer<typeof recoveryPasswordFormSchema>
   const recoveryPasswordForm = useForm<recoveryPasswordFormDataType>({
     resolver: zodResolver(recoveryPasswordFormSchema),
   })
 
-  const submitData = (data: recoveryPasswordFormDataType) => {}
+  const submitData = (data: recoveryPasswordFormDataType) => {
+    const { email } = data
+    const auth = getAuth()
+    auth.languageCode = language
+    sendPasswordResetEmail(auth, email, {
+      url: `${import.meta.env.VITE_BASE_URL}/profile/sign-in`,
+    })
+      .then(() => {
+        toast.success(
+          `${t(
+            'pages.passwordRecovery.sendPasswordResetEmail.success',
+          )} ${email}`,
+        )
+      })
+      .catch(() => {
+        toast.error(t('pages.passwordRecovery.sendPasswordResetEmail.error'))
+        // ..
+      })
+  }
   const {
     handleSubmit,
     formState: { isSubmitting, errors },
@@ -38,10 +62,10 @@ export const PasswordRecovery = () => {
             className="flex flex-grow flex-col justify-center gap-6 "
           >
             <h1 className="font-archivo text-4xl font-semibold text-base-title">
-              Recuperar senha
+              {t('pages.passwordRecovery.title')}
             </h1>
             <span className="font-inter text-base-text">
-              Insira seu e-mail para receber um link de recuperação
+              {t('pages.passwordRecovery.description')}
             </span>
 
             <Input
@@ -60,7 +84,7 @@ export const PasswordRecovery = () => {
               disabled={isSubmitting}
               className="h-16  bg-product-red text-white transition-colors hover:bg-product-red-dark  disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Recuperar senha
+              {t('pages.passwordRecovery.buttonText')}
             </button>
           </form>
         </FormProvider>

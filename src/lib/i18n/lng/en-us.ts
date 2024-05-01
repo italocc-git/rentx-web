@@ -165,6 +165,19 @@ export default {
           },
         },
       },
+      passwordRecovery: {
+        errorMessage: {
+          requiredField: 'Email Required',
+          invalidField: 'Invalid email format',
+        },
+        sendPasswordResetEmail: {
+          success: 'Password verification email sent to : ',
+          error: 'Unexpected error, please try again later.',
+        },
+        title: 'Recovery password',
+        description: 'Enter your email to receive a recovery link',
+        buttonText: 'Recovery password',
+      },
     },
   },
 }
