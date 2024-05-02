@@ -2,12 +2,12 @@ import { Input } from '@/components/Input'
 import { Envelope } from '@phosphor-icons/react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { z } from 'zod'
 
 import { useTranslation } from 'react-i18next'
+import { handlePasswordResetEmail } from '@/lib/firebase/services/auth'
 export const EmailValidationContent = () => {
   const {
     i18n: { language },
@@ -39,11 +39,8 @@ export const EmailValidationContent = () => {
   } = recoveryPasswordForm
   const submitData = (data: recoveryPasswordFormDataType) => {
     const { email } = data
-    const auth = getAuth()
-    auth.languageCode = language
-    sendPasswordResetEmail(auth, email, {
-      url: `${import.meta.env.VITE_BASE_URL}/profile/sign-in`,
-    })
+
+    handlePasswordResetEmail(email, language)
       .then(() => {
         toast.success(
           `${t(

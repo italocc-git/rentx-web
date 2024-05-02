@@ -5,6 +5,7 @@ import {
   signOut,
   verifyPasswordResetCode,
   confirmPasswordReset,
+  sendPasswordResetEmail,
 } from 'firebase/auth'
 
 const auth = getAuth()
@@ -35,6 +36,14 @@ export const signUpUserInFirebase = async ({ email, password }: userInfo) => {
 
 export const signOutUserInFirebase = async () => {
   return await signOut(auth)
+}
+
+export const handlePasswordResetEmail = async (
+  email: string,
+  currentLanguage: string,
+) => {
+  auth.languageCode = currentLanguage
+  await sendPasswordResetEmail(auth, email)
 }
 
 export const handleResetPassword = async (
