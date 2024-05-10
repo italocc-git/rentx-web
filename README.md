@@ -28,6 +28,8 @@ Fictitious car rental application, using React with Tailwind CSS responsive. Thi
 - React Router DOM
 - React Responsive Carousel
 - Nookies
+- Hygraph
+- Firebase Integration
 
 
 ## Production Implementation
